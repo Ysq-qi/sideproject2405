@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//處理組件的畫面呈現與佈局
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { LayoutContainer, Content } from './styles/layoutstyle';
+import { GlobalStyles } from './styles/style'
+import Header from './components/header';
+import Footer from './components/footer';
+import Home from './pages/home';
+import Type1 from './pages/categories/type1';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+      <Router>
+        <LayoutContainer>
+          <GlobalStyles />
+          <Header />
+          <Content>
+            <Routes>
+              <Route path="/type1" element={<Home />} />
+              <Route path="/" element={<Type1 />} />
+            </Routes>
+          </Content>
+          <Footer />
+        </LayoutContainer>
+      </Router>
+    );
+  };
 
-export default App;
+  export default App;
