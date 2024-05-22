@@ -8,7 +8,9 @@ import Footer from './components/footer';
 import Home from './pages/home';
 import Login from './pages/user/login'
 import Register from './pages/user/register'
+import Profile from './pages/user/profile'
 import Cart from './pages/shop/cart'
+import ProductDetail from './pages/product/product-detail'
 
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/productdetail" element={<ProductDetail />} />
             </Routes>
           </Content>
           <Footer />
