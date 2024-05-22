@@ -24,7 +24,12 @@ const Header = () => {
           <ActionButton className='bi bi-search'></ActionButton>
           <ActionButton className='bi bi-person'></ActionButton>
           <ActionButton className='bi bi-cart'></ActionButton>
-          <ActionButton className='bi bi-filter-right'></ActionButton>
+          <ActionButton className='bi bi-filter-right'
+            //onMouseEnter={handleMouseEnter} 
+            //onMouseLeave={handleMouseLeave} 
+            //onClick={handleClick}
+            >
+          </ActionButton>
         </ButtonGroup>
         <Nav>
           <NavItem>種類1</NavItem>

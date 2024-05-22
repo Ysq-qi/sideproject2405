@@ -6,7 +6,10 @@ import { GlobalStyles } from './styles/style'
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './pages/home';
-import Type1 from './pages/categories/type1';
+import Login from './pages/user/login'
+import Register from './pages/user/register'
+import Cart from './pages/shop/cart'
+
 
 const App = () => {
     return (
@@ -16,8 +19,10 @@ const App = () => {
           <Header />
           <Content>
             <Routes>
-              <Route path="/type1" element={<Home />} />
-              <Route path="/" element={<Type1 />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </Content>
           <Footer />

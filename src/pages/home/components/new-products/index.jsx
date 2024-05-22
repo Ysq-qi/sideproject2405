@@ -1,12 +1,12 @@
 import React from 'react';
 import HomeProductsSection from '../products-section'
 
-import labelImage from '../../../../assets/images/pages/new-products/new.png';
-import image1 from '../../../../assets/images/pages/new-products/001.jpg';
-import image2 from '../../../../assets/images/pages/new-products/002.jpg';
-import image3 from '../../../../assets/images/pages/new-products/003.jpg';
-import image4 from '../../../../assets/images/pages/new-products/004.jpg';
-import image5 from '../../../../assets/images/pages/new-products/005.jpg';
+import labelImage from '../../../../assets/images/pages/home/new-products/new.png';
+import image1 from '../../../../assets/images/pages/home/new-products/001.jpg';
+import image2 from '../../../../assets/images/pages/home/new-products/002.jpg';
+import image3 from '../../../../assets/images/pages/home/new-products/003.jpg';
+import image4 from '../../../../assets/images/pages/home/new-products/004.jpg';
+import image5 from '../../../../assets/images/pages/home/new-products/005.jpg';
 
 const products = [
   { image: image1, name: '城市戶外四季衝鋒外套', price: 'TWD 1180' },

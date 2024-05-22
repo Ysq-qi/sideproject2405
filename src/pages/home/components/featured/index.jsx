@@ -4,9 +4,9 @@ import {
   FeaturedItem,
   FeaturedImage
  } from './style';
- import image1 from '../../../../assets/images/pages/featured/001.jpg';
- import image2 from '../../../../assets/images/pages/featured/002.jpg';
- import image3 from '../../../../assets/images/pages/featured/003.jpg';
+ import image1 from '../../../../assets/images/pages/home/featured/001.jpg';
+ import image2 from '../../../../assets/images/pages/home/featured/002.jpg';
+ import image3 from '../../../../assets/images/pages/home/featured/003.jpg';
 
 const Featured = () => {
   return (

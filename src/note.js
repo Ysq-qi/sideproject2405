@@ -36,6 +36,7 @@
 3. 彈性布局 (Flexbox)
 
   display: flex;  // 將元素設置為彈性容器，使子元素以彈性盒模型排列
+  display: block ; //占滿完整行
   justify-content: space-between;  // 子元素在主軸（橫向）上的排列方式：均勻分布
   align-items: center;  // 子元素在交叉軸（縱向）上的排列方式：垂直居中
 
@@ -68,8 +69,8 @@
   font-style: normal;  // 設置字體樣式
   line-height: 1.5;  // 設置行高
   letter-spacing: 0.1em;  // 設置字母間距
-  text-align: left;  // 設置文字對齊方式
-
+  text-align: left center;  // 設置文字對齊方式
+  
 6. 圖片 (Image)
 
   width: 100px;  // 設置圖片寬度
