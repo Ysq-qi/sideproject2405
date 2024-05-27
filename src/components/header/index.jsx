@@ -1,4 +1,6 @@
 import React from 'react';
+import useHeaderNavigation from './hooks';
+import { useNavigate } from 'react-router-dom';
 import {
   HeaderContainer,
   Topbar,
@@ -11,6 +13,9 @@ import {
 } from './style';
 
 const Header = () => {
+  const { handleNavItemClick , navItems} = useHeaderNavigation();
+  const navigate = useNavigate();
+
   return (
     <> {/* React.Fragment可省略 */}
       <HeaderContainer>
@@ -19,7 +24,7 @@ const Header = () => {
           <TopbarItem className='right'>會員登入</TopbarItem>
           <TopbarItem className='right'>訂單查詢</TopbarItem>
         </Topbar>
-        <LogoImage />
+        <LogoImage onClick={ () => navigate('/') }/>
         <ButtonGroup>
           <ActionButton className='bi bi-search'></ActionButton>
           <ActionButton className='bi bi-person'></ActionButton>
@@ -32,11 +37,9 @@ const Header = () => {
           </ActionButton>
         </ButtonGroup>
         <Nav>
-          <NavItem>種類1</NavItem>
-          <NavItem>種類2</NavItem>
-          <NavItem>種類3</NavItem>
-          <NavItem>種類4</NavItem>
-          <NavItem>種類5</NavItem>
+        {navItems.length > 0 ? (
+          navItems.map((item) => (
+            <NavItem key={item.link} onClick={() => handleNavItemClick(item.link)}> {item.label} </NavItem>))) : (<div> 當數組為空這裡是錯誤!!! </div>)}
         </Nav>
       </HeaderContainer>
     </>
