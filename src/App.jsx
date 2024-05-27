@@ -11,6 +11,7 @@ import Register from './pages/user/register'
 import Profile from './pages/user/profile'
 import Cart from './pages/shop/cart'
 import ProductDetail from './pages/product/product-detail'
+import Type1 from './pages/categories/type1'
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
               <Route path="/cart" element={<Cart />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/productdetail" element={<ProductDetail />} />
+              <Route path="/type1" element={<Type1 />} />
             </Routes>
           </Content>
           <Footer />

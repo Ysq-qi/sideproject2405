@@ -3,7 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App.jsx';
-import store from './store/index.js';
+import store from './store/index.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
