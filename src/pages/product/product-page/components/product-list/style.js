@@ -3,17 +3,18 @@ import styled from 'styled-components';
 export const ProductListContainer = styled.div`
   width: 1100px;
   position: absolute;
-  top: 110px; // 確保不與 FilterSortContainer 重疊
-  right: 50px; 
+  top: 110px;
+  right: 50px;
   height: 1000px;
-  flex-grow: 1; // 讓產品列表容器佔據剩餘的垂直空間
-  z-index: 1; // 設置層級，確保它在 CategoryContainer 之下
-  margin-left: 250px; // 設置左側的 margin 確保不與 CategoryContainer 重疊
+  flex-grow: 1;
+  z-index: 1;
+  margin-left: 250px;
 `;
 
 export const ProductGrid = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap; /* 讓商品可以換行 */
   justify-content: space-around;
   padding-top: 50px;
 `;
@@ -51,7 +52,11 @@ export const Pagination = styled.div`
 export const PageButton = styled.button`
   margin: 0 5px;
   padding: 5px 10px;
-  background-color: #f0f0f0;
+  background-color: ${props => props.active ? '#ddd' : '#f0f0f0'};
   border: none;
   cursor: pointer;
+
+  &:hover {
+    background-color: #ddd;
+  }
 `;
