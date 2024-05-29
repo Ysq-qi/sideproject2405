@@ -1,27 +1,23 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCategory } from '../../productSlice';
 import {
   CategoryContainer,
-  CategoryHeader,
   CategoryListUl,
   CategoryListItem
 } from './style';
 
 const CategoryList = () => {
-  const categories = [
-    '週更外套/夾克',
-    '浪子/工裝襯衫',
-    '工裝/西裝/九分寬褲',
-    '寬褲/錐形褲/軍褲',
-    '日系開襟道袍',
-    '機能工裝背心'
-  ];
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.product.categories);
 
   return (
     <CategoryContainer>
-      <CategoryHeader>2024更新穿搭</CategoryHeader>
       <CategoryListUl>
         {categories.map((category, index) => (
-          <CategoryListItem key={index}>{category}</CategoryListItem>
+          <CategoryListItem key={index} onClick={() => dispatch(updateCategory(category))}>
+            {category}
+          </CategoryListItem>
         ))}
       </CategoryListUl>
     </CategoryContainer>

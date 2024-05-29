@@ -9,19 +9,6 @@ export const CategoryContainer = styled.div`
   z-index: 2; // 設置層級2
 `;
 
-export const CategoryHeader = styled.h3`
-  width: 150px;
-  height: 50px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    background-color: #f0f0f0;
-  }
-`;
-
 export const CategoryListUl = styled.ul`
   list-style: none;
   padding: 0;

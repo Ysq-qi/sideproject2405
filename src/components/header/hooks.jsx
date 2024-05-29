@@ -5,14 +5,15 @@ const useHeaderNavigation = () => {
   const navigate = useNavigate();
 
   const navItems = [
-    { link: '/type1', label: '種類1' },
-    { link: '/type2', label: '種類2' },
-    { link: '/type3', label: '種類3' },
-    { link: '/type4', label: '種類4' },
-    { link: '/type5', label: '種類5' },
+    { link: '/type1', label: '夾克' },
+    { link: '/type2', label: '襯衫' },
+    { link: '/type3', label: '褲款' },
+    { link: '/type4', label: '衣款' },
+    { link: '/type5', label: '配件' },
   ].filter(item => item.link && item.label) || []; //確保navItems數組內都有link與label屬性
 
   const handleNavItemClick = (link) => {
+    //檢查link是否為字串與是否有空格
     if (typeof link === 'string' && link.trim() !== '') {
       navigate(link);
     } else {

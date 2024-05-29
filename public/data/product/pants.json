@@ -1,0 +1,104 @@
+{
+  "pants": [
+    {
+      "id": "lp10001",
+      "name": "長褲1",
+      "description": "這是長褲產品編號001",
+      "price": 400,
+      "stock": 2,
+      "image_paths": [
+        "assets/images/products/pants/long-pants/褲款-長褲 LP10001.jpg"
+      ]
+    },
+    {
+      "id": "lp10002",
+      "name": "長褲2",
+      "description": "這是長褲產品編號002",
+      "price": 400,
+      "stock": 2,
+      "image_paths": [
+        "assets/images/products/pants/long-pants/褲款-長褲 LP10002.jpg"
+      ]
+    },
+    {
+      "id": "lp10003",
+      "name": "長褲3",
+      "description": "這是長褲產品編號003",
+      "price": 400,
+      "stock": 5,
+      "image_paths": [
+        "assets/images/products/pants/long-pants/褲款-長褲 LP10003.jpg"
+      ]
+    },
+    {
+      "id": "lp10004",
+      "name": "長褲4",
+      "description": "這是長褲產品編號004",
+      "price": 400,
+      "stock": 6,
+      "image_paths": [
+        "assets/images/products/pants/long-pants/褲款-長褲 LP10004.jpg"
+      ]
+    },
+    {
+      "id": "lp10005",
+      "name": "長褲5",
+      "description": "這是長褲產品編號005",
+      "price": 400,
+      "stock": 4,
+      "image_paths": [
+        "assets/images/products/pants/long-pants/褲款-長褲 LP10005.jpg"
+      ]
+    },
+    {
+      "id": "sp10001",
+      "name": "短褲1",
+      "description": "這是短褲產品編號001",
+      "price": 300,
+      "stock": 2,
+      "image_paths": [
+        "assets/images/products/pants/short-pants/褲款-短褲 SP10001.jpg"
+      ]
+    },
+    {
+      "id": "sp10002",
+      "name": "短褲2",
+      "description": "這是短褲產品編號002",
+      "price": 300,
+      "stock": 2,
+      "image_paths": [
+        "assets/images/products/pants/short-pants/褲款-短褲 SP10002.jpg"
+      ]
+    },
+    {
+      "id": "sp10003",
+      "name": "短褲3",
+      "description": "這是短褲產品編號003",
+      "price": 300,
+      "stock": 5,
+      "image_paths": [
+        "assets/images/products/pants/short-pants/褲款-短褲 SP10003.jpg"
+      ]
+    },
+    {
+      "id": "sp10004",
+      "name": "短褲4",
+      "description": "這是短褲產品編號004",
+      "price": 300,
+      "stock": 6,
+      "image_paths": [
+        "assets/images/products/pants/short-pants/褲款-短褲 SP10004.jpg"
+      ]
+    },
+    {
+      "id": "sp10005",
+      "name": "短褲5",
+      "description": "這是短褲產品編號005",
+      "price": 300,
+      "stock": 4,
+      "image_paths": [
+        "assets/images/products/pants/short-pants/褲款-短褲 SP10005.jpg"
+      ]
+    }
+  ]
+}

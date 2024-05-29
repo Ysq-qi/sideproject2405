@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPage } from '../../productSlice';
 import { 
   ProductListContainer,
   ProductGrid,
@@ -10,37 +12,44 @@ import {
   PageButton 
 } from './style';
 
-import image1 from '../../../../../assets/images/pages/home/new-products/001.jpg';
-import image2 from '../../../../../assets/images/pages/home/new-products/002.jpg';
-import image3 from '../../../../../assets/images/pages/home/new-products/003.jpg';
-import image4 from '../../../../../assets/images/pages/home/new-products/004.jpg';
-import image5 from '../../../../../assets/images/pages/home/new-products/005.jpg';
-
-const products = [
-  { image: image1, name: '城市戶外四季衝鋒外套', price: 'TWD 1180' },
-  { image: image2, name: '城市輕型五分褲短褲', price: 'TWD 680' },
-  { image: image3, name: 'Street火焰刺繡拼接短T', price: 'TWD 680' },
-  { image: image4, name: '水洗刷舊牛仔五分短褲', price: 'TWD 780' },
-  { image: image5, name: '機能反光條紋針織T', price: 'TWD 680' },
-];
-
 const ProductList = () => {
+  const dispatch = useDispatch();
+  const filteredProducts = useSelector((state) => state.product.filteredProducts);
+  const currentPage = useSelector((state) => state.product.currentPage);
+  const itemsPerPage = useSelector((state) => state.product.itemsPerPage);
+
+  if (!Array.isArray(filteredProducts) || filteredProducts.length === 0) {
+    return <div> 加載失敗 </div>;
+  }
+
+  // 計算總頁數
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  // 獲取當前頁面的產品
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <ProductListContainer>
       <ProductGrid>
-        {products.map((product, index) => (
+        {currentProducts.map((product, index) => (
           <ProductItem key={index}>
-            <ProductImage src={product.image} alt={product.name} />
+            <ProductImage src={product.image_path} alt={product.name} />
             <ProductInfo>{product.name}</ProductInfo>
             <ProductPrice>{product.price}</ProductPrice>
           </ProductItem>
         ))}
       </ProductGrid>
       <Pagination>
-        {/* 這裡將會顯示頁碼 */}
-        <PageButton>1</PageButton>
-        <PageButton>2</PageButton>
-        {/* 可以添加更多 PageButton 來模擬不同頁碼 */}
+        {Array.from({ length: totalPages }, (_, index) => (
+          <PageButton 
+            key={index} 
+            onClick={() => dispatch(setPage(index + 1))}
+            active={index + 1 === currentPage}
+          >
+            {index + 1}
+          </PageButton>
+        ))}
       </Pagination>
     </ProductListContainer>
   );
