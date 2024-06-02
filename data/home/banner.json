@@ -1,0 +1,22 @@
+[
+  {
+    "image": "/assets/images/home/banner/001.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/banner/002.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/banner/003.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/banner/004.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/banner/005.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  }
+]

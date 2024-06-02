@@ -21,9 +21,6 @@ const ProductDetailInfo = () => (
     <Price>NT$ 680</Price>
     <Button>Outdoor必入</Button>
     <Section>
-      <label>商品編號: P842</label>
-    </Section>
-    <Section>
       <label>商品顏色：</label>
       <Select>
         <Option value="brown">棕色</Option>

@@ -9,8 +9,15 @@ import {
   HomeProductInfo,
   HomeProductPrice
 } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const HomeProductsSection = ({ labelImage, products }) => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (productIds) => {
+    navigate(`/products?ids=${productIds.join(',')}`);
+  };
+
   return (
     <HomeSectionContainer>
       <HomeSectionLabelContainer>
@@ -19,7 +26,11 @@ const HomeProductsSection = ({ labelImage, products }) => {
       <HomeProductGrid>
         {products.map((product, index) => (
           <HomeProductItem key={index}>
-            <HomeProductImage src={product.image} alt={product.name} />
+            <HomeProductImage
+              src={product.image}
+              alt={product.name}
+              onClick={() => handleProductClick(product.productIds)}
+            />
             <HomeProductInfo>{product.name}</HomeProductInfo>
             <HomeProductPrice>{product.price}</HomeProductPrice>
           </HomeProductItem>
