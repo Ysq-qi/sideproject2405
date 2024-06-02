@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { 
   FeaturedContainer,
   FeaturedItem,
   FeaturedImage
- } from './style';
- import image1 from '../../../../assets/images/pages/home/featured/001.jpg';
- import image2 from '../../../../assets/images/pages/home/featured/002.jpg';
- import image3 from '../../../../assets/images/pages/home/featured/003.jpg';
+} from './style';
 
 const Featured = () => {
+  const [featuredItems, setFeaturedItems] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/home/featured')
+      .then(response => {
+        setFeaturedItems(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching featured data:', error);
+      });
+  }, []);
+
+  const handleFeaturedClick = (productIds) => {
+    navigate(`/products?ids=${productIds.join(',')}`);
+  };
+
   return (
-  <FeaturedContainer>
-    <FeaturedItem>
-      <FeaturedImage src={image1} alt="Product 1" />
-      <FeaturedImage src={image2} alt="Product 2" />
-      <FeaturedImage src={image3} alt="Product 3" />
-    </FeaturedItem>
-  </FeaturedContainer>
+    <FeaturedContainer>
+      <FeaturedItem>
+        {featuredItems.map((item, index) => (
+          <FeaturedImage 
+            key={index} 
+            src={item.image} 
+            alt={`Product ${index + 1}`} 
+            onClick={() => handleFeaturedClick(item.productIds)} 
+          />
+        ))}
+      </FeaturedItem>
+    </FeaturedContainer>
   );
 };
 

@@ -1,23 +1,29 @@
-import React from 'react';
-import HomeProductsSection from '../products-section'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import HomeProductsSection from '../products-section';
+import labelImage from '../../../../assets/images/home/focus-products/focus.png';
 
-import labelImage from '../../../../assets/images/pages/home/new-products/new.png';
-import image1 from '../../../../assets/images/pages/home/new-products/001.jpg';
-import image2 from '../../../../assets/images/pages/home/new-products/002.jpg';
-import image3 from '../../../../assets/images/pages/home/new-products/003.jpg';
-import image4 from '../../../../assets/images/pages/home/new-products/004.jpg';
-import image5 from '../../../../assets/images/pages/home/new-products/005.jpg';
+const FocusProduct = () => {
+  const [products, setProducts] = useState([]);
 
-const products = [
-  { image: image1, name: '城市戶外四季衝鋒外套', price: 'TWD 1180' },
-  { image: image2, name: '城市輕型五分褲短褲', price: 'TWD 680' },
-  { image: image3, name: 'Street火焰刺繡拼接短T', price: 'TWD 680' },
-  { image: image4, name: '水洗刷舊牛仔五分短褲', price: 'TWD 780' },
-  { image: image5, name: '機能反光條紋針織T', price: 'TWD 680' },
-];
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/home/focusproduct')
+      .then(response => {
+        const productIds = response.data[0].productIds;
+        axios.get(`http://localhost:3001/api/products?ids=${productIds.join(',')}`)
+          .then(productResponse => {
+            setProducts(productResponse.data);
+          })
+          .catch(error => {
+            console.error('Error fetching product data:', error);
+          });
+      })
+      .catch(error => {
+        console.error('Error fetching focus product data:', error);
+      });
+  }, []);
 
-const FocusProduct = () => (
-  <HomeProductsSection labelImage={labelImage} products={products} />
-);
+  return <HomeProductsSection labelImage={labelImage} products={products} />;
+};
 
 export default FocusProduct;

@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSortOrder } from '../../productSlice';
-import { 
+import {
   FilterSortContainer,
   FilterButtons,
   FilterButton,
   SortSelect
 } from './style';
 
-// FilterSort 組件：提供篩選和排序功能
 const FilterSort = () => {
   const dispatch = useDispatch();
+  const [sortOrder, setSortOrder] = useState('default');
 
-  const handleSort = (order) => {
-    dispatch(updateSortOrder(order)); // 更新排序方式
+  const handleSortChange = (e) => {
+    const order = e.target.value;
+    setSortOrder(order);
+    dispatch(updateSortOrder(order));
   };
 
   return (
     <FilterSortContainer>
       <FilterButtons>
-        <FilterButton onClick={() => handleSort('default')}>預設排序</FilterButton>
-        <FilterButton onClick={() => handleSort('bestseller')}>暢銷排行</FilterButton>
-        <FilterButton onClick={() => handleSort('new')}>新上架</FilterButton>
+        <FilterButton onClick={() => dispatch(updateSortOrder('bestseller'))}>暢銷排行</FilterButton>
+        <FilterButton onClick={() => dispatch(updateSortOrder('new'))}>新上架</FilterButton>
       </FilterButtons>
-      <SortSelect name="price-sort" id="price-sort" onChange={(e) => handleSort(e.target.value)}>
+      <SortSelect name="price-sort" id="price-sort" value={sortOrder} onChange={handleSortChange}>
+        <option value="default">預設</option>
         <option value="high-to-low">價格由高至低</option>
         <option value="low-to-high">價格由低至高</option>
       </SortSelect>

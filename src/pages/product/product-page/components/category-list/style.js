@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CategoryContainer = styled.div`
   width: 200px;
-  height: 1000px;
+  height: 300px;
   position: absolute;
   top: 50px;
   left: 0px;

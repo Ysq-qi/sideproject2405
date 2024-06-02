@@ -1,0 +1,14 @@
+[
+  {
+    "image": "/assets/images/home/featured/001.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/featured/002.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  },
+  {
+    "image": "/assets/images/home/featured/003.jpg",
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+  }
+]
