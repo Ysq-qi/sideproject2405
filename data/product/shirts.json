@@ -3,110 +3,110 @@
     "id": "sh10001",
     "name": "長袖襯衫1",
     "description": "這是長袖襯衫產品編號001",
-    "price": 300,
+    "price": 800,
     "stock": 2,
     "image": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001.jpg",
     "category": "長袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-01",
+    "sales": 6
   },
   {
     "id": "sh10002",
     "name": "長袖襯衫2",
     "description": "這是長袖襯衫產品編號002",
-    "price": 300,
+    "price": 700,
     "stock": 2,
     "image": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002.jpg",
     "category": "長袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-02",
+    "sales": 7
   },
   {
     "id": "sh10003",
     "name": "長袖襯衫3",
     "description": "這是長袖襯衫產品編號003",
-    "price": 300,
+    "price": 900,
     "stock": 5,
     "image": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003.jpg",
     "category": "長袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-03",
+    "sales": 2
   },
   {
     "id": "sh10004",
     "name": "長袖襯衫4",
     "description": "這是長袖襯衫產品編號004",
-    "price": 300,
+    "price": 1100,
     "stock": 6,
     "image": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004.jpg",
     "category": "長袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-04",
+    "sales": 9
   },
   {
     "id": "sh10005",
     "name": "長袖襯衫5",
     "description": "這是長袖襯衫產品編號005",
-    "price": 300,
+    "price": 1800,
     "stock": 4,
     "image": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10005.jpg",
     "category": "長袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-05",
+    "sales": 3
   },
   {
     "id": "sh20001",
     "name": "短袖襯衫1",
     "description": "這是短袖襯衫產品編號001",
-    "price": 200,
+    "price": 1500,
     "stock": 2,
     "image": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001.jpg",
     "category": "短袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-06",
+    "sales": 12
   },
   {
     "id": "sh20002",
     "name": "短袖襯衫2",
     "description": "這是短袖襯衫產品編號002",
-    "price": 200,
+    "price": 1300,
     "stock": 2,
     "image": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002.jpg",
     "category": "短袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-07",
+    "sales": 14
   },
   {
     "id": "sh20003",
     "name": "短袖襯衫3",
     "description": "這是短袖襯衫產品編號003",
-    "price": 200,
+    "price": 1100,
     "stock": 5,
     "image": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003.jpg",
     "category": "短袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-08",
+    "sales": 22
   },
   {
     "id": "sh20004",
     "name": "短袖襯衫4",
     "description": "這是短袖襯衫產品編號004",
-    "price": 200,
+    "price": 2000,
     "stock": 6,
     "image": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20004.jpg",
     "category": "短袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-09",
+    "sales": 18
   },
   {
     "id": "sh20005",
     "name": "短袖襯衫5",
     "description": "這是短袖襯衫產品編號005",
-    "price": 200,
+    "price": 100,
     "stock": 4,
     "image": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20005.jpg",
     "category": "短袖襯衫",
-    "date_added": "2024-01-15",
-    "sales": 0
+    "date_added": "2024-01-10",
+    "sales": 5
   }
 ]

@@ -15,7 +15,7 @@ export const FeaturedItem = styled.div`
   height: 250px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const FeaturedImage = styled.img`

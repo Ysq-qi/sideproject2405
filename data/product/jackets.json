@@ -5,7 +5,7 @@
     "description": "這是四季外套產品編號001",
     "price": 1000,
     "stock": 2,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10001.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10001.jpg",
     "category": "四季外套",
     "date_added": "2024-01-15",
     "sales": 50
@@ -16,7 +16,7 @@
     "description": "這是四季外套產品編號002",
     "price": 1100,
     "stock": 2,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10002.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10002.jpg",
     "category": "四季外套",
     "date_added": "2024-02-20",
     "sales": 80
@@ -27,7 +27,7 @@
     "description": "這是四季外套產品編號003",
     "price": 1500,
     "stock": 5,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10003.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10003.jpg",
     "category": "四季外套",
     "date_added": "2024-03-10",
     "sales": 30
@@ -38,7 +38,7 @@
     "description": "這是四季外套產品編號004",
     "price": 800,
     "stock": 6,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10004.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10004.jpg",
     "category": "四季外套",
     "date_added": "2024-04-25",
     "sales": 20
@@ -49,7 +49,7 @@
     "description": "這是四季外套產品編號005",
     "price": 600,
     "stock": 4,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10005.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10005.jpg",
     "category": "四季外套",
     "date_added": "2024-05-05",
     "sales": 10
@@ -60,7 +60,7 @@
     "description": "這是四季外套產品編號006",
     "price": 960,
     "stock": 7,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10006.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10006.jpg",
     "category": "四季外套",
     "date_added": "2024-05-15",
     "sales": 43
@@ -71,7 +71,7 @@
     "description": "這是四季外套產品編號007",
     "price": 900,
     "stock": 3,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10007.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10007.jpg",
     "category": "四季外套",
     "date_added": "2024-05-15",
     "sales": 40
@@ -82,7 +82,7 @@
     "description": "這是四季外套產品編號008",
     "price": 1200,
     "stock": 1,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10008.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10008.jpg",
     "category": "四季外套",
     "date_added": "2024-05-16",
     "sales": 60
@@ -93,7 +93,7 @@
     "description": "這是四季外套產品編號009",
     "price": 1000,
     "stock": 5,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10009.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10009.jpg",
     "category": "四季外套",
     "date_added": "2024-05-17",
     "sales": 30
@@ -104,7 +104,7 @@
     "description": "這是四季外套產品編號010",
     "price": 1100,
     "stock": 6,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10010.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10010.jpg",
     "category": "四季外套",
     "date_added": "2024-05-18",
     "sales": 20
@@ -115,7 +115,7 @@
     "description": "這是四季外套產品編號011",
     "price": 950,
     "stock": 4,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10011.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10011.jpg",
     "category": "四季外套",
     "date_added": "2024-05-19",
     "sales": 25
@@ -126,7 +126,7 @@
     "description": "這是四季外套產品編號012",
     "price": 800,
     "stock": 2,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10012.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10012.jpg",
     "category": "四季外套",
     "date_added": "2024-05-20",
     "sales": 15
@@ -137,7 +137,7 @@
     "description": "這是四季外套產品編號013",
     "price": 850,
     "stock": 3,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10013.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10013.jpg",
     "category": "四季外套",
     "date_added": "2024-05-21",
     "sales": 18
@@ -148,7 +148,7 @@
     "description": "這是四季外套產品編號014",
     "price": 1100,
     "stock": 2,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10014.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10014.jpg",
     "category": "四季外套",
     "date_added": "2024-05-22",
     "sales": 22
@@ -159,7 +159,7 @@
     "description": "這是四季外套產品編號015",
     "price": 1000,
     "stock": 4,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10015.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10015.jpg",
     "category": "四季外套",
     "date_added": "2024-05-23",
     "sales": 26
@@ -170,7 +170,7 @@
     "description": "這是四季外套產品編號016",
     "price": 950,
     "stock": 5,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10016.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10016.jpg",
     "category": "四季外套",
     "date_added": "2024-05-24",
     "sales": 28
@@ -181,7 +181,7 @@
     "description": "這是四季外套產品編號017",
     "price": 1000,
     "stock": 6,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10017.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10017.jpg",
     "category": "四季外套",
     "date_added": "2024-05-25",
     "sales": 30
@@ -192,7 +192,7 @@
     "description": "這是四季外套產品編號018",
     "price": 1050,
     "stock": 2,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10018.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10018.jpg",
     "category": "四季外套",
     "date_added": "2024-05-26",
     "sales": 32
@@ -203,7 +203,7 @@
     "description": "這是四季外套產品編號019",
     "price": 900,
     "stock": 4,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10019.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10019.jpg",
     "category": "四季外套",
     "date_added": "2024-05-27",
     "sales": 34
@@ -214,7 +214,7 @@
     "description": "這是四季外套產品編號020",
     "price": 950,
     "stock": 5,
-    "image": "/assets/images/products/jackets/four-season/夾克-四季 JK10020.jpg",
+    "image": "assets/images/products/jackets/four-season/夾克-四季 JK10020.jpg",
     "category": "四季外套",
     "date_added": "2024-05-28",
     "sales": 36
@@ -225,7 +225,7 @@
     "description": "這是工裝外套產品編號001",
     "price": 600,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20001.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20001.jpg",
     "category": "工裝外套",
     "date_added": "2024-01-10",
     "sales": 60
@@ -236,7 +236,7 @@
     "description": "這是工裝外套產品編號002",
     "price": 550,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20002.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20002.jpg",
     "category": "工裝外套",
     "date_added": "2024-02-18",
     "sales": 50
@@ -247,7 +247,7 @@
     "description": "這是工裝外套產品編號003",
     "price": 1600,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20003.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20003.jpg",
     "category": "工裝外套",
     "date_added": "2024-03-12",
     "sales": 100
@@ -258,7 +258,7 @@
     "description": "這是工裝外套產品編號004",
     "price": 700,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20004.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20004.jpg",
     "category": "工裝外套",
     "date_added": "2024-04-20",
     "sales": 30
@@ -269,7 +269,7 @@
     "description": "這是工裝外套產品編號005",
     "price": 1300,
     "stock": 3,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20005.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20005.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-08",
     "sales": 20
@@ -280,7 +280,7 @@
     "description": "這是工裝外套產品編號006",
     "price": 1400,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20006.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20006.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-15",
     "sales": 15
@@ -291,7 +291,7 @@
     "description": "這是工裝外套產品編號007",
     "price": 1350,
     "stock": 3,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20007.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20007.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-16",
     "sales": 18
@@ -302,7 +302,7 @@
     "description": "這是工裝外套產品編號008",
     "price": 1450,
     "stock": 1,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20008.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20008.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-17",
     "sales": 20
@@ -313,7 +313,7 @@
     "description": "這是工裝外套產品編號009",
     "price": 1550,
     "stock": 5,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20009.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20009.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-18",
     "sales": 22
@@ -324,7 +324,7 @@
     "description": "這是工裝外套產品編號010",
     "price": 1250,
     "stock": 6,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20010.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20010.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-19",
     "sales": 24
@@ -335,7 +335,7 @@
     "description": "這是工裝外套產品編號011",
     "price": 1150,
     "stock": 4,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20011.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20011.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-20",
     "sales": 26
@@ -346,7 +346,7 @@
     "description": "這是工裝外套產品編號012",
     "price": 1300,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20012.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20012.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-21",
     "sales": 28
@@ -357,7 +357,7 @@
     "description": "這是工裝外套產品編號013",
     "price": 1500,
     "stock": 3,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20013.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20013.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-22",
     "sales": 30
@@ -368,7 +368,7 @@
     "description": "這是工裝外套產品編號014",
     "price": 1200,
     "stock": 4,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20014.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20014.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-23",
     "sales": 32
@@ -379,7 +379,7 @@
     "description": "這是工裝外套產品編號015",
     "price": 1100,
     "stock": 5,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20015.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20015.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-24",
     "sales": 34
@@ -390,7 +390,7 @@
     "description": "這是工裝外套產品編號016",
     "price": 1400,
     "stock": 6,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20016.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20016.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-25",
     "sales": 36
@@ -401,7 +401,7 @@
     "description": "這是工裝外套產品編號017",
     "price": 1300,
     "stock": 2,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20017.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20017.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-26",
     "sales": 38
@@ -412,7 +412,7 @@
     "description": "這是工裝外套產品編號018",
     "price": 1250,
     "stock": 4,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20018.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20018.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-27",
     "sales": 40
@@ -423,7 +423,7 @@
     "description": "這是工裝外套產品編號019",
     "price": 1350,
     "stock": 5,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20019.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20019.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-28",
     "sales": 42
@@ -434,7 +434,7 @@
     "description": "這是工裝外套產品編號020",
     "price": 1450,
     "stock": 6,
-    "image": "/assets/images/products/jackets/work-jackets/夾克-工裝 JK20020.jpg",
+    "image": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20020.jpg",
     "category": "工裝外套",
     "date_added": "2024-05-29",
     "sales": 44

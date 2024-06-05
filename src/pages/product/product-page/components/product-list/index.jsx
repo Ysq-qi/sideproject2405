@@ -12,7 +12,7 @@ import {
   PageButton 
 } from './style';
 
-const ProductList = () => {
+const ProductList = ({ handleProductClick }) => {
   const dispatch = useDispatch();
   const filteredProducts = useSelector((state) => state.product.filteredProducts);
   const currentPage = useSelector((state) => state.product.currentPage);
@@ -33,8 +33,8 @@ const ProductList = () => {
     <ProductListContainer>
       <ProductGrid>
         {currentProducts.map((product, index) => (
-          <ProductItem key={index}>
-            <ProductImage src={product.image_path} alt={product.name} />
+          <ProductItem key={index} onClick={() => handleProductClick(product.id)}>
+            <ProductImage src={product.image} alt={product.name} />
             <ProductInfo>{product.name}</ProductInfo>
             <ProductPrice>{product.price}</ProductPrice>
           </ProductItem>

@@ -31,6 +31,21 @@ app.get('/api/products/all', (req, res) => {
   res.json(allProducts);
 });
 
+// 獲取所有 home 相關數據
+app.get('/api/home/all', (req, res) => {
+  const sections = ['banner', 'featured', 'focusproduct', 'newproduct'];
+  const allHomeData = [];
+
+  sections.forEach(section => {
+    const filePath = path.join(__dirname, `data/home/${section}.json`);
+    console.log(`Reading file: ${filePath}`);
+    const data = JSON.parse(fs.readFileSync(filePath));
+    allHomeData.push(...data);
+  });
+
+  res.json(allHomeData);
+});
+
 // 獲取單個 products 分類數據
 app.get('/api/products/:category', (req, res) => {
   const category = req.params.category;
@@ -63,20 +78,6 @@ app.get('/api/products', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
-});
-// 獲取所有 home 相關數據
-app.get('/api/home/all', (req, res) => {
-  const sections = ['banner', 'featured', 'focusproduct', 'newproduct'];
-  const allHomeData = [];
-
-  sections.forEach(section => {
-    const filePath = path.join(__dirname, `data/home/${section}.json`);
-    console.log(`Reading file: ${filePath}`);
-    const data = JSON.parse(fs.readFileSync(filePath));
-    allHomeData.push(...data);
-  });
-
-  res.json(allHomeData);
 });
 
 // 獲取單個 home 分類數據

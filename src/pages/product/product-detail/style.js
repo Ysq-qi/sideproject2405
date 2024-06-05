@@ -6,6 +6,7 @@ export const ProductDetailContainer = styled.div`
   border: 1px solid #ccc;
   width: 1440px;
   overflow: auto;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
+  position: relative;
 `;

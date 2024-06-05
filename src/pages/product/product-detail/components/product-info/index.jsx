@@ -19,7 +19,6 @@ const ProductDetailInfo = () => (
   <InfoContainer>
     <Title>Outdoor機能速乾網眼拼接短Tee</Title>
     <Price>NT$ 680</Price>
-    <Button>Outdoor必入</Button>
     <Section>
       <label>商品顏色：</label>
       <Select>

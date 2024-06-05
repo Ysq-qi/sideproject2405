@@ -6,7 +6,7 @@ import CategoryList from './components/category-list';
 import FilterSort from './components/filter-sort';
 import ProductList from './components/product-list';
 
-const ProductPage = ({ productData }) => {
+const ProductPage = ({ productData, handleProductClick }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const ProductPage = ({ productData }) => {
     <ProductPageContainer>
       <CategoryList />
       <FilterSort />
-      <ProductList />
+      <ProductList handleProductClick={handleProductClick} />
     </ProductPageContainer>
   );
 };
