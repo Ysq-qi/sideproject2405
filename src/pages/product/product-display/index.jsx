@@ -20,6 +20,7 @@ const ProductDisplay = () => {
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const ids = query.get('ids');
+    console.log('Parsed IDs:', ids); // 添加調試信息
     if (ids) {
       dispatch(fetchProductsByIds(ids.split(',')));
     }
@@ -31,7 +32,7 @@ const ProductDisplay = () => {
         {products.map((product) => (
           <ProductItem key={product.id}>
             <ProductImage 
-              src={product.image_path} 
+              src={product.image} 
               alt={product.name} 
               onClick={() => navigate(`/product/${product.id}`)}
             />

@@ -7,8 +7,8 @@ const initialState = {
 
 export const fetchProductsByIds = createAsyncThunk(
   'productDisplay/fetchProductsByIds',
-  async (ids, thunkAPI) => {
-    const response = await fetch(`/api/products?ids=${ids.join(',')}`);
+  async (ids) => {
+    const response = await fetch(`http://localhost:3001/api/products?ids=${ids.join(',')}`);
     const data = await response.json();
     return data;
   }
