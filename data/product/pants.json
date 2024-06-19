@@ -4,109 +4,379 @@
     "name": "長褲1",
     "description": "這是長褲產品編號001",
     "price": 400,
-    "stock": 2,
-    "image": "assets/images/products/pants/long-pants/褲款-長褲 LP10001.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10001.jpg", "color": "黑色" }
+    ],
     "category": "長褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "長褲", "path": "/pants/long-pants" }
+    ],
     "date_added": "2024-01-15",
-    "sales": 50
+    "sales": 50,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "lp10002",
     "name": "長褲2",
     "description": "這是長褲產品編號002",
     "price": 400,
-    "stock": 2,
-    "image": "assets/images/products/pants/long-pants/褲款-長褲 LP10002.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10002.jpg", "color": "黑色" }
+    ],
     "category": "長褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "長褲", "path": "/pants/long-pants" }
+    ],
     "date_added": "2024-02-20",
-    "sales": 80
+    "sales": 80,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "lp10003",
     "name": "長褲3",
     "description": "這是長褲產品編號003",
     "price": 400,
-    "stock": 5,
-    "image": "assets/images/products/pants/long-pants/褲款-長褲 LP10003.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10003.jpg", "color": "黑色" }
+    ],
     "category": "長褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "長褲", "path": "/pants/long-pants" }
+    ],
     "date_added": "2024-03-10",
-    "sales": 30
+    "sales": 30,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "lp10004",
     "name": "長褲4",
     "description": "這是長褲產品編號004",
     "price": 400,
-    "stock": 6,
-    "image": "assets/images/products/pants/long-pants/褲款-長褲 LP10004.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10004.jpg", "color": "黑色" }
+    ],
     "category": "長褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "長褲", "path": "/pants/long-pants" }
+    ],
     "date_added": "2024-04-25",
-    "sales": 20
+    "sales": 20,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "lp10005",
     "name": "長褲5",
     "description": "這是長褲產品編號005",
     "price": 400,
-    "stock": 4,
-    "image": "assets/images/products/pants/long-pants/褲款-長褲 LP10005.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10005.jpg", "color": "黑色" }
+    ],
     "category": "長褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "長褲", "path": "/pants/long-pants" }
+    ],
     "date_added": "2024-05-05",
-    "sales": 10
+    "sales": 10,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "sp10001",
     "name": "短褲1",
     "description": "這是短褲產品編號001",
     "price": 300,
-    "stock": 2,
-    "image": "assets/images/products/pants/short-pants/褲款-短褲 SP10001.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10001.jpg", "color": "黑色" }
+    ],
     "category": "短褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "短褲", "path": "/pants/short-pants" }
+    ],
     "date_added": "2024-01-15",
-    "sales": 50
+    "sales": 50,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "sp10002",
     "name": "短褲2",
     "description": "這是短褲產品編號002",
     "price": 300,
-    "stock": 2,
-    "image": "assets/images/products/pants/short-pants/褲款-短褲 SP10002.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10002.jpg", "color": "黑色" }
+    ],
     "category": "短褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "短褲", "path": "/pants/short-pants" }
+    ],
     "date_added": "2024-02-20",
-    "sales": 80
+    "sales": 80,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "sp10003",
     "name": "短褲3",
     "description": "這是短褲產品編號003",
     "price": 300,
-    "stock": 5,
-    "image": "assets/images/products/pants/short-pants/褲款-短褲 SP10003.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10003.jpg", "color": "黑色" }
+    ],
     "category": "短褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "短褲", "path": "/pants/short-pants" }
+    ],
     "date_added": "2024-03-10",
-    "sales": 30
+    "sales": 30,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "sp10004",
     "name": "短褲4",
     "description": "這是短褲產品編號004",
     "price": 300,
-    "stock": 6,
-    "image": "assets/images/products/pants/short-pants/褲款-短褲 SP10004.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10004.jpg", "color": "黑色" }
+    ],
     "category": "短褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "短褲", "path": "/pants/short-pants" }
+    ],
     "date_added": "2024-04-25",
-    "sales": 20
+    "sales": 20,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   },
   {
     "id": "sp10005",
     "name": "短褲5",
     "description": "這是短褲產品編號005",
     "price": 300,
-    "stock": 4,
-    "image": "assets/images/products/pants/short-pants/褲款-短褲 SP10005.jpg",
+    "images": [
+      { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10005.jpg", "color": "黑色" }
+    ],
     "category": "短褲",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "褲類", "path": "/pants" },
+      { "label": "短褲", "path": "/pants/short-pants" }
+    ],
     "date_added": "2024-05-05",
-    "sales": 10
+    "sales": 10,
+    "colors": ["黑色", "棕色"],
+    "stock": {
+      "黑色": {
+        "L": 5,
+        "XL": 3,
+        "XXL": 1
+      },
+      "棕色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      }
+    },
+    "sizes": {
+      "dimensions": ["腰圍", "臀圍", "褲長", "褲腳"],
+      "values": {
+        "L": [72, 98, 98, 49],
+        "XL": [76, 102, 100, 50],
+        "XXL": [80, 106, 102, 51]
+      }
+    }
   }
 ]

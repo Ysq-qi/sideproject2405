@@ -20,7 +20,7 @@ const HomeProductsSection = ({ labelImage, products, handleProductClick }) => {
         {products.map((product) => (
           <HomeProductItem key={product.id}>
             <HomeProductImage
-              src={product.image}
+              src={product.images[0].url}
               alt={product.name}
               onClick={() => handleProductClick(product.id)}
             />

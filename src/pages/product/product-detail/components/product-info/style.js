@@ -35,8 +35,15 @@ export const Button = styled.button`
   }
 `;
 
+export const ErrorText = styled.div`
+  color: red;
+  margin-left: 10px;
+`;
+
 export const Section = styled.div`
   margin: 15px 0;
+  display: flex;
+  align-items: center;
 `;
 
 export const Select = styled.select`
