@@ -31,21 +31,6 @@ app.get('/api/products/all', (req, res) => {
   res.json(allProducts);
 });
 
-// 獲取所有 home 相關數據
-app.get('/api/home/all', (req, res) => {
-  const sections = ['banner', 'featured', 'focusproduct', 'newproduct'];
-  const allHomeData = [];
-
-  sections.forEach(section => {
-    const filePath = path.join(__dirname, `data/home/${section}.json`);
-    console.log(`Reading file: ${filePath}`);
-    const data = JSON.parse(fs.readFileSync(filePath));
-    allHomeData.push(...data);
-  });
-
-  res.json(allHomeData);
-});
-
 // 獲取單個 products 分類數據
 app.get('/api/products/:category', (req, res) => {
   const category = req.params.category;
@@ -62,22 +47,42 @@ app.get('/api/products/:category', (req, res) => {
 
 // 獲取指定 productIds 的產品數據
 app.get('/api/products', (req, res) => {
-  const ids = req.query.ids.split(',');
-  const categories = ['jackets', 'shirts', 'pants', 'tops', 'accessories'];
-  let allProducts = [];
+  try {
+    const ids = req.query.ids.split(',');
+    const categories = ['jackets', 'shirts', 'pants', 'tops', 'accessories'];
+    let allProducts = [];
 
-  categories.forEach(category => {
-    const filePath = path.join(__dirname, `data/product/${category}.json`);
-    const data = JSON.parse(fs.readFileSync(filePath));
-    const filteredProducts = data.filter(product => ids.includes(product.id));
-    allProducts = allProducts.concat(filteredProducts);
-  });
+    categories.forEach(category => {
+      const filePath = path.join(__dirname, `data/product/${category}.json`);
+      if (fs.existsSync(filePath)) {
+        const data = JSON.parse(fs.readFileSync(filePath));
+        const filteredProducts = data.filter(product => ids.includes(product.id));
+        allProducts = allProducts.concat(filteredProducts);
+      } else {
+        console.error(`File not found: ${filePath}`);
+      }
+    });
 
-  res.json(allProducts);
+    res.json(allProducts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// 獲取所有 home 相關數據
+app.get('/api/home/all', (req, res) => {
+  const sections = ['banner', 'featured', 'focusproduct', 'newproduct'];
+  const allHomeData = [];
+
+  sections.forEach(section => {
+    const filePath = path.join(__dirname, `data/home/${section}.json`);
+    console.log(`Reading file: ${filePath}`);
+    const data = JSON.parse(fs.readFileSync(filePath));
+    allHomeData.push(...data);
+  });
+
+  res.json(allHomeData);
 });
 
 // 獲取單個 home 分類數據
@@ -92,4 +97,8 @@ app.get('/api/home/:section', (req, res) => {
     console.error(`Error reading file: ${filePath}`, error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });

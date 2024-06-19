@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ImageWrapper = styled.div`
+export const ImageContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -9,13 +9,15 @@ export const ImageWrapper = styled.div`
 `;
 
 export const MainImage = styled.div`
-  width: 400px;
-  height: 400px;
-  background-color: gray;
-  flex-shrink: 0;
-  margin: 20px 0;
-  position: relative;
-  z-index: 1;
+  width: 500px;
+  height: 500px;
+  border: 1px solid red;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; 
+  }
 `;
 
 export const ThumbnailContainer = styled.div`
@@ -26,20 +28,14 @@ export const ThumbnailContainer = styled.div`
 `;
 
 export const Thumbnail = styled.div`
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
-  cursor: pointer;
-  background-color: ${({ color }) => color || 'transparent'};
-`;
-
-export const TestImage = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: white;
-  background-color: ${({ color }) => color};
+  width: 100px;
+  height: 100px;
+  margin: 0 10px;
+  border: 1px solid blue;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
 `;

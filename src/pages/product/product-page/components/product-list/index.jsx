@@ -34,7 +34,7 @@ const ProductList = ({ handleProductClick }) => {
       <ProductGrid>
         {currentProducts.map((product, index) => (
           <ProductItem key={index} onClick={() => handleProductClick(product.id)}>
-            <ProductImage src={product.image} alt={product.name} />
+            <ProductImage src={product.images[0].url} alt={product.name} />
             <ProductInfo>{product.name}</ProductInfo>
             <ProductPrice>{product.price}</ProductPrice>
           </ProductItem>
