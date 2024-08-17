@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# 忽略 Firebase 的 serviceAccountKey.json 檔案
+functions/config/serviceAccountKey.json
