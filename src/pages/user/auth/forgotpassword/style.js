@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginContainer = styled.div`
+export const ForgotPasswordContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,13 +11,13 @@ export const LoginContainer = styled.div`
   background-color: #ccc;
 `;
 
-export const LoginTitle = styled.div`
+export const ForgotPasswordTitle = styled.div`
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 20px;
 `;
 
-export const LoginBox = styled.div`
+export const ForgotPasswordBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,9 +25,8 @@ export const LoginBox = styled.div`
   width: 500px;
   padding: 20px;
   background: #fff;
-  box-shadow: 0 0 8px rgba(0,0,0,.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-
 `;
 
 export const Label = styled.label`
@@ -51,7 +50,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   width: 450px;
   height: 40px;
-  margin: 30px 0 10px;
+  margin: 20px 0 10px;
   background-color: #2894FF;
   color: white;
   border: none;

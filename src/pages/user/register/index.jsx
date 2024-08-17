@@ -1,32 +1,182 @@
-import React from 'react';
-import { 
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../config/firebaseConfig.js';
+import {
+  setEmail,
+  setPassword,
+  setConfirmPassword,
+  setEmailValid,
+  setPasswordValid,
+  setConfirmPasswordValid,
+  setEmailError,
+  setPasswordError,
+  setConfirmPasswordError,
+  setError,
+  setSuccess,
+  resetForm
+} from './registerSlice';
+import {
   RegisterContainer,
   RegisterTitle,
   RegisterBox,
   Label,
-  Input, 
+  Input,
   Button,
   HelperText,
-  Link
+  Link,
+  SuccessText,
+  ErrorText
 } from './style.js';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {
+    email,
+    password,
+    confirmPassword,
+    emailValid,
+    passwordValid,
+    confirmPasswordValid,
+    emailError,
+    passwordError,
+    confirmPasswordError,
+    error,
+    success
+  } = useSelector((state) => state.register);
+
+  // 組件卸載時重置表單
+  useEffect(() => {
+    return () => {
+      dispatch(resetForm());
+    };
+  }, [dispatch]);
+
+  // 驗證信箱格式
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidFormat = re.test(email);
+    dispatch(setEmailValid(isValidFormat));
+    dispatch(setEmailError(isValidFormat ? '' : '信箱格式錯誤'));
+  };
+
+  // 驗證密碼格式
+  const validatePassword = (password) => {
+    let errorMessage = '';
+    const re = /^[A-Z].{7,}$/; // 要求第一個字母必須是大寫且總長度至少8個字符
+    const hasUpperCaseFirst = /^[A-Z]/.test(password); // 檢查第一個字母是否是大寫
+    const isValidLength = password.length >= 8;
+
+    if (!hasUpperCaseFirst) {
+      errorMessage = '首位必須大寫';
+    } else if (!isValidLength) {
+      errorMessage = '需至少8個字符';
+    }
+
+    const isValid = re.test(password);
+    dispatch(setPasswordValid(isValid));
+    dispatch(setPasswordError(isValid ? '' : errorMessage));
+  };
+
+  // 驗證確認密碼
+  const validateConfirmPassword = (password, confirmPassword, passwordValid) => {
+    const isValid = confirmPassword === password && passwordValid;
+    dispatch(setConfirmPasswordValid(isValid));
+    dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault(); // 阻止默認提交
+  
+    if (!emailValid) {
+      dispatch(setError('信箱格式錯誤'));
+    } else if (!passwordValid) {
+      dispatch(setError('密碼格式錯誤'));
+    } else if (!confirmPasswordValid) {
+      dispatch(setError('確認密碼格式錯誤'));
+    } else {
+      try {
+        // 嘗試註冊
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+  
+        // 調用後端API來創建用戶文檔
+        await axios.post('http://127.0.0.1:5001/sideproject2405-b8a66/us-central1/api/users/createUser', {
+          uid: user.uid,
+          email: user.email,
+        }, {
+          headers: {
+            Authorization: `Bearer ${user.stsTokenManager.accessToken}`,
+          }
+        });
+  
+        // 註冊成功處理
+        dispatch(setSuccess('註冊成功'));
+        setTimeout(() => {
+          navigate('/'); // 先進行導航
+          dispatch(setSuccess(''));
+          dispatch(resetForm());
+        }, 500);  // 添加適當延遲
+      } catch (err) {
+        console.error('註冊過程出錯: ', err);
+        dispatch(setError('註冊失敗，請稍後再試'));
+      }
+    }
+  
+    setTimeout(() => {
+      dispatch(setError(''));
+      dispatch(resetForm());
+    }, 3000);
+  };
+  
+  
+
   return (
     <RegisterContainer>
-      <RegisterTitle>會員註冊</RegisterTitle> 
+      <RegisterTitle>會員註冊</RegisterTitle>
       <RegisterBox>
-        <form>
-          <Label>會員帳號:</Label>
-          <Input type="text" placeholder="Username" required />
+        <form onSubmit={handleRegister} noValidate>
+          <Label>會員信箱:</Label>
+          <Input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => {
+              dispatch(setEmail(e.target.value));
+              validateEmail(e.target.value);
+            }}
+          />
+          {email && (emailValid ? <SuccessText>○</SuccessText> : <ErrorText>✗ {emailError}</ErrorText>)}
           <Label>會員密碼:</Label>
-          <Input type="password" placeholder="Password" required />
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => {
+              dispatch(setPassword(e.target.value));
+              validatePassword(e.target.value);
+            }}
+          />
+          {password && (passwordValid ? <SuccessText>○</SuccessText> : <ErrorText>✗ {passwordError}</ErrorText>)}
           <Label>確認密碼:</Label>
-          <Input type="password" placeholder="Confirm Password" required />
-          <Label>電子郵件:</Label>
-          <Input type="email" placeholder="Email" required />
+          <Input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => {
+              dispatch(setConfirmPassword(e.target.value));
+              validateConfirmPassword(password, e.target.value, passwordValid);
+            }}
+          />
+          {confirmPassword && (confirmPasswordValid ? <SuccessText>○</SuccessText> : <ErrorText>✗ {confirmPasswordError}</ErrorText>)}
           <Button type="submit">註冊</Button>
+          {error && <ErrorText>{error}</ErrorText>}
+          {success && <SuccessText>{success}</SuccessText>}
           <HelperText>
-            <Link href="#">已經有帳號？登入</Link>
+            <Link onClick={() => navigate('/Login')}>已經有帳號？登入</Link>
           </HelperText>
         </form>
       </RegisterBox>

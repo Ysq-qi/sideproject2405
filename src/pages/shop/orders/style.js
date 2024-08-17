@@ -1,29 +1,43 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 1200px;
+  margin: auto;
+  border: 1px solid #eaeaea;
   padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
 `;
 
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 `;
 
 export const TableHeader = styled.th`
   background-color: #000;
   color: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 15px;
+  text-align: center;
 `;
 
-export const TableRow = styled.tr``;
+export const TableRow = styled.tr`
+  &:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+`;
 
 export const TableCell = styled.td`
-  padding: 10px;
-  border: 1px solid #ccc;
   text-align: center;
+  border: 1px solid #ddd;
+  padding: 15px;
 `;
 
 export const NoOrderData = styled.div`

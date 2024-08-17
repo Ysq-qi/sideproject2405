@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LayoutContainer, Content } from './styles/layoutstyle';
 import { GlobalStyles } from './styles/style'
+import AuthListener from './components/auth-listener';
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './pages/home';
@@ -19,6 +20,9 @@ import Type4 from './pages/categories/type4';
 import Type5 from './pages/categories/type5';
 import Orders from './pages/shop/orders';
 import CartDropdown from './pages/shop/cart-drop-down';
+import EmailInput from './pages/user/auth/forgotpassword/components/email-input'
+import VerificationCodeInput from './pages/user/auth/forgotpassword/components/verification-input'
+import ResetPassword from './pages/user/auth/forgotpassword/components/reset-password'
 
 
 const App = () => {
@@ -26,6 +30,7 @@ const App = () => {
       <Router>
         <LayoutContainer>
           <GlobalStyles />
+          <AuthListener />
           <Header />
           <Content>
             <Routes>
@@ -43,6 +48,9 @@ const App = () => {
               <Route path="/type3" element={<Type3 />} />
               <Route path="/type4" element={<Type4 />} />
               <Route path="/type5" element={<Type5 />} />
+              <Route path="/forgotpassword/email" element={<EmailInput />} />
+              <Route path="/forgotpassword/verification" element={<VerificationCodeInput />} />
+              <Route path="/forgotpassword/reset" element={<ResetPassword />} />
             </Routes>
           </Content>
           <Footer />

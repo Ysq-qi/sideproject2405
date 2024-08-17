@@ -5,12 +5,14 @@ import {
   TableHeader, 
   TableRow, 
   TableCell, 
-  NoOrderData 
+  NoOrderData, 
+  Title 
 } from './style';
 
 const Orders = () => {
   return (
     <Container>
+      <Title>訂單列表</Title>
       <Table>
         <thead>
           <TableRow>
