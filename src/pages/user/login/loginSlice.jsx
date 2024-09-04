@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  user: JSON.parse(localStorage.getItem('user')) || null,
+  isAuthenticated: !!localStorage.getItem('user'),
+  loading: true,
   email: '',
   password: '',
   emailValid: false,
@@ -20,12 +21,17 @@ const loginSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+      state.loading = false;
       localStorage.setItem('user', JSON.stringify(action.payload));
     },
     clearUser: (state) => {
       state.user = null;
       state.isAuthenticated = false;
+      state.loading = false;
       localStorage.removeItem('user');
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
     },
     setEmail: (state, action) => {
       state.email = action.payload;
@@ -65,12 +71,14 @@ const loginSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
       state.error = '';
-      localStorage.setItem('user', JSON.stringify(action.payload)); 
+      state.loading = false;
+      localStorage.setItem('user', JSON.stringify(action.payload));
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
       state.user = null;
       state.isAuthenticated = false;
+      state.loading = false;
       localStorage.removeItem('user');
     }
   },
@@ -79,6 +87,7 @@ const loginSlice = createSlice({
 export const { 
   setUser, 
   clearUser,
+  setLoading,
   setEmail, 
   setPassword, 
   setEmailValid, 

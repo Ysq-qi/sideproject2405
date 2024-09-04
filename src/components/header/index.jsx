@@ -51,7 +51,7 @@ const Header = () => {
           <TopbarItem className='left'>您好 這裡是一個測試網站</TopbarItem>
           {isAuthenticated ? (
             <>
-              <TopbarItem className='right'>您好 {user.email}</TopbarItem>
+              <TopbarItem className='right'>{user.email}</TopbarItem>
               <TopbarItem className='right' onClick={handleLogout}>會員登出</TopbarItem>
               <TopbarItem className='right' onClick={() => navigate('/orders')}>訂單查詢</TopbarItem>
             </>

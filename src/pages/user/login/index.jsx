@@ -31,7 +31,7 @@ import {
 const Login = () => {
   const dispatch = useDispatch(); 
   const navigate = useNavigate();
-  const location = useLocation(); // 新增這行來獲取重定向信息
+  const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
 
   const {

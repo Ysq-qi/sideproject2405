@@ -1,44 +1,116 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { auth } from '../../../config/firebaseConfig.js';
 
-const initialState = {
-  items: [],  // 初始狀態，包含購物車中的商品項目
-};
+// 從 Firestore 獲取購物車數據
+export const fetchCart = createAsyncThunk(
+  'cart/fetchCart',
+  async (_, { rejectWithValue }) => {
+    try {
+      // 獲取最新的 token
+      const token = await auth.currentUser.getIdToken(); 
+
+      // 使用最新的 token 發送請求
+      const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart', {
+        headers: {
+          Authorization: `Bearer ${token}`, // 使用從 auth 獲取的最新 token
+        }
+      });
+      return response.data.items;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data.error : error.message);
+    }
+  }
+);
+
+// 將購物車數據保存到 Firestore
+export const saveCart = createAsyncThunk(
+  'cart/saveCart',
+  async (_, { getState, rejectWithValue }) => {
+    try {
+      // 獲取最新的 token
+      const token = await auth.currentUser.getIdToken(); 
+      
+      const { items } = getState().cart;
+
+      // 使用最新的 token 發送請求
+      const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/save', 
+      { items }, {
+        headers: {
+          Authorization: `Bearer ${token}`, // 使用從 auth 獲取的最新 token
+        }
+      });
+      return response.data.items;
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data.error : error.message);
+    }
+  }
+);
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: {
+    items: [], 
+    loading: false, 
+    error: null, 
+  },
   reducers: {
-    // 接收商品信息頁面的購物訂單
-    addToCart: (state, action) => {
-      const item = action.payload;
-      // 檢查是否已有相同的商品、顏色、尺寸存在於購物車中
-      const existingItem = state.items.find(i => i.id === item.id && i.color === item.color && i.size === item.size);
-      if (existingItem) {
-        // 如果存在，則更新該商品的數量
-        existingItem.quantity += item.quantity;
-      } else {
-        // 如果不存在，則新增此商品到購物車中
-        state.items.push(item);
-      }
+    addItem: (state, action) => {
+      state.items.push(action.payload); 
     },
-    // 刪除此筆訂單
-    removeFromCart: (state, action) => {
-      const { id, color, size } = action.payload;
-      // 過濾掉與要刪除的商品匹配的項目
-      state.items = state.items.filter(item => !(item.id === id && item.color === color && item.size === size));
+    removeItem: (state, action) => {
+      state.items = state.items.filter(
+        item => item.id !== action.payload.id ||
+                item.color !== action.payload.color ||
+                item.size !== action.payload.size
+      );
     },
-    // 更新訂單數量
     updateQuantity: (state, action) => {
-      const { id, color, size, quantity } = action.payload;
-      // 查找對應的商品項目
-      const item = state.items.find(item => item.id === id && item.color === color && item.size === size);
+      const item = state.items.find(
+        item => item.id === action.payload.id &&
+                item.color === action.payload.color &&
+                item.size === action.payload.size
+      );
       if (item) {
-        // 更新該商品的數量
-        item.quantity = quantity;
+        item.quantity = action.payload.quantity;
       }
     },
+    clearCart: (state) => {
+      state.items = []; 
+    },
+    setCartItems: (state, action) => {
+      state.items = action.payload; 
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCart.pending, (state) => {
+        state.loading = true; 
+        state.error = null; 
+      })
+      .addCase(fetchCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload; 
+      })
+      .addCase(fetchCart.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload; 
+      })
+      .addCase(saveCart.pending, (state) => {
+        state.loading = true; 
+        state.error = null; 
+      })
+      .addCase(saveCart.fulfilled, (state, action) => {
+        state.loading = false; 
+        state.items = action.payload;
+      })
+      .addCase(saveCart.rejected, (state, action) => {
+        state.loading = false; 
+        state.error = action.payload; 
+      });
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
+export const { addItem, removeItem, clearCart, updateQuantity, setCartItems } = cartSlice.actions;
+
 export default cartSlice.reducer;

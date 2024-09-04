@@ -22,4 +22,4 @@ setPersistence(auth, browserSessionPersistence)
     console.error('設定持久性失敗:', error);
   });
 
-export { auth };
+export { auth, db };

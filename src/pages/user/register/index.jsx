@@ -104,7 +104,7 @@ const Register = () => {
         const user = userCredential.user;
   
         // 調用後端API來創建用戶文檔
-        await axios.post('http://127.0.0.1:5001/sideproject2405-b8a66/us-central1/api/users/createUser', {
+        await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/createUser', {
           uid: user.uid,
           email: user.email,
         }, {
@@ -112,6 +112,7 @@ const Register = () => {
             Authorization: `Bearer ${user.stsTokenManager.accessToken}`,
           }
         });
+
   
         // 註冊成功處理
         dispatch(setSuccess('註冊成功'));

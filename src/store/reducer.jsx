@@ -8,6 +8,7 @@ import cartReducer from '../pages/shop/cart/cartSlice'
 import registerReducer from '../pages/user/register/registerSlice'
 import loginReducer from '../pages/user/login/loginSlice'
 import forgotPasswordReducer from '../pages/user/auth/forgotpassword/forgotPasswordSlice'
+import profileReducer from '../pages/user/profile/profileSlice'
 
 
 //將多個reducer組合
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   register: registerReducer,
   login: loginReducer,
-  forgotPassword: forgotPasswordReducer
+  forgotPassword: forgotPasswordReducer,
+  profile: profileReducer
 });
 
 export default rootReducer;

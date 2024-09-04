@@ -1,70 +1,96 @@
 import styled from 'styled-components';
 
 export const ProfileContainer = styled.div`
-  padding: 20px;
-  width: 550px;
-  overflow: auto;
-  margin: 20px auto;
-  border: 1px solid #000;
-  border-radius: 10px;
-  background-color: #fff;
+  padding: 30px;
+  width: 600px;
+  margin: 40px auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 export const Button = styled.button`
-  background-color: #3C3C3C;
+  background-color: #007BFF;
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 24px;
   margin: 10px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 export const ProfileSection = styled.div`
   background-color: #fff;
-  padding: 20px;
-  border: 1px solid #ccc;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
 `;
 
 export const PasswordSection = styled.div`
-  background-color: #6C6C6C;
-  padding: 20px;
-  color: #fff;
-  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 25px;
+  color: #333;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(0,0,0,.1);
 `;
+
 
 export const ProfileItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+
   label {
-    width: 100px;
+    width: 120px;
+    font-weight: bold;
+    color: #333;
   }
 `;
 
 export const Input = styled.input`
-  padding: 5px;
-  margin-right: 10px;
-  flex: 1;
+  width: 50%; 
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 `;
 
-export const ChangeButton = styled.button`
-  background-color: #3C3C3C;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-`;
-
-export const FormButton = styled.button`
-  background-color: #3C3C3C;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border: none;
-  cursor: pointer;
+export const FormButton = styled(Button)`
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
 `;
 
 export const Line = styled.div`
-  border-bottom: 1px solid #ccc;
-  margin: 20px 0;
+  border-bottom: 2px solid #eaeaea;
+  margin: 30px 0;
+`;
+
+export const HelperText = styled.div`
+  font-size: 12px;
+  color: #777;
+  margin-top: 10px;
+  text-align: center;
+  height: 30px;
+`;
+
+export const ErrorText = styled.span`
+  color: red;
+  margin-left: 10px;
+  white-space: nowrap;
+`;
+
+export const SuccessText = styled.span`
+  color: green;
+  margin-left: 10px;
+  white-space: nowrap;
 `;

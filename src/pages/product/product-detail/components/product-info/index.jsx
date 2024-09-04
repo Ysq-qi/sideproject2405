@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setColor, setSize, setQuantity, resetSelections, setProduct } from '../../productDetailSlice';
-import { addToCart } from '../../../../shop/cart/cartSlice';
+import { addItem, updateQuantity } from '../../../../shop/cart/cartSlice';
+import { auth } from '../../../../../config/firebaseConfig';
+import axios from 'axios';
 import {
   InfoContainer,
   Title,
@@ -20,22 +22,20 @@ import {
 } from './style';
 
 const ProductDetailInfo = ({ product }) => {
-  //使用hooks useDispatch,useSelector
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.login.isAuthenticated);
   const { selectedColor, selectedSize, quantity, error } = useSelector(state => state.productDetail);
+  const cartItems = useSelector(state => state.cart.items);  // 從 Redux 獲取購物車項目
 
   useEffect(() => {
     dispatch(setProduct(product));
   }, [dispatch, product]);
 
-
-
-  const handleAddToCart = () => {
-    // 根據選擇的顏色來確定對應的庫存
+  const handleAddToCart = async () => {
     const stockForSelectedColor = product.stock[selectedColor];
     const stockForSelectedSize = stockForSelectedColor[selectedSize];
   
-    // 點擊以後 如果庫存不足 則顯示數量不足並且返回 且重置狀態 然後終止運行
+    // 庫存檢查
     if (quantity > stockForSelectedSize) {
       alert('數量不足');
       dispatch(resetSelections());
@@ -45,21 +45,71 @@ const ProductDetailInfo = ({ product }) => {
     // 根據選擇的顏色來確定對應的圖片 URL
     const imageUrl = product.images.find(image => image.color === selectedColor)?.url || product.images[0].url;
   
-    // 點擊以後 如果庫存足夠 則顯示商品添加成功 並且將item數組傳遞給addToCart 並且重置狀態
     const item = {
       imageUrl,
       id: product.id,
       name: product.name,
       color: selectedColor,
       size: selectedSize,
-      quantity,
+      quantity: quantity,
       price: product.price,
     };
+  
+    // 檢查商品是否已存在於購物車
+    const existingItem = cartItems.find(
+      i => i.id === item.id && i.color === item.color && i.size === item.size
+    );
+  
+    // 更新商品數量或添加新商品
+    if (existingItem) {
+      dispatch(updateQuantity({
+        id: item.id,
+        color: item.color,
+        size: item.size,
+        quantity: existingItem.quantity + item.quantity
+      }));
+    } else {
+      dispatch(addItem(item));
+    }
+  
     alert('商品添加成功');
-    dispatch(addToCart(item));
     dispatch(resetSelections());
+  
+    // 保存當前的 item 到 Firestore 或本地存儲
+    isAuthenticated ? await saveCartItemToFirestore(item) : saveCartToLocalStorage(item);
   };
   
+  // 保存單個 item 到 Firestore
+  const saveCartItemToFirestore = async (item) => {
+    try {
+      const token = await auth.currentUser.getIdToken();
+      await axios.post(
+        'http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/add',
+        { item },  // 傳遞單個商品
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      console.log('商品已成功添加到 Firestore');
+    } catch (error) {
+      console.error('添加商品到 Firestore 時出錯', error);
+      alert('保存購物車時出錯，請稍後再試');
+    }
+  };
+  
+  // 保存本地購物車數據
+  const saveCartToLocalStorage = (item) => {
+    const localCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const localExistingItemIndex = localCartItems.findIndex(
+      i => i.id === item.id && i.color === item.color && i.size === item.size
+    );
+  
+    if (localExistingItemIndex !== -1) {
+      localCartItems[localExistingItemIndex].quantity += item.quantity;
+    } else {
+      localCartItems.push(item);
+    }
+  
+    localStorage.setItem('cartItems', JSON.stringify(localCartItems));
+  };  
 
   return (
     <InfoContainer>
