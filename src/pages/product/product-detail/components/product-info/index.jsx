@@ -76,11 +76,11 @@ const ProductDetailInfo = ({ product }) => {
     dispatch(resetSelections());
   
     // 保存當前的 item 到 Firestore 或本地存儲
-    isAuthenticated ? await saveCartItemToFirestore(item) : saveCartToLocalStorage(item);
+    isAuthenticated ? await addCartItemToFirestore(item) : saveCartToLocalStorage(item);
   };
   
-  // 保存單個 item 到 Firestore
-  const saveCartItemToFirestore = async (item) => {
+  // (登入時處理)添加單個 item 到 Firestore
+  const addCartItemToFirestore = async (item) => {
     try {
       const token = await auth.currentUser.getIdToken();
       await axios.post(
@@ -95,7 +95,7 @@ const ProductDetailInfo = ({ product }) => {
     }
   };
   
-  // 保存本地購物車數據
+  // (未登入時處理)保存本地購物車數據
   const saveCartToLocalStorage = (item) => {
     const localCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const localExistingItemIndex = localCartItems.findIndex(
@@ -109,7 +109,7 @@ const ProductDetailInfo = ({ product }) => {
     }
   
     localStorage.setItem('cartItems', JSON.stringify(localCartItems));
-  };  
+  };
 
   return (
     <InfoContainer>

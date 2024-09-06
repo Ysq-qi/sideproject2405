@@ -1,6 +1,6 @@
 const { db } = require('../config/firebaseAdmin');
 
-// 獲取購物車數據
+// 獲取Firestore的購物車清單數據
 exports.getCart = async (req, res) => {
   const userId = req.user.uid;
 
@@ -17,51 +17,18 @@ exports.getCart = async (req, res) => {
   }
 };
 
-// 保存或更新購物車數據
-exports.saveCart = async (req, res) => {
+// 將合併的購物車清單同步至Firestore
+exports.syncCartToFirestore = async (req, res) => {
   const userId = req.user.uid;
-  const cartItems = req.body.items;
+  const { items } = req.body;  // 接收從前端發送的購物車數據
 
   try {
-    // 從 Firestore 獲取現有的購物車項目
-    const cartDoc = await db.collection('carts').doc(userId).get();
-    let existingItems = [];
-
-    if (cartDoc.exists) {
-      existingItems = cartDoc.data().items;
-    }
-
-    // 建立一個 Map 來合併項目
-    const itemMap = new Map();
-
-    // 先將現有的項目放入 Map
-    existingItems.forEach(item => {
-      itemMap.set(`${item.id}-${item.color}-${item.size}`, item);
-    });
-
-    // 將新的項目與現有項目合併
-    cartItems.forEach(newItem => {
-      const key = `${newItem.id}-${newItem.color}-${newItem.size}`;
-      if (itemMap.has(key)) {
-        // 如果商品已經存在，則疊加數量
-        const existingItem = itemMap.get(key);
-        existingItem.quantity += newItem.quantity;
-      } else {
-        // 如果商品不存在，則新增該項目
-        itemMap.set(key, newItem);
-      }
-    });
-
-    // 最後將合併結果轉回陣列
-    const mergedItems = Array.from(itemMap.values());
-
-    // 保存合併後的購物車數據
-    await db.collection('carts').doc(userId).set({ items: mergedItems });
-
-    return res.status(200).json({ message: '購物車已保存' });
+    // 保存或更新購物車到 Firestore
+    await db.collection('carts').doc(userId).set({ items });
+    return res.status(200).json({ message: '購物車已同步到 Firestore' });
   } catch (error) {
-    console.error('Error saving cart data:', error);
-    return res.status(500).json({ error: '保存購物車數據時出錯' });
+    console.error('Error syncing cart to Firestore:', error);
+    return res.status(500).json({ error: '同步購物車到 Firestore 時出錯' });
   }
 };
 
@@ -105,5 +72,64 @@ exports.addItemToCart = async (req, res) => {
   } catch (error) {
     console.error('Error adding item to cart:', error);
     return res.status(500).json({ error: '添加商品到購物車時出錯' });
+  }
+};
+
+// 刪除購物車中的商品
+exports.removeItemFromCart = async (req, res) => {
+  const userId = req.user.uid;
+  const { id, color, size } = req.body;  // 根據 id, color, size 來刪除對應的商品
+
+  try {
+    // 獲取現有的購物車數據
+    const cartDoc = await db.collection('carts').doc(userId).get();
+    if (!cartDoc.exists) {
+      return res.status(404).json({ error: '購物車不存在' });
+    }
+
+    let items = cartDoc.data().items;
+
+    // 刪除符合條件的商品
+    items = items.filter(item => item.id !== id || item.color !== color || item.size !== size);
+
+    // 更新購物車
+    await db.collection('carts').doc(userId).update({ items });
+    return res.status(200).json({ message: '商品已成功從購物車中刪除' });
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+    return res.status(500).json({ error: '刪除購物車商品時出錯' });
+  }
+};
+
+// 更新購物車中商品的數量
+exports.updateItemQuantity = async (req, res) => {
+  const userId = req.user.uid;
+  const { id, color, size, quantity } = req.body;
+
+  try {
+    // 獲取現有的購物車數據
+    const cartDoc = await db.collection('carts').doc(userId).get();
+    if (!cartDoc.exists) {
+      return res.status(404).json({ error: '購物車不存在' });
+    }
+
+    let items = cartDoc.data().items;
+
+    // 查找對應商品並更新數量
+    const itemIndex = items.findIndex(
+      i => i.id === id && i.color === color && i.size === size
+    );
+    if (itemIndex === -1) {
+      return res.status(404).json({ error: '商品未在購物車中找到' });
+    }
+
+    items[itemIndex].quantity = quantity;
+
+    // 更新購物車
+    await db.collection('carts').doc(userId).update({ items });
+    return res.status(200).json({ message: '商品數量已更新' });
+  } catch (error) {
+    console.error('Error updating item quantity:', error);
+    return res.status(500).json({ error: '更新商品數量時出錯' });
   }
 };
