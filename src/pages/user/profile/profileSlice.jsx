@@ -1,25 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../../../config/firebaseConfig.js';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { auth } from '../../../config/firebaseConfig.js';
+import axios from 'axios';
 
 // 獲取用戶個人資料
-export const getProfile = createAsyncThunk('profile/getProfile', async (_, { getState }) => {
-  const { uid } = getState().login.user;
-  const docRef = doc(db, 'users', uid);
-  const docSnap = await getDoc(docRef);
-  if (docSnap.exists()) {
-    return docSnap.data().profile;
-  } else {
-    throw new Error('文檔不存在!');
-  }
+export const getProfile = createAsyncThunk('profile/getProfile', async () => {
+  const token = await auth.currentUser.getIdToken();
+  const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/getProfile', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.profile;
 });
 
 // 更新用戶個人資料
-export const updateProfile = createAsyncThunk('profile/updateProfile', async (profile, { getState }) => {
-  const { uid } = getState().login.user;
-  const docRef = doc(db, 'users', uid);
-  await updateDoc(docRef, { profile });
-  return profile;
+export const updateProfile = createAsyncThunk('profile/updateProfile', async (profileData) => {
+  const token = await auth.currentUser.getIdToken();
+  const response = await axios.put('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/updateProfile', profileData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+});
+
+// 變更用戶密碼
+export const changePassword = createAsyncThunk('profile/changePassword', async (newPassword) => {
+  const token = await auth.currentUser.getIdToken();
+  const response = await axios.put('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/changePassword', { newPassword }, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
 });
 
 const profileSlice = createSlice({
@@ -70,15 +83,19 @@ const profileSlice = createSlice({
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(changePassword.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
 
-export const {
-  setPasswordValid,
-  setPasswordError,
-  setConfirmPasswordValid,
-  setConfirmPasswordError,
-} = profileSlice.actions;
-
+export const { setPasswordValid, setPasswordError, setConfirmPasswordValid, setConfirmPasswordError } = profileSlice.actions;
 export default profileSlice.reducer;

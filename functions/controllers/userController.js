@@ -1,6 +1,6 @@
 const { db, admin } = require('../config/firebaseAdmin');
 
-// 創建新用戶並初始化購物車和訂單文檔
+// 前端建立用戶 後端新增firestore資料庫文檔
 exports.createUser = async (req, res) => {
   const { uid, email } = req.body;
 
@@ -36,9 +36,29 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// 更新用戶資料
+// 從 Firestore 中獲取用戶資料
+exports.getProfile = async (req, res) => {
+  const { uid } = req.user;
+
+  try {
+    const userRef = db.collection('users').doc(uid);
+    const doc = await userRef.get();
+
+    if (!doc.exists) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    const userProfile = doc.data().profile || {};
+    res.status(200).json({ profile: userProfile });
+  } catch (error) {
+    console.error('獲取個人資料失敗:', error);
+    res.status(500).send({ error: '獲取個人資料失敗' });
+  }
+};
+
+// 更新 Firestore 用戶資料
 exports.updateProfile = async (req, res) => {
-  const { uid } = req.user; // 從 token 中獲取 UID
+  const { uid } = req.user;
   const { name, birthday, phone, address } = req.body;
 
   try {
@@ -60,8 +80,6 @@ exports.updateProfile = async (req, res) => {
       phone,
       address,
     };
-
-    // 更新 Firestore 中的用戶資料
     await userRef.update({
       profile: updatedProfile,
     });
@@ -75,7 +93,7 @@ exports.updateProfile = async (req, res) => {
 
 // 更改用戶密碼
 exports.changePassword = async (req, res) => {
-  const { uid } = req.user; // 從 token 中獲取 UID
+  const { uid } = req.user;
   const { newPassword } = req.body;
 
   if (!newPassword) {
@@ -83,12 +101,34 @@ exports.changePassword = async (req, res) => {
   }
 
   try {
-    // 直接更新密碼
     await admin.auth().updateUser(uid, { password: newPassword });
-
     return res.status(200).json({ message: "密碼已更新" });
   } catch (error) {
     console.error("更改密碼失敗:", error);
     return res.status(500).json({ error: "無法更改密碼，請稍後再試" });
+  }
+};
+
+// 後端刪除用戶及其相關文檔 (deleteAccount組件)
+exports.deleteUserAccount = async (req, res) => {
+  const { uid } = req.user;
+
+  try {
+    // 刪除 Firestore 中的用戶資料
+    const userRef = db.collection('users').doc(uid);
+    const cartRef = db.collection('carts').doc(uid);
+    const orderRef = db.collection('orders').doc(uid);
+    
+    await userRef.delete();
+    await cartRef.delete();
+    await orderRef.delete();
+
+    // 刪除 Firebase Auth 中的用戶
+    await admin.auth().deleteUser(uid);
+
+    res.status(200).send({ message: '帳號已成功刪除' });
+  } catch (error) {
+    console.error('刪除帳號失敗:', error);
+    res.status(500).send({ error: '刪除帳號失敗' });
   }
 };

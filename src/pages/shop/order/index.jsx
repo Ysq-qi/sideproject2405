@@ -9,7 +9,7 @@ import {
   Title 
 } from './style';
 
-const Orders = () => {
+const Order = () => {
   return (
     <Container>
       <Title>訂單列表</Title>
@@ -38,4 +38,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Order;

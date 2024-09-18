@@ -1,80 +1,75 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { auth } from '../../../config/firebaseConfig.js';
+import axios from 'axios';
 
 // 從 Firestore 獲取購物車數據
-export const fetchCart = createAsyncThunk(
-  'cart/fetchCart',
-  async (_, { rejectWithValue }) => {
-    try {
-      // 獲取最新的 token
-      const token = await auth.currentUser.getIdToken(); 
-
-      // 使用最新的 token 發送請求
-      const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart', {
-        headers: {
-          Authorization: `Bearer ${token}`, // 使用從 auth 獲取的最新 token
-        }
-      });
-      return response.data.items;
-    } catch (error) {
-      return rejectWithValue(error.response ? error.response.data.error : error.message);
-    }
+export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWithValue }) => {
+  try {
+    const token = await auth.currentUser.getIdToken();
+    const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.items;
+  } catch (error) {
+    return rejectWithValue(error.response ? error.response.data.error : error.message);
   }
-);
+});
 
-// 將mergeLocalAndRemoteCart合併的購物車清單同步至Firestore 
-export const syncCartToFirestore = createAsyncThunk(
-  'cart/syncCartToFirestore',
-  async (_, { getState, rejectWithValue }) => {
-    try {
-      const token = await auth.currentUser.getIdToken();
-      const { items } = getState().cart;
-      const response = await axios.post(
-        'http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/sync', 
-        { items },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return response.data.items;
-    } catch (error) {
-      return rejectWithValue(error.response ? error.response.data.error : error.message);
-    }
+// 將mergeLocalAndRemoteCart合併的購物車清單同步至Firestore
+export const syncCartToFirestore = createAsyncThunk('cart/syncCartToFirestore', async (_, { getState, rejectWithValue }) => {
+  try {
+    const token = await auth.currentUser.getIdToken();
+    const { items } = getState().cart;
+    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/sync', 
+      { items }, 
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data.items;
+  } catch (error) {
+    return rejectWithValue(error.response ? error.response.data.error : error.message);
   }
-);
+});
 
 // 刪除單個商品(Firestore)
-export const removeItemFromCart = createAsyncThunk(
-  'cart/removeItemFromCart',
-  async ({ id, color, size }, { rejectWithValue }) => {
-    try {
-      const token = await auth.currentUser.getIdToken();
-      const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/remove', 
-        { id, color, size }, 
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return response.data.items;
-    } catch (error) {
-      return rejectWithValue(error.response ? error.response.data.error : error.message);
-    }
+export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart', async ({ id, color, size }, { rejectWithValue }) => {
+  try {
+    const token = await auth.currentUser.getIdToken();
+    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/remove', 
+      { id, color, size }, 
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data.items;
+  } catch (error) {
+    return rejectWithValue(error.response ? error.response.data.error : error.message);
   }
-);
+});
 
 // 更新商品數量(Firestore)
-export const updateItemQuantity = createAsyncThunk(
-  'cart/updateItemQuantity',
-  async ({ id, color, size, quantity }, { rejectWithValue }) => {
-    try {
-      const token = await auth.currentUser.getIdToken();
-      const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/updatequantity', 
-        { id, color, size, quantity }, 
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return response.data.items;
-    } catch (error) {
-      return rejectWithValue(error.response ? error.response.data.error : error.message);
-    }
+export const updateItemQuantity = createAsyncThunk('cart/updateItemQuantity', async ({ id, color, size, quantity }, { rejectWithValue }) => {
+  try {
+    const token = await auth.currentUser.getIdToken();
+    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/updatequantity', 
+      { id, color, size, quantity }, 
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data.items;
+  } catch (error) {
+    return rejectWithValue(error.response ? error.response.data.error : error.message);
   }
-);
+});
+
+// 獲取用戶個人資料
+export const getProfile = createAsyncThunk('profile/getProfile', async () => {
+  const token = await auth.currentUser.getIdToken();
+  const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/getProfile', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data.profile;
+});
 
 const cartSlice = createSlice({
   name: 'cart',
