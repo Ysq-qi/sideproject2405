@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
+  Title,
   ConfirmationContainer,
   InfoBlock,
   InfoTitle,
-  InfoContent,
   DataRow,
   DataLabel,
   DataValue,
@@ -20,75 +21,41 @@ import {
 
 const OrderConfirmation = () => {
   const navigate = useNavigate();
+  const orderDetails = useSelector((state) => state.checkout.orderDetails);
 
-  // 模擬的訂單資料
-  const orderDetails = {
-    orderNumber: 'ORD123456',
-    orderAmount: '3500 元',
-    paymentMethod: '貨到付款',
-    receiverName: '游先生',
-    receiverAddress: '台灣台中'
-  };
-
-  // 模擬的購物車商品資料
-  const cartItems = [
-    {
-      id: 'P001',
-      name: '商品 1',
-      color: '紅色',
-      size: 'M',
-      quantity: 2,
-      price: 1000,
-      imageUrl: 'https://via.placeholder.com/100',
-    },
-    {
-      id: 'P002',
-      name: '商品 2',
-      color: '藍色',
-      size: 'L',
-      quantity: 1,
-      price: 1500,
-      imageUrl: 'https://via.placeholder.com/100',
-    },
-  ];
-
+  // 檢查 orderDetails 是否為 null
+  if (!orderDetails) {
+    navigate('/');  // 若沒有訂單資料，重定向回首頁或其他頁面
+    return null;  // 確保組件不會繼續渲染
+  }
+  
   const handleGoHome = () => {
     navigate('/');
   };
 
-  const handleViewOrder = () => {
-    // 假設已有訂單查看頁面的路徑
-    navigate('/order');
-  };
-
   return (
     <ConfirmationContainer>
+      <Title>完成訂單</Title>
       <InfoBlock>
         <InfoTitle>訂單資訊</InfoTitle>
         <DataRow>
           <DataLabel>訂單編號：</DataLabel>
-          <DataValue>{orderDetails.orderNumber}</DataValue>
+          <DataValue>{orderDetails.orderId}</DataValue>
         </DataRow>
         <DataRow>
           <DataLabel>訂單金額：</DataLabel>
-          <DataValue>{orderDetails.orderAmount}</DataValue>
-        </DataRow>
-      </InfoBlock>
-      <InfoBlock>
-        <InfoTitle>付款方式</InfoTitle>
-        <DataRow>
-          <InfoContent>{orderDetails.paymentMethod}</InfoContent>
+          <DataValue>{orderDetails.totalAmount} 元</DataValue>
         </DataRow>
       </InfoBlock>
       <InfoBlock>
         <InfoTitle>收件資訊</InfoTitle>
         <DataRow>
           <DataLabel>姓名：</DataLabel>
-          <DataValue>{orderDetails.receiverName}</DataValue>
+          <DataValue>{orderDetails.userInfo.name}</DataValue>
         </DataRow>
         <DataRow>
           <DataLabel>地址：</DataLabel>
-          <DataValue>{orderDetails.receiverAddress}</DataValue>
+          <DataValue>{orderDetails.userInfo.address}</DataValue>
         </DataRow>
       </InfoBlock>
       <InfoBlock>
@@ -105,7 +72,7 @@ const OrderConfirmation = () => {
             </TableRow>
           </thead>
           <tbody>
-            {cartItems.map(item => (
+            {orderDetails.items.map((item) => (
               <TableRow key={`${item.id}-${item.color}-${item.size}`}>
                 <TableCell><ProductImage src={item.imageUrl} alt={item.name} /></TableCell>
                 <TableCell>{item.name}</TableCell>
@@ -120,7 +87,6 @@ const OrderConfirmation = () => {
       </InfoBlock>
       <ButtonGroup>
         <Button onClick={handleGoHome}>回首頁</Button>
-        <Button onClick={handleViewOrder}>查看訂單</Button>
       </ButtonGroup>
     </ConfirmationContainer>
   );

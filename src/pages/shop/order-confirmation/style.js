@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const Title = styled.h2`
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+`;
+
 export const ConfirmationContainer = styled.div`
   width: 1200px;
   margin: auto;

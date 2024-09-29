@@ -6,7 +6,16 @@ const cartRoutes = require("./routes/cartRoutes");
 
 // 建立 Express 應用
 const app = express();
-app.use(cors()); // 啟用 CORS
+
+// 配置 CORS
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // 發送 Cookie 或驗證資訊
+};
+
+app.use(cors(corsOptions)); // 啟用並配置 CORS
 app.use(express.json()); // 支援 JSON 請求
 
 // 使用用戶和購物車相關的路由

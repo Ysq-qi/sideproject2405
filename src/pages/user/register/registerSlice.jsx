@@ -1,4 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { registerUser } from '../../../api/userApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
+
+// 創建註冊異步操作
+export const register = createAsyncThunk(
+  'register/registerUser',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const result = await registerUser(email, password);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error.message || ERROR_MESSAGES.REGISTER_ERROR);
+    }
+  }
+);
 
 const initialState = {
   uid: null,

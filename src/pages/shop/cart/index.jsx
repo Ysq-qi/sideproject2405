@@ -1,49 +1,56 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { 
+import { auth } from '../../../config/firebaseConfig';
+import CartItem from './CartItem';
+
+import {
+  CartContainer,
+  Title,
+  Table,
+  TableHeader,
+  TableRow,
+  SummaryContainer,
+  Button,
+  Section,
+} from './style';
+
+import {
   fetchCart,
   removeItem,
   removeItemFromCart,
   updateQuantity,
   updateItemQuantity,
   setCartItems,
-  syncCartToFirestore
+  syncCartToFirestore,
 } from './cartSlice';
-import {
-  CartContainer,
-  Table,
-  TableHeader,
-  TableRow,
-  TableCell,
-  SummaryContainer,
-  Button,
-  Input,
-  Section,
-  Title,
-  ProductImage
-} from './style';
 
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cart.items || []);  // 保證 cartItems 至少是一個空陣列
+  const { items: cartItems } = useSelector((state) => state.cart);
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
-  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  // 使用 useMemo 計算總金額
+  const total = React.useMemo(() => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  }, [cartItems]);
 
   // 合併本地和遠端購物車數據
   const mergeLocalAndRemoteCart = useCallback(async () => {
     const localItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-    if (isAuthenticated) {
+    if (isAuthenticated && auth.currentUser) {
       try {
-        const remoteItems = await dispatch(fetchCart()).unwrap(); // 獲取 Firestore 購物車數據
-        const mergedItems = [...remoteItems]; // 遠端購物車數據
+        const remoteItems = await dispatch(fetchCart()).unwrap();
+        const mergedItems = [...remoteItems];
 
-        // 合併本地購物車數據
         localItems.forEach((localItem) => {
           const existingItem = mergedItems.find(
-            (item) => item.id === localItem.id && item.color === localItem.color && item.size === localItem.size
+            (item) =>
+              item.id === localItem.id &&
+              item.color === localItem.color &&
+              item.size === localItem.size
           );
           if (existingItem) {
             existingItem.quantity += localItem.quantity;
@@ -59,56 +66,52 @@ const Cart = () => {
         localStorage.removeItem('cartItems');
 
         // 同步合併後的購物車數據到 Firestore
-        dispatch(syncCartToFirestore());
+        await dispatch(syncCartToFirestore()).unwrap();
       } catch (error) {
-        console.error('合併本地和遠端購物車數據時出錯', error);
+        console.error('合併購物車時出錯', error);
       }
+    } else {
+      // 未登入，僅使用本地購物車數據
+      dispatch(setCartItems(localItems));
     }
   }, [isAuthenticated, dispatch]);
 
-  // 首次加載時執行合併購物車
   useEffect(() => {
-    if (isAuthenticated) {
-      mergeLocalAndRemoteCart();
-    }
-  }, [isAuthenticated, mergeLocalAndRemoteCart]);
-
-  // 處理購物車商品刪除
-  const handleRemove = (id, color, size) => {
-    // 1. 先更新前端 Redux 狀態，立即刪除商品
-    dispatch(removeItem({ id, color, size }));
+    const interval = setInterval(() => {
+      if (auth.currentUser && isAuthenticated) {
+        mergeLocalAndRemoteCart();
+        clearInterval(interval); // 一旦認證完成，清除輪詢
+      }
+    }, 100); // 每100毫秒檢查一次
     
-    // 2. 同步刪除後端 Firestore 購物車數據
+    return () => clearInterval(interval); // 組件卸載時清除
+  }, [isAuthenticated, mergeLocalAndRemoteCart]);
+  
+  // 處理刪除商品
+  const handleRemove = (id, color, size) => {
+    dispatch(removeItem({ id, color, size }));
     dispatch(removeItemFromCart({ id, color, size }))
       .unwrap()
-      .then((updatedItems) => {
-        // 3. 後端刪除成功後，更新 Redux 狀態中的購物車數據
-        dispatch(setCartItems(updatedItems));
-      })
       .catch((error) => {
         console.error('刪除商品時出錯：', error);
-        // 如果需要，您可以在錯誤情況下進行恢復處理
+        alert('刪除商品時發生錯誤，請稍後再試');
       });
   };
 
-  // 處理購物車商品數量變化
+  // 處理更新商品數量
   const handleQuantityChange = (id, color, size, quantity) => {
-    // 1. 先更新前端 Redux 狀態 (即時反映在 UI 上)
+    if (quantity < 1 || quantity > 20 || isNaN(quantity)) {
+      alert('數量必須在 1 到 20 之間');
+      return;
+    }
     dispatch(updateQuantity({ id, color, size, quantity }));
-  
-    // 2. 同步後端 Firestore 購物車數據
     dispatch(updateItemQuantity({ id, color, size, quantity }))
       .unwrap()
-      .then((updatedItems) => {
-        // 3. 如果後端更新成功，可以選擇性地檢查或同步
-        dispatch(setCartItems(updatedItems));  // 選擇同步後端返回的最新購物車數據
-      })
       .catch((error) => {
-        console.error('更新後端購物車時出錯：', error);
-        // 如果需要，可以在錯誤時進行恢復處理
+        console.error('更新商品數量時出錯：', error);
+        alert('更新商品數量時發生錯誤，請稍後再試');
       });
   };
-  
 
   // 處理結帳按鈕點擊
   const handleCheckout = () => {
@@ -135,43 +138,25 @@ const Cart = () => {
             <TableHeader>操作</TableHeader>
           </TableRow>
         </thead>
+        { /* 拆分成CartItem組件 */}
         <tbody>
-          {(cartItems || []).map((item) => (  // 防禦性檢查，確保 cartItems 存在
-            <TableRow key={`${item.id}-${item.color}-${item.size}`}>
-              <TableCell>
-                <ProductImage src={item.imageUrl} alt={item.name} />
-              </TableCell>
-              <TableCell>{item.id}</TableCell>
-              <TableCell>{item.name}</TableCell>
-              <TableCell>
-                {item.color} - {item.size}
-              </TableCell>
-              <TableCell>
-                <Input
-                  type="number"
-                  value={item.quantity}
-                  min="1"
-                  max="20"
-                  autoComplete="off"
-                  onChange={(e) => handleQuantityChange(item.id, item.color, item.size, Number(e.target.value))}
-                />
-              </TableCell>
-              <TableCell>{item.price}</TableCell>
-              <TableCell>{item.price * item.quantity}</TableCell>
-              <TableCell>
-                <Button onClick={() => handleRemove(item.id, item.color, item.size)}>刪除</Button>
-              </TableCell>
-            </TableRow>
+          {cartItems.map((item) => (
+            <CartItem
+            key={`${item.id}-${item.color}-${item.size}`}
+            item={item}
+            onQuantityChange={handleQuantityChange}
+            onRemove={handleRemove}
+            />
           ))}
         </tbody>
       </Table>
       <SummaryContainer>
-        <span>小計</span>
+        <span>小計：</span>
         <span>{total} 元</span>
       </SummaryContainer>
       <Section>
-        <Button onClick={handleCheckout}>立即結帳</Button>
         <Button onClick={() => navigate('/')}>繼續購物</Button>
+        <Button onClick={handleCheckout}>立即結帳</Button>
       </Section>
     </CartContainer>
   );

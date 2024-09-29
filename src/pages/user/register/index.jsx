@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../config/firebaseConfig.js';
 import {
+  register,
   setEmail,
   setPassword,
   setConfirmPassword,
@@ -48,13 +46,6 @@ const Register = () => {
     success
   } = useSelector((state) => state.register);
 
-  // 組件卸載時重置表單
-  useEffect(() => {
-    return () => {
-      dispatch(resetForm());
-    };
-  }, [dispatch]);
-
   // 驗證信箱格式
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,9 +79,11 @@ const Register = () => {
     dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
   };
 
+  // 提交註冊
   const handleRegister = async (e) => {
     e.preventDefault(); // 阻止默認提交
   
+    // 驗證輸入格式是否有效
     if (!emailValid) {
       dispatch(setError('信箱格式錯誤'));
     } else if (!passwordValid) {
@@ -98,42 +91,36 @@ const Register = () => {
     } else if (!confirmPasswordValid) {
       dispatch(setError('確認密碼格式錯誤'));
     } else {
-      try {
-        // 嘗試註冊
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-  
-        // 調用後端API來創建用戶文檔
-        await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/createUser', {
-          uid: user.uid,
-          email: user.email,
-        }, {
-          headers: {
-            Authorization: `Bearer ${user.stsTokenManager.accessToken}`,
-          }
+      // 使用 Redux Thunk 調用註冊邏輯
+      dispatch(register({ email, password }))
+        .unwrap()
+        .then(() => {
+          dispatch(setSuccess('註冊成功'));
+          // 註冊成功後導航到主頁面
+          setTimeout(() => {
+            navigate('/'); // 先進行導航
+            dispatch(setSuccess(''));
+            dispatch(resetForm());
+          }, 500); // 添加適當延遲
+        })
+        .catch((error) => {
+          console.error('註冊過程出錯: ', error);
+          dispatch(setError('註冊失敗，請稍後再試'));
+          // 如果發生錯誤，3秒後重置錯誤信息
+          setTimeout(() => {
+            dispatch(setError(''));
+            dispatch(resetForm());
+          }, 3000);
         });
-
-  
-        // 註冊成功處理
-        dispatch(setSuccess('註冊成功'));
-        setTimeout(() => {
-          navigate('/'); // 先進行導航
-          dispatch(setSuccess(''));
-          dispatch(resetForm());
-        }, 500);  // 添加適當延遲
-      } catch (err) {
-        console.error('註冊過程出錯: ', err);
-        dispatch(setError('註冊失敗，請稍後再試'));
-      }
     }
-  
-    setTimeout(() => {
-      dispatch(setError(''));
-      dispatch(resetForm());
-    }, 3000);
   };
-  
-  
+
+  // 組件卸載時重置表單
+  useEffect(() => {
+    return () => {
+      dispatch(resetForm());
+    };
+  }, [dispatch]);
 
   return (
     <RegisterContainer>

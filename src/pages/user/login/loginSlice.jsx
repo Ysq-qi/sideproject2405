@@ -1,4 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { loginUser } from '../../../api/userApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
+
+export const login = createAsyncThunk(
+  'login/loginUser',
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const result = await loginUser(email, password);
+      return result;
+    } catch (error) {
+      let errorMessage = ERROR_MESSAGES.LOGIN_ERROR;
+      if (error.code === 'auth/invalid-email' || error.code === 'auth/user-not-found') {
+        errorMessage = '信箱錯誤';
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = '密碼輸入錯誤';
+      }
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,

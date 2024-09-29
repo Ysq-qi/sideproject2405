@@ -1,75 +1,68 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from '../../../config/firebaseConfig.js';
-import axios from 'axios';
+import { auth } from '../../../config/firebaseConfig';
+import {
+  fetchCartItems,
+  syncCartToFirestoreApi,
+  removeItemFromCartApi,
+  updateItemQuantityApi,
+} from '../../../api/cartApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
 
-// 從 Firestore 獲取購物車數據
+// 獲取購物車商品
 export const fetchCart = createAsyncThunk('cart/fetchCart', async (_, { rejectWithValue }) => {
   try {
-    const token = await auth.currentUser.getIdToken();
-    const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data.items;
+    if (!auth.currentUser) {
+      throw new Error('使用者未登入');
+    }
+    const items = await fetchCartItems();
+    return items;
   } catch (error) {
-    return rejectWithValue(error.response ? error.response.data.error : error.message);
+    return rejectWithValue(error.message || ERROR_MESSAGES.FETCH_CART_ERROR);
   }
 });
 
-// 將mergeLocalAndRemoteCart合併的購物車清單同步至Firestore
-export const syncCartToFirestore = createAsyncThunk('cart/syncCartToFirestore', async (_, { getState, rejectWithValue }) => {
-  try {
-    const token = await auth.currentUser.getIdToken();
-    const { items } = getState().cart;
-    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/sync', 
-      { items }, 
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    return response.data.items;
-  } catch (error) {
-    return rejectWithValue(error.response ? error.response.data.error : error.message);
+// 同步購物車到 Firestore
+export const syncCartToFirestore = createAsyncThunk('cart/syncCartToFirestore',async (_, { getState, rejectWithValue }) => {
+    try {
+      if (!auth.currentUser) {
+        throw new Error('使用者未登入');
+      }
+      const { items } = getState().cart;
+      const updatedItems = await syncCartToFirestoreApi(items);
+      return updatedItems;
+    } catch (error) {
+      return rejectWithValue(error.message || ERROR_MESSAGES.SYNC_CART_ERROR);
+    }
   }
-});
+);
 
-// 刪除單個商品(Firestore)
-export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart', async ({ id, color, size }, { rejectWithValue }) => {
-  try {
-    const token = await auth.currentUser.getIdToken();
-    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/remove', 
-      { id, color, size }, 
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    return response.data.items;
-  } catch (error) {
-    return rejectWithValue(error.response ? error.response.data.error : error.message);
+// 刪除購物車商品
+export const removeItemFromCart = createAsyncThunk('cart/removeItemFromCart',async ({ id, color, size }, { rejectWithValue }) => {
+    try {
+      if (!auth.currentUser) {
+        throw new Error('使用者未登入');
+      }
+      const updatedItems = await removeItemFromCartApi({ id, color, size });
+      return updatedItems;
+    } catch (error) {
+      return rejectWithValue(error.message || ERROR_MESSAGES.REMOVE_ITEM_ERROR);
+    }
   }
-});
+);
 
-// 更新商品數量(Firestore)
-export const updateItemQuantity = createAsyncThunk('cart/updateItemQuantity', async ({ id, color, size, quantity }, { rejectWithValue }) => {
-  try {
-    const token = await auth.currentUser.getIdToken();
-    const response = await axios.post('http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/updatequantity', 
-      { id, color, size, quantity }, 
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    return response.data.items;
-  } catch (error) {
-    return rejectWithValue(error.response ? error.response.data.error : error.message);
+// 更新購物車商品數量
+export const updateItemQuantity = createAsyncThunk('cart/updateItemQuantity',async ({ id, color, size, quantity }, { rejectWithValue }) => {
+    try {
+      if (!auth.currentUser) {
+        throw new Error('使用者未登入');
+      }
+      const updatedItems = await updateItemQuantityApi({ id, color, size, quantity });
+      return updatedItems;
+    } catch (error) {
+      return rejectWithValue(error.message || ERROR_MESSAGES.UPDATE_QUANTITY_ERROR);
+    }
   }
-});
-
-// 獲取用戶個人資料
-export const getProfile = createAsyncThunk('profile/getProfile', async () => {
-  const token = await auth.currentUser.getIdToken();
-  const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/getProfile', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data.profile;
-});
+);
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -123,32 +116,13 @@ const cartSlice = createSlice({
       })
 
       // 刪除商品的處理
-      .addCase(removeItemFromCart.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
       .addCase(removeItemFromCart.fulfilled, (state, action) => {
         state.loading = false;
-
-        // 從後端返回的購物車數據
+      
+        // 用 API 返回的商品列表覆蓋前端的狀態，這是刪除操作後的最新購物車
         const updatedItems = action.payload;
-
-        // 僅刪除對應的商品，保證本地狀態不會被完全覆蓋
-        updatedItems.forEach((updatedItem) => {
-          const existingItemIndex = state.items.findIndex(
-            item => item.id === updatedItem.id &&
-                    item.color === updatedItem.color &&
-                    item.size === updatedItem.size
-          );
-          if (existingItemIndex !== -1) {
-            state.items.splice(existingItemIndex, 1);  // 刪除商品
-          }
-        });
-      })
-      .addCase(removeItemFromCart.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+        state.items = updatedItems;
+      })      
 
       // 更新商品數量的處理
       .addCase(updateItemQuantity.pending, (state) => {

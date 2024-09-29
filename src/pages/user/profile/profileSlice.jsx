@@ -1,39 +1,48 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from '../../../config/firebaseConfig.js';
-import axios from 'axios';
+import {
+  getUserProfile,
+  updateUserProfile,
+  changeUserPassword,
+} from '../../../api/userApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
 
 // 獲取用戶個人資料
-export const getProfile = createAsyncThunk('profile/getProfile', async () => {
-  const token = await auth.currentUser.getIdToken();
-  const response = await axios.get('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/getProfile', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data.profile;
-});
+export const getProfile = createAsyncThunk(
+  'profile/getProfile',
+  async (_, { rejectWithValue }) => {
+    try {
+      const profile = await getUserProfile();
+      return profile;
+    } catch (error) {
+      return rejectWithValue(ERROR_MESSAGES.FETCH_PROFILE_ERROR);
+    }
+  }
+);
 
 // 更新用戶個人資料
-export const updateProfile = createAsyncThunk('profile/updateProfile', async (profileData) => {
-  const token = await auth.currentUser.getIdToken();
-  const response = await axios.put('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/updateProfile', profileData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-});
+export const updateProfile = createAsyncThunk(
+  'profile/updateProfile',
+  async (profileData, { rejectWithValue }) => {
+    try {
+      const updatedProfile = await updateUserProfile(profileData);
+      return updatedProfile;
+    } catch (error) {
+      return rejectWithValue(ERROR_MESSAGES.UPDATE_PROFILE_ERROR);
+    }
+  }
+);
 
 // 變更用戶密碼
-export const changePassword = createAsyncThunk('profile/changePassword', async (newPassword) => {
-  const token = await auth.currentUser.getIdToken();
-  const response = await axios.put('http://localhost:5001/sideproject2405-b8a66/us-central1/api/users/changePassword', { newPassword }, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
-});
+export const changePassword = createAsyncThunk(
+  'profile/changePassword',
+  async (newPassword, { rejectWithValue }) => {
+    try {
+      await changeUserPassword(newPassword);
+    } catch (error) {
+      return rejectWithValue(ERROR_MESSAGES.CHANGE_PASSWORD_ERROR);
+    }
+  }
+);
 
 const profileSlice = createSlice({
   name: 'profile',
@@ -62,6 +71,7 @@ const profileSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // 獲取個人資料
       .addCase(getProfile.pending, (state) => {
         state.isLoading = true;
       })
@@ -71,8 +81,9 @@ const profileSlice = createSlice({
       })
       .addCase(getProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
       })
+      // 更新個人資料
       .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
       })
@@ -82,8 +93,9 @@ const profileSlice = createSlice({
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
       })
+      // 變更密碼
       .addCase(changePassword.pending, (state) => {
         state.isLoading = true;
       })
@@ -92,10 +104,15 @@ const profileSlice = createSlice({
       })
       .addCase(changePassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload || action.error.message;
       });
   },
 });
 
-export const { setPasswordValid, setPasswordError, setConfirmPasswordValid, setConfirmPasswordError } = profileSlice.actions;
+export const {
+  setPasswordValid,
+  setPasswordError,
+  setConfirmPasswordValid,
+  setConfirmPasswordError,
+} = profileSlice.actions;
 export default profileSlice.reducer;

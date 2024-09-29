@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 const { initializeApp, cert } = require("firebase-admin/app");
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const serviceAccount = require("./serviceAccountKey.json");
 
 // 初始化 Firebase Admin SDK
@@ -11,5 +11,5 @@ initializeApp({
 // 獲取 Firestore 實例
 const db = getFirestore();
 
-// 將 admin 和 db 同時導出，供其他文件使用
-module.exports = { admin, db };
+// 將 admin 和 db 以及 FieldValue 同時導出，供其他文件使用
+module.exports = { admin, db, FieldValue };

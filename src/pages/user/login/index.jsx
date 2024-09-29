@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../config/firebaseConfig.js';
 import { 
   setEmail, 
   setPassword, 
@@ -12,8 +10,7 @@ import {
   setPasswordError, 
   setError, 
   resetForm, 
-  loginSuccess,
-  loginFailure
+  login
 } from './loginSlice';
 import { 
   LoginContainer,
@@ -43,14 +40,16 @@ const Login = () => {
     passwordError,
     error,
     success,
+    loading,
+    isAuthenticated
   } = useSelector((state) => state.login);
 
-    // 組件卸載時重置表單
-    useEffect(() => {
-      return () => {
-        dispatch(resetForm());
-      };
-    }, [dispatch]);
+  // 組件卸載時重置表單
+  useEffect(() => {
+    return () => {
+      dispatch(resetForm());
+    };
+  }, [dispatch]);
 
   // 驗證信箱格式
   const validateEmail = (email) => {
@@ -80,13 +79,13 @@ const Login = () => {
 
     const isValid = re.test(password);
     dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(errorMessage));
+    dispatch(setPasswordError(isValid ? '' : errorMessage));
   };
 
   // 提交登入
   const handleLogin = async (e) => {
     e.preventDefault(); // 阻止默認提交
-  
+
     // 初步檢查信箱和密碼的格式並設置相應的錯誤消息
     if (!email) {
       dispatch(setError('請輸入信箱'));
@@ -99,32 +98,31 @@ const Login = () => {
     } else if (!passwordValid) {
       dispatch(setError('密碼格式錯誤'));
     } else {
-      try {
-        // 當信箱和密碼格式正確時，嘗試登入
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        dispatch(loginSuccess({ uid: userCredential.user.uid, email: userCredential.user.email }));
-        dispatch(resetForm());
-        navigate('/');
-        navigate(from); // 這行來導航到原本的目標頁面
-        return; // 成功登入時結束函數執行
-      } catch (err) {
-        // 根據錯誤代碼設置錯誤消息
-        if (err.code === 'auth/invalid-email' || err.code === 'auth/user-not-found') {
-          dispatch(loginFailure('信箱錯誤'));
-        } else if (err.code === 'auth/wrong-password') {
-          dispatch(loginFailure('密碼輸入錯誤'));
-        } else {
-          dispatch(loginFailure('登入失敗，請稍後再試'));
-        }
-      }
+      // 使用 Redux Thunk 調用登入邏輯
+      dispatch(login({ email, password }))
+        .unwrap()
+        .then(() => {
+          dispatch(resetForm());
+          navigate(from); // 導航到原本的目標頁面
+        })
+        .catch((errorMessage) => {
+          console.error('登入過程出錯: ', errorMessage);
+          dispatch(setError(errorMessage));
+          // 如果發生錯誤，3秒後重置錯誤信息
+          setTimeout(() => {
+            dispatch(setError(''));
+            dispatch(resetForm());
+          }, 3000);
+        });
     }
-  
-    // 無論哪種錯誤，3秒後表單重置
-    setTimeout(() => {
-      dispatch(setError(''));
-      dispatch(resetForm());
-    }, 3000);
   };
+
+  // 監聽登入成功狀態，並導航到主頁（已在 handleLogin 中處理）
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from);
+    }
+  }, [isAuthenticated, navigate, from]);
 
   return (
     <LoginContainer>
@@ -155,7 +153,7 @@ const Login = () => {
             required 
           />
           {password && (passwordValid ? <SuccessText>○</SuccessText> : <ErrorText>✗ {passwordError}</ErrorText>)}
-          <Button type="submit">登入</Button>
+          <Button type="submit" disabled={loading}>登入</Button>
           {error && <ErrorText>{error}</ErrorText>}
           {success && <SuccessText>{success}</SuccessText>}
           <HelperText>

@@ -25,7 +25,7 @@ const ProductDetailInfo = ({ product }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(state => state.login.isAuthenticated);
   const { selectedColor, selectedSize, quantity, error } = useSelector(state => state.productDetail);
-  const cartItems = useSelector(state => state.cart.items);  // 從 Redux 獲取購物車項目
+  const cartItems = useSelector(state => state.cart.items);
 
   useEffect(() => {
     dispatch(setProduct(product));
@@ -85,7 +85,7 @@ const ProductDetailInfo = ({ product }) => {
       const token = await auth.currentUser.getIdToken();
       await axios.post(
         'http://localhost:5001/sideproject2405-b8a66/us-central1/api/cart/add',
-        { item },  // 傳遞單個商品
+        { item },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       console.log('商品已成功添加到 Firestore');
