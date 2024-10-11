@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  Title,
   ConfirmationContainer,
+  Title,
   InfoBlock,
   InfoTitle,
   DataRow,
@@ -16,20 +16,27 @@ import {
   TableRow,
   TableHeader,
   TableCell,
-  ProductImage
+  ProductImage,
 } from './style';
+import { clearOrderStatus } from '../checkout/checkoutSlice';
 
 const OrderConfirmation = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const orderDetails = useSelector((state) => state.checkout.orderDetails);
 
-  // 檢查 orderDetails 是否為 null
+  useEffect(() => {
+    if (!orderDetails) {
+      navigate('/');
+    }
+  }, [orderDetails, navigate]);
+
   if (!orderDetails) {
-    navigate('/');  // 若沒有訂單資料，重定向回首頁或其他頁面
-    return null;  // 確保組件不會繼續渲染
+    return null;
   }
-  
+
   const handleGoHome = () => {
+    dispatch(clearOrderStatus());
     navigate('/');
   };
 
@@ -46,6 +53,14 @@ const OrderConfirmation = () => {
           <DataLabel>訂單金額：</DataLabel>
           <DataValue>{orderDetails.totalAmount} 元</DataValue>
         </DataRow>
+        <DataRow>
+          <DataLabel>付款方式：</DataLabel>
+          <DataValue>{orderDetails.paymentMethod}</DataValue>
+        </DataRow>
+        <DataRow>
+          <DataLabel>付款狀態：</DataLabel>
+          <DataValue>{orderDetails.paymentStatus}</DataValue>
+        </DataRow>
       </InfoBlock>
       <InfoBlock>
         <InfoTitle>收件資訊</InfoTitle>
@@ -56,6 +71,14 @@ const OrderConfirmation = () => {
         <DataRow>
           <DataLabel>地址：</DataLabel>
           <DataValue>{orderDetails.userInfo.address}</DataValue>
+        </DataRow>
+        <DataRow>
+          <DataLabel>連絡電話：</DataLabel>
+          <DataValue>{orderDetails.userInfo.phone}</DataValue>
+        </DataRow>
+        <DataRow>
+          <DataLabel>Email：</DataLabel>
+          <DataValue>{orderDetails.userInfo.email}</DataValue>
         </DataRow>
       </InfoBlock>
       <InfoBlock>
@@ -74,7 +97,9 @@ const OrderConfirmation = () => {
           <tbody>
             {orderDetails.items.map((item) => (
               <TableRow key={`${item.id}-${item.color}-${item.size}`}>
-                <TableCell><ProductImage src={item.imageUrl} alt={item.name} /></TableCell>
+                <TableCell>
+                  <ProductImage src={item.imageUrl} alt={item.name} />
+                </TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{`${item.color} / ${item.size}`}</TableCell>
                 <TableCell>{item.quantity}</TableCell>

@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { submitOrderApi } from '../../../api/cartApi';
+import { submitOrderApi } from '../../../api/orderApi';
 import { ERROR_MESSAGES } from '../../../config/constants';
 
 // 提交訂單
 export const submitOrder = createAsyncThunk(
   'checkout/submitOrder',
-  async ({ cartItems, user }, { rejectWithValue }) => {
+  async (orderData, { rejectWithValue }) => {
     try {
-      const result = await submitOrderApi({ cartItems, user });
+      const result = await submitOrderApi(orderData);
       if (result.success) {
         return result.order;
       } else {
@@ -22,17 +22,14 @@ export const submitOrder = createAsyncThunk(
 const checkoutSlice = createSlice({
   name: 'checkout',
   initialState: {
-    cartItems: [], 
-    orderDetails: null, // 新增這個狀態來存儲訂單數據
+    orderDetails: null,
     error: null,
     loading: false,
   },
   reducers: {
-    clearCart: (state) => {
-      state.cartItems = [];
-    },
+    // 清空訂單詳情狀態
     clearOrderStatus: (state) => {
-      state.orderDetails = null; // 清除訂單數據
+      state.orderDetails = null;
     },
   },
   extraReducers: (builder) => {
@@ -43,8 +40,8 @@ const checkoutSlice = createSlice({
       })
       .addCase(submitOrder.fulfilled, (state, action) => {
         state.loading = false;
-        state.orderDetails = action.payload; // 存儲訂單數據
-        state.cartItems = [];  // 提交訂單後清空購物車
+        state.orderDetails = action.payload; 
+        state.cartItems = [];
       })
       .addCase(submitOrder.rejected, (state, action) => {
         state.loading = false;
@@ -53,5 +50,5 @@ const checkoutSlice = createSlice({
   },
 });
 
-export const { clearCart, clearOrderStatus } = checkoutSlice.actions;
+export const { clearOrderStatus  } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

@@ -29,6 +29,7 @@ export const TableHeader = styled.th`
 `;
 
 export const TableRow = styled.tr`
+  cursor: pointer;
   &:nth-child(even) {
     background-color: #f9f9f9;
   }
@@ -38,6 +39,16 @@ export const TableCell = styled.td`
   text-align: center;
   border: 1px solid #ddd;
   padding: 15px;
+`;
+
+export const ProductTable = styled.table`
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+`;
+
+export const ExpandableRow = styled.tr`
+  background-color: #fafafa;
 `;
 
 export const NoOrderData = styled.div`

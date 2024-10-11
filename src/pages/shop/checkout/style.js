@@ -96,6 +96,17 @@ export const ReadOnlyInput = styled(Input)`
   cursor: not-allowed;
 `;
 
+export const TextArea = styled.textarea`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 400px;
+  min-height: 100px;
+  resize: vertical;
+  font-size: 16px;
+  font-family: inherit;
+`;
+
 export const Button = styled.button`
   background-color: #000;
   color: #fff;

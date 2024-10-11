@@ -53,13 +53,13 @@ const Header = () => {
             <>
               <TopbarItem className='right'>{user.email}</TopbarItem>
               <TopbarItem className='right' onClick={handleLogout}>會員登出</TopbarItem>
-              <TopbarItem className='right' onClick={() => navigate('/orders')}>訂單查詢</TopbarItem>
+              <TopbarItem className='right' onClick={() => navigate('/order')}>訂單查詢</TopbarItem>
             </>
           ) : (
             <>
               <TopbarItem className='right' onClick={() => navigate('/register')}>會員註冊</TopbarItem>
               <TopbarItem className='right' onClick={() => navigate('/login')}>會員登入</TopbarItem>
-              <TopbarItem className='right' onClick={() => handleNavigation('/orders')}>訂單查詢</TopbarItem>
+              <TopbarItem className='right' onClick={() => handleNavigation('/order')}>訂單查詢</TopbarItem>
             </>
           )}
         </Topbar>

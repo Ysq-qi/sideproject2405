@@ -3,6 +3,7 @@ const functions = require("firebase-functions");
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 // 建立 Express 應用
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.json()); // 支援 JSON 請求
 // 使用用戶和購物車相關的路由
 app.use("/users", userRoutes);
 app.use('/cart', cartRoutes);
+app.use('/orders', orderRoutes);
 
 // 將 Express 應用綁定到 Firebase Function
 exports.api = functions.https.onRequest(app);

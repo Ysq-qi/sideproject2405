@@ -19,31 +19,32 @@ import {
   TableCell,
   ProductImage,
   OptionContainer,
-  RadioInput
+  RadioInput,
+  TextArea
 } from './style';
-import { submitOrder, clearCart } from './checkoutSlice';
+import { submitOrder } from './checkoutSlice';
+import { clearCart } from '../cart/cartSlice'; 
 import { getProfile } from '../../user/profile/profileSlice';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [shippingMethod, setShippingMethod] = useState('郵寄 / 宅配');
+  const [paymentMethod, setPaymentMethod] = useState('貨到付款');
+  const [invoiceType, setInvoiceType] = useState('個人電子發票');
+  const [note, setNote] = useState('');
 
   // 從 Redux Store 中獲取相關狀態
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
   const cartItems = useSelector((state) => state.cart.items);
 
-  // 本地狀態用來處理表單數據
+  // 使用useState處理表單初始狀態
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
   });
-
-  // 使用 useMemo 計算總金額，僅在 cartItems 變化時計算
-  const totalAmount = useMemo(() => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  }, [cartItems]);
 
   // 當組件掛載時，直接獲取用戶資料
   useEffect(() => {
@@ -59,62 +60,94 @@ const Checkout = () => {
       })
       .catch((error) => {
         console.error('獲取用戶資料時出錯：', error);
-        alert('獲取用戶資料時出錯，請稍後再試');
       });
   }, [isAuthenticated, navigate, dispatch]);
 
-  // 處理輸入變化
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-// 提交訂單
-const handleOrderSubmit = async () => {
-  const { name, email, phone, address } = formData;
-
-  // 檢查購物車是否有商品
-  if (cartItems.length === 0) {
-    alert('購物車沒有商品，請先添加商品');
-    navigate('/'); 
-    return;
-  }
-
-  // 檢查必填項是否為空
-  if (!name) {
-    alert('姓名不可為空');
-    return;
-  }
-  if (!email) {
-    alert('Email 不可為空');
-    return;
-  }
-  if (!phone) {
-    alert('連絡電話不可為空');
-    return;
-  }
-  if (!address) {
-    alert('住址不可為空');
-    return;
-  }
-
-  try {
-    await dispatch(submitOrder({ cartItems, user: formData })).unwrap();
-    alert('訂單提交成功');
-    dispatch(clearCart());
-    navigate('/order-confirmation');
-  } catch (error) {
-    console.error('提交訂單時出錯：', error);
-    alert('提交訂單時出錯，請稍後再試');
-  }
-};
-
-
-  // 上一步導航到購物車頁面
+  // 上一步回去購物車頁面
   const handleBack = () => {
     navigate('/cart');
+  };
+
+  // 處理輸入變化
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    if (['shippingMethod', 'paymentMethod', 'invoiceType', 'note'].includes(name)) {
+      switch (name) {
+        case 'shippingMethod':
+          setShippingMethod(value);
+          break;
+        case 'paymentMethod':
+          setPaymentMethod(value);
+          break;
+        case 'invoiceType':
+          setInvoiceType(value);
+          break;
+        case 'note':
+          setNote(value);
+          break;
+        default:
+          break;
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+
+  // 使用 useMemo 計算總金額，僅在 cartItems 變化時計算
+  const totalAmount = useMemo(() => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  }, [cartItems]);
+
+  // 提交訂單
+  const handleOrderSubmit = async () => {
+    const { name, email, phone, address } = formData;
+
+    // 檢查購物車是否有商品
+    if (cartItems.length === 0) {
+      alert('購物車沒有商品，請先添加商品');
+      navigate('/'); 
+      return;
+    }
+
+    // 檢查必填項是否為空
+    if (!name) {
+      alert('姓名不可為空');
+      return;
+    }
+    if (!email) {
+      alert('Email 不可為空');
+      return;
+    }
+    if (!phone) {
+      alert('連絡電話不可為空');
+      return;
+    }
+    if (!address) {
+      alert('住址不可為空');
+      return;
+    }
+
+    try {
+      await dispatch(submitOrder({
+        cartItems,
+        user: formData,
+        shippingMethod,
+        paymentMethod,
+        invoiceType,
+        note,
+        totalAmount
+      })).unwrap();
+      alert('訂單提交成功');
+      dispatch(clearCart());
+      navigate('/order-confirmation');
+    } catch (error) {
+      console.error('提交訂單時出錯：', error);
+      alert('提交訂單時出錯，請稍後再試');
+    }
   };
 
   return (
@@ -201,8 +234,25 @@ const handleOrderSubmit = async () => {
       <Section>
         <SectionTitle>貨運方式</SectionTitle>
         <OptionContainer>
-          <RadioInput type="radio" name="shipping" value="郵寄 / 宅配" defaultChecked />
-          <Label>郵寄 / 宅配</Label>
+          <RadioInput
+            type="radio"
+            name="shippingMethod"
+            value="郵寄 / 宅配"
+            id="shipping-post"
+            checked={shippingMethod === '郵寄 / 宅配'}
+            onChange={handleChange}
+          />
+          <Label htmlFor="shipping-post">郵寄 / 宅配</Label>
+
+          <RadioInput
+            type="radio"
+            name="shippingMethod"
+            value="超商領取(測試用)"
+            id="shipping-convenience-store"
+            checked={shippingMethod === '超商領取(測試用)'}
+            onChange={handleChange}
+          />
+          <Label htmlFor="shipping-convenience-store">超商領取(測試用)</Label>
         </OptionContainer>
       </Section>
 
@@ -210,8 +260,25 @@ const handleOrderSubmit = async () => {
       <Section>
         <SectionTitle>付款方式</SectionTitle>
         <OptionContainer>
-          <RadioInput type="radio" name="payment" value="貨到付款" defaultChecked />
-          <Label>貨到付款</Label>
+          <RadioInput
+            type="radio"
+            name="paymentMethod"
+            value="貨到付款"
+            id="payment-cod"
+            checked={paymentMethod === '貨到付款'}
+            onChange={handleChange}
+          />
+          <Label htmlFor="payment-cod">貨到付款</Label>
+
+          <RadioInput
+            type="radio"
+            name="paymentMethod"
+            value="信用卡付款(測試用)"
+            id="payment-credit-card"
+            checked={paymentMethod === '信用卡付款(測試用)'}
+            onChange={handleChange}
+          />
+          <Label htmlFor="payment-credit-card">信用卡付款(測試用)</Label>
         </OptionContainer>
       </Section>
 
@@ -219,13 +286,39 @@ const handleOrderSubmit = async () => {
       <Section>
         <SectionTitle>發票資訊</SectionTitle>
         <OptionContainer>
-          <RadioInput type="radio" name="invoice" value="個人電子發票" defaultChecked />
+          <RadioInput
+            type="radio"
+            name="invoiceType"
+            value="個人電子發票"
+            checked={invoiceType === '個人電子發票'}
+            onChange={handleChange}
+          />
           <Label>個人電子發票</Label>
         </OptionContainer>
         <OptionContainer>
-          <RadioInput type="radio" name="invoice" value="捐贈發票" />
+          <RadioInput
+            type="radio"
+            name="invoiceType"
+            value="捐贈發票"
+            checked={invoiceType === '捐贈發票'}
+            onChange={handleChange}
+          />
           <Label>捐贈發票</Label>
         </OptionContainer>
+      </Section>
+
+      {/* 備註 */}
+      <Section>
+        <SectionTitle>其他</SectionTitle>
+        <FormField>
+          <Label>備註：</Label>
+          <TextArea
+            name="note"
+            value={note}
+            onChange={handleChange}
+            placeholder="如果您有額外需求，請在此處說明。"
+          />
+        </FormField>
       </Section>
 
       {/* 按鈕 */}

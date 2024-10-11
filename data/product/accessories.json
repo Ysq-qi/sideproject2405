@@ -3,9 +3,12 @@
     "id": "ht10001",
     "name": "帽子1",
     "description": "這是帽子產品編號001",
-    "price": 150,
+    "price": 580,
     "images": [
-      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-棕.jpg", "color": "棕色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-黑.jpg", "color": "黑色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-綠.jpg", "color": "綠色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-藍.jpg", "color": "藍色" }
     ],
     "category": "帽子",
     "breadcrumb": [
@@ -15,25 +18,25 @@
     ],
     "date_added": "2024-01-01",
     "sales": 20,
-    "colors": ["黑色", "棕色","灰色","白色"],
+    "colors": ["棕色", "黑色","綠色","藍色"],
     "stock": {
-      "黑色": {
+      "棕色": {
         "F": 5
       },
-      "棕色": {
+      "黑色": {
         "F": 6
       },
-      "灰色": {
+      "綠色": {
         "F": 7
       },
-      "白色": {
+      "藍色": {
         "F": 8
       }
     },
     "sizes": {
-      "dimensions": ["帽圍", "帽簷"],
+      "dimensions": ["帽圍", "帽深", "帽簷"],
       "values": {
-        "F": [ "56-58", 7 ]
+        "F": [ "56-58", 12 , 6]
       }
     }
   },
@@ -41,9 +44,10 @@
     "id": "ht10002",
     "name": "帽子2",
     "description": "這是帽子產品編號002",
-    "price": 150,
+    "price": 580,
     "images": [
-      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10002.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10002-米白.jpg", "color": "米白色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10002-黑.jpg", "color": "黑色" }
     ],
     "category": "帽子",
     "breadcrumb": [
@@ -53,25 +57,19 @@
     ],
     "date_added": "2024-01-02",
     "sales": 30,
-    "colors": ["黑色", "棕色","灰色","白色"],
+    "colors": ["米白色", "黑色"],
     "stock": {
-      "黑色": {
+      "米白色": {
         "F": 5
       },
-      "棕色": {
+      "黑色": {
         "F": 6
-      },
-      "灰色": {
-        "F": 7
-      },
-      "白色": {
-        "F": 8
       }
     },
     "sizes": {
-      "dimensions": ["帽圍", "帽簷"],
+      "dimensions": ["帽圍"],
       "values": {
-        "F": [ "56-58", 7 ]
+        "F": [ "56-58"]
       }
     }
   },
@@ -79,9 +77,11 @@
     "id": "ht10003",
     "name": "帽子3",
     "description": "這是帽子產品編號003",
-    "price": 150,
+    "price": 580,
     "images": [
-      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003-深藍.jpg", "color": "深藍色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003-淺藍.jpg", "color": "淺藍色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003-黑.jpg", "color": "黑色" }
     ],
     "category": "帽子",
     "breadcrumb": [
@@ -91,25 +91,22 @@
     ],
     "date_added": "2024-01-03",
     "sales": 40,
-    "colors": ["黑色", "棕色","灰色","白色"],
+    "colors": ["深藍色", "淺藍色","黑色"],
     "stock": {
-      "黑色": {
+      "深藍色": {
         "F": 5
       },
-      "棕色": {
+      "淺藍色": {
         "F": 6
       },
-      "灰色": {
-        "F": 7
-      },
-      "白色": {
-        "F": 8
+      "黑色": {
+        "F": 9
       }
     },
     "sizes": {
-      "dimensions": ["帽圍", "帽簷"],
+      "dimensions": ["帽圍"],
       "values": {
-        "F": [ "56-58", 7 ]
+        "F": [ "56-59"]
       }
     }
   },
@@ -117,9 +114,11 @@
     "id": "ht10004",
     "name": "帽子4",
     "description": "這是帽子產品編號004",
-    "price": 150,
+    "price": 650,
     "images": [
-      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004-卡其綠.jpg", "color": "卡其綠色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004-深藍淺藍.jpg", "color": "深藍淺藍色" },
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004-棕綠.jpg", "color": "棕綠色" }
     ],
     "category": "帽子",
     "breadcrumb": [
@@ -129,25 +128,22 @@
     ],
     "date_added": "2024-01-04",
     "sales": 50,
-    "colors": ["黑色", "棕色","灰色","白色"],
+    "colors": ["卡其綠色", "深藍淺藍色","棕綠色"],
     "stock": {
-      "黑色": {
+      "卡其綠色": {
         "F": 5
       },
-      "棕色": {
+      "深藍淺藍色": {
         "F": 6
       },
-      "灰色": {
+      "棕綠色": {
         "F": 7
-      },
-      "白色": {
-        "F": 8
       }
     },
     "sizes": {
-      "dimensions": ["帽圍", "帽簷"],
+      "dimensions": ["帽圍", "帽深", "帽簷"],
       "values": {
-        "F": [ "56-58", 7 ]
+        "F": [ "56-59", 12.5 , 5]
       }
     }
   },
@@ -155,9 +151,9 @@
     "id": "ht10005",
     "name": "帽子5",
     "description": "這是帽子產品編號005",
-    "price": 150,
+    "price": 350,
     "images": [
-      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10005.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/hats/配件-帽子 HT10005-黑.jpg", "color": "黑色" }
     ],
     "category": "帽子",
     "breadcrumb": [
@@ -167,25 +163,16 @@
     ],
     "date_added": "2024-01-05",
     "sales": 60,
-    "colors": ["黑色", "棕色","灰色","白色"],
+    "colors": ["黑色"],
     "stock": {
       "黑色": {
         "F": 5
-      },
-      "棕色": {
-        "F": 6
-      },
-      "灰色": {
-        "F": 7
-      },
-      "白色": {
-        "F": 8
       }
     },
     "sizes": {
-      "dimensions": ["帽圍", "帽簷"],
+      "dimensions": ["帽圍", "高度"],
       "values": {
-        "F": [ "56-58", 7 ]
+        "F": [ "54-60", 8.5 ]
       }
     }
   },
@@ -193,9 +180,10 @@
     "id": "gl10001",
     "name": "眼鏡1",
     "description": "這是眼鏡產品編號001",
-    "price": 200,
+    "price": 480,
     "images": [
-      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10001-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10001-黑.jpg", "color": "黑色" }
     ],
     "category": "眼鏡",
     "breadcrumb": [
@@ -205,22 +193,84 @@
     ],
     "date_added": "2024-01-06",
     "sales": 10,
-    "colors": ["黑色","灰色","白色"],
+    "colors": ["黑色","灰色"],
+    "stock": {
+      "白色": {
+        "F": 5
+      },
+      "黑色": {
+        "F": 7
+      }
+    },
+    "sizes": {
+      "dimensions": ["鏡框寬度", "鏡框高度","鏡腿長度"],
+      "values": {
+        "F": [ 14 , 5 , 10]
+      }
+    }
+  },
+  {
+    "id": "gl10002",
+    "name": "眼鏡2",
+    "description": "這是眼鏡產品編號002",
+    "price": 580,
+    "images": [
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10002-黑.jpg", "color": "黑色" },
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10002-銀.jpg", "color": "銀色" }    ],
+    "category": "眼鏡",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "配件", "path": "/accessories" },
+      { "label": "眼鏡", "path": "/accessories/glasses" }
+    ],
+    "date_added": "2024-01-06",
+    "sales": 10,
+    "colors": ["黑色","銀色"],
     "stock": {
       "黑色": {
         "F": 5
       },
-      "灰色": {
+      "銀色": {
         "F": 7
-      },
-      "白色": {
-        "F": 8
       }
     },
     "sizes": {
       "dimensions": ["鏡框寬度", "鏡框高度","鏡腿長度"],
       "values": {
         "F": [ 15 , 3.4 , 11.3]
+      }
+    }
+  },
+  {
+    "id": "gl10003",
+    "name": "眼鏡3",
+    "description": "這是眼鏡產品編號003",
+    "price": 550,
+    "images": [
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10003-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10003-黑.jpg", "color": "黑色" }
+    ],
+    "category": "眼鏡",
+    "breadcrumb": [
+      { "label": "HOME", "path": "/" },
+      { "label": "配件", "path": "/accessories" },
+      { "label": "眼鏡", "path": "/accessories/glasses" }
+    ],
+    "date_added": "2024-01-06",
+    "sales": 10,
+    "colors": ["白色","黑色"],
+    "stock": {
+      "白色": {
+        "F": 5
+      },
+      "黑色": {
+        "F": 7
+      }
+    },
+    "sizes": {
+      "dimensions": ["鏡框寬度", "鏡框高度","鏡腿長度"],
+      "values": {
+        "F": [ 15 , 4 , 12]
       }
     }
   }

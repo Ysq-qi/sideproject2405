@@ -31,7 +31,13 @@ export const updateItemQuantityApi = async ({ id, color, size, quantity }) => {
 };
 
 // 提交訂單 API
-export const submitOrderApi = async ({ cartItems, user }) => {
-  const response = await axiosInstance.post('/cart/submitorder', { cartItems, user });
+export const submitOrderApi = async (orderData) => {
+  const response = await axiosInstance.post('/cart/submitorder', orderData);
+  return response.data;
+};
+
+// 獲取訂單 API
+export const getOrdersApi = async () => {
+  const response = await axiosInstance.get('/cart/orders');
   return response.data;
 };

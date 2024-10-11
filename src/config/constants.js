@@ -16,6 +16,7 @@ export const ERROR_MESSAGES = {
   REMOVE_ITEM_ERROR: '刪除商品時發生錯誤',
   UPDATE_QUANTITY_ERROR: '更新商品數量時發生錯誤',
   
-  // 結帳相關
+  // 訂單相關
   SUBMIT_ORDER_ERROR: '提交訂單時發生錯誤',
+  FETCH_ORDERS_ERROR: '獲取訂單資料時發生錯誤',
 };

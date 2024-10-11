@@ -3,9 +3,11 @@
     "id": "sh10001",
     "name": "長袖襯衫1",
     "description": "這是長袖襯衫產品編號001",
-    "price": 800,
+    "price": 880,
     "images": [
-      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001-深灰.jpg", "color": "深灰色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001-淺灰.jpg", "color": "淺灰色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖襯衫",
     "breadcrumb": [
@@ -15,25 +17,30 @@
     ],
     "date_added": "2024-01-01",
     "sales": 6,
-    "colors": ["黑色", "棕色"],
+    "colors": ["深灰色", "淺灰色", "黑色"],
     "stock": {
-      "黑色": {
+      "深灰色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 4
       },
-      "棕色": {
+      "淺灰色": {
+        "L": 8,
+        "XL": 8,
+        "XXL": 2
+      },
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 7
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [74, 122, 52, 59],
+        "XL": [76, 126, 53, 61],
+        "XXL": [78, 130, 55, 63]
       }
     }
   },
@@ -41,9 +48,11 @@
     "id": "sh10002",
     "name": "長袖襯衫2",
     "description": "這是長袖襯衫產品編號002",
-    "price": 700,
+    "price": 980,
     "images": [
-      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002-棕.jpg", "color": "棕色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002-紫.jpg", "color": "紫色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖襯衫",
     "breadcrumb": [
@@ -53,25 +62,30 @@
     ],
     "date_added": "2024-01-02",
     "sales": 7,
-    "colors": ["黑色", "棕色"],
+    "colors": ["棕色", "紫色", "黑色"],
     "stock": {
-      "黑色": {
-        "L": 5,
-        "XL": 3,
-        "XXL": 1
-      },
       "棕色": {
+        "L": 7,
+        "XL": 3,
+        "XXL": 7
+      },
+      "紫色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 6
+      },
+      "黑色": {
+        "L": 4,
+        "XL": 4,
+        "XXL": 4
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [71, 112, 52, 56],
+        "XL": [73, 116, 53.5, 57.5],
+        "XXL": [75, 120, 55, 59]
       }
     }
   },
@@ -79,9 +93,10 @@
     "id": "sh10003",
     "name": "長袖襯衫3",
     "description": "這是長袖襯衫產品編號003",
-    "price": 900,
+    "price": 780,
     "images": [
-      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖襯衫",
     "breadcrumb": [
@@ -91,25 +106,25 @@
     ],
     "date_added": "2024-01-03",
     "sales": 2,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "黑色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 7
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [72, 126, 52, 24.4],
+        "XL": [74, 130, 54, 25],
+        "XXL": [76, 134, 56, 25.6]
       }
     }
   },
@@ -119,7 +134,8 @@
     "description": "這是長袖襯衫產品編號004",
     "price": 1100,
     "images": [
-      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004-淺灰.jpg", "color": "淺灰色" },
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖襯衫",
     "breadcrumb": [
@@ -129,25 +145,25 @@
     ],
     "date_added": "2024-01-04",
     "sales": 9,
-    "colors": ["黑色", "棕色"],
+    "colors": ["淺灰色", "黑色"],
     "stock": {
-      "黑色": {
+      "淺灰色": {
         "L": 5,
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 7
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [78, 126, 55, 62],
+        "XL": [80, 130, 57, 63.5],
+        "XXL": [82, 134, 59, 65]
       }
     }
   },
@@ -155,9 +171,9 @@
     "id": "sh10005",
     "name": "長袖襯衫5",
     "description": "這是長袖襯衫產品編號005",
-    "price": 1800,
+    "price": 1050,
     "images": [
-      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10005.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10005-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖襯衫",
     "breadcrumb": [
@@ -167,25 +183,20 @@
     ],
     "date_added": "2024-01-05",
     "sales": 3,
-    "colors": ["黑色", "棕色"],
+    "colors": ["黑色"],
     "stock": {
       "黑色": {
-        "L": 5,
-        "XL": 3,
-        "XXL": 1
-      },
-      "棕色": {
-        "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "L": 9,
+        "XL": 9,
+        "XXL": 9
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [84, 152, 54, 71],
+        "XL": [86, 156, 56, 73],
+        "XXL": [88, 160, 58, 75]
       }
     }
   },
@@ -193,9 +204,11 @@
     "id": "sh20001",
     "name": "短袖襯衫1",
     "description": "這是短袖襯衫產品編號001",
-    "price": 1500,
+    "price": 880,
     "images": [
-      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001-灰.jpg", "color": "灰色" },
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001-黑.jpg", "color": "黑色" },
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001-藍.jpg", "color": "藍色" }
     ],
     "category": "短袖襯衫",
     "breadcrumb": [
@@ -205,25 +218,30 @@
     ],
     "date_added": "2024-01-06",
     "sales": 12,
-    "colors": ["黑色", "棕色"],
+    "colors": ["灰色", "黑色", "藍色"],
     "stock": {
-      "黑色": {
+      "灰色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 5
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 7
+      },
+      "藍色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 7
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [75, 138, "落肩", "-"],
+        "XL": [77, 142, "落肩", "-"],
+        "XXL": [79, 146, "落肩", "-"]
       }
     }
   },
@@ -231,9 +249,11 @@
     "id": "sh20002",
     "name": "短袖襯衫2",
     "description": "這是短袖襯衫產品編號002",
-    "price": 1300,
+    "price": 680,
     "images": [
-      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002-淺紫.jpg", "color": "淺紫色" },
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002-淺綠.jpg", "color": "淺綠色" }
     ],
     "category": "短袖襯衫",
     "breadcrumb": [
@@ -243,25 +263,30 @@
     ],
     "date_added": "2024-01-07",
     "sales": 14,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "淺紫色", "淺綠色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 5
       },
-      "棕色": {
+      "淺紫色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 2
+      },
+      "淺綠色": {
+        "L": 7,
+        "XL": 7,
+        "XXL": 7
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [75, 118, 55, 23],
+        "XL": [76.5, 122, 56.5, 24],
+        "XXL": [78, 126, 58, 25]
       }
     }
   },
@@ -269,9 +294,10 @@
     "id": "sh20003",
     "name": "短袖襯衫3",
     "description": "這是短袖襯衫產品編號003",
-    "price": 1100,
+    "price": 780,
     "images": [
-      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003-黑.jpg", "color": "黑色" }
     ],
     "category": "短袖襯衫",
     "breadcrumb": [
@@ -281,25 +307,25 @@
     ],
     "date_added": "2024-01-08",
     "sales": 22,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "黑色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 1
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [72, 122, 56.5, 23.5],
+        "XL": [74, 126, 58, 24],
+        "XXL": [76, 130, 59.5, 24.5]
       }
     }
   },
@@ -307,9 +333,9 @@
     "id": "sh20004",
     "name": "短袖襯衫4",
     "description": "這是短袖襯衫產品編號004",
-    "price": 2000,
+    "price": 880,
     "images": [
-      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20004.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20004-棕.jpg", "color": "棕色" }
     ],
     "category": "短袖襯衫",
     "breadcrumb": [
@@ -319,25 +345,20 @@
     ],
     "date_added": "2024-01-09",
     "sales": 18,
-    "colors": ["黑色", "棕色"],
+    "colors": ["棕色"],
     "stock": {
       "黑色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
-      },
-      "棕色": {
-        "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "XXL": 7
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [73, 140, 100, 47],
+        "XL": [78, 144, 102, 48],
+        "XXL": [77, 180, 103, 49]
       }
     }
   },
@@ -345,9 +366,9 @@
     "id": "sh20005",
     "name": "短袖襯衫5",
     "description": "這是短袖襯衫產品編號005",
-    "price": 100,
+    "price": 780,
     "images": [
-      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20005.jpg", "color": "黑色" }
+      { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20005-白.jpg", "color": "白色" }
     ],
     "category": "短袖襯衫",
     "breadcrumb": [
@@ -357,25 +378,20 @@
     ],
     "date_added": "2024-01-10",
     "sales": 5,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色"],
     "stock": {
       "黑色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
-      },
-      "棕色": {
-        "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "XXL": 5
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [74, 124, 60, 27],
+        "XL": [76, 128, 61, 28],
+        "XXL": [78, 132, 62, 29]
       }
     }
   }

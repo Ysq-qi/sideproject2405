@@ -3,9 +3,14 @@
     "id": "ls10001",
     "name": "長袖上衣1",
     "description": "這是長袖上衣產品編號001",
-    "price": 350,
+    "price": 780,
     "images": [
-      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-米白.jpg", "color": "米白色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-棕.jpg", "color": "棕色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-紫.jpg", "color": "紫色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-黑.jpg", "color": "黑色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-藍.jpg", "color": "藍色" }
     ],
     "category": "長袖上衣",
     "breadcrumb": [
@@ -15,25 +20,45 @@
     ],
     "date_added": "2024-01-15",
     "sales": 80,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "米白色", "棕色", "紫色", "黑色", "藍色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 2
       },
-      "棕色": {
+      "米白色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 6
+      },
+      "棕色": {
+        "L": 1,
+        "XL": 2,
+        "XXL": 9
+      },
+      "紫色": {
+        "L": 7,
+        "XL": 8,
+        "XXL": 9
+      },
+      "黑色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 1
+      },
+      "藍色": {
+        "L": 4,
+        "XL": 4,
+        "XXL": 5
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [69, 116, 44, 60.5],
+        "XL": [71, 120, 46, 62],
+        "XXL": [73, 124, 48, 63.5]
       }
     }
   },
@@ -41,9 +66,12 @@
     "id": "ls10002",
     "name": "長袖上衣2",
     "description": "這是長袖上衣產品編號002",
-    "price": 350,
+    "price": 880,
     "images": [
-      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-灰.jpg", "color": "灰色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-深灰.jpg", "color": "深灰色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖上衣",
     "breadcrumb": [
@@ -53,25 +81,35 @@
     ],
     "date_added": "2024-01-15",
     "sales": 27,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "灰色", "深灰色", "黑色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 7
       },
-      "棕色": {
+      "灰色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 4
+      },
+      "深灰色": {
+        "L": 1,
+        "XL": 2,
+        "XXL": 8
+      },
+      "黑色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 2
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [70, 108, 59, 53],
+        "XL": [72, 112, 61, 54],
+        "XXL": [74, 116, 63, 55]
       }
     }
   },
@@ -79,9 +117,9 @@
     "id": "ls10003",
     "name": "長袖上衣3",
     "description": "這是長袖上衣產品編號003",
-    "price": 350,
+    "price": 650,
     "images": [
-      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10003.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10003-白.jpg", "color": "白色" }
     ],
     "category": "長袖上衣",
     "breadcrumb": [
@@ -91,25 +129,20 @@
     ],
     "date_added": "2024-01-15",
     "sales": 9,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
-      },
-      "棕色": {
-        "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "XXL": 4
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [62, 120, 54, 57],
+        "XL": [64, 124, 55, 58],
+        "XXL": [66, 128, 56, 59]
       }
     }
   },
@@ -117,9 +150,9 @@
     "id": "ls10004",
     "name": "長袖上衣4",
     "description": "這是長袖上衣產品編號004",
-    "price": 350,
+    "price": 780,
     "images": [
-      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10004.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10004-深灰.jpg", "color": "深灰" }
     ],
     "category": "長袖上衣",
     "breadcrumb": [
@@ -129,25 +162,20 @@
     ],
     "date_added": "2024-01-15",
     "sales": 67,
-    "colors": ["黑色", "棕色"],
+    "colors": ["深灰"],
     "stock": {
-      "黑色": {
+      "深灰": {
         "L": 5,
-        "XL": 3,
-        "XXL": 1
-      },
-      "棕色": {
-        "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "XL": 8,
+        "XXL": 7
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩寬", "袖長"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [69, 124, 59, 61.5],
+        "XL": [72.5, 128, 60.5, 62],
+        "XXL": [74.5, 132, 62, 63]
       }
     }
   },
@@ -155,9 +183,11 @@
     "id": "ls10005",
     "name": "長袖上衣5",
     "description": "這是長袖上衣產品編號005",
-    "price": 350,
+    "price": 880,
     "images": [
-      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005-灰.jpg", "color": "灰色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005-米白.jpg", "color": "米白色" },
+      { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005-黑.jpg", "color": "黑色" }
     ],
     "category": "長袖上衣",
     "breadcrumb": [
@@ -167,25 +197,30 @@
     ],
     "date_added": "2024-01-15",
     "sales": 50,
-    "colors": ["黑色", "棕色"],
+    "colors": ["灰色", "米白色", "黑色"],
     "stock": {
-      "黑色": {
+      "灰色": {
         "L": 5,
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "米白色": {
+        "L": 4,
+        "XL": 2,
+        "XXL": 0
+      },
+      "黑色": {
         "L": 4,
         "XL": 2,
         "XXL": 0
       }
     },
     "sizes": {
-      "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
+      "dimensions": ["衣長", "胸圍", "肩袖長", "下擺"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [70, 118, 78, 96],
+        "XL": [72, 122, 79.6, 100],
+        "XXL": [74, 126, 81.2, 104]
       }
     }
   },
@@ -195,7 +230,8 @@
     "description": "這是短袖上衣產品編號001",
     "price": 250,
     "images": [
-      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10001.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10001-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10001-黑.jpg", "color": "黑色" }
     ],
     "category": "短袖上衣",
     "breadcrumb": [
@@ -205,25 +241,25 @@
     ],
     "date_added": "2024-01-15",
     "sales": 45,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "黑色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 3
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 9
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [68, 100, 49, 21],
+        "XL": [70, 108, 53, 22],
+        "XXL": [72, 110, 54, 23]
       }
     }
   },
@@ -231,9 +267,10 @@
     "id": "ss10002",
     "name": "短袖上衣2",
     "description": "這是短袖上衣產品編號002",
-    "price": 250,
+    "price": 650,
     "images": [
-      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10002.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10002-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10002-藍.jpg", "color": "藍色" }
     ],
     "category": "短袖上衣",
     "breadcrumb": [
@@ -243,25 +280,25 @@
     ],
     "date_added": "2024-01-15",
     "sales": 62,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "藍色"],
     "stock": {
-      "黑色": {
+      "白色": {
         "L": 5,
         "XL": 3,
-        "XXL": 1
+        "XXL": 7
       },
-      "棕色": {
+      "藍色": {
         "L": 4,
         "XL": 2,
-        "XXL": 0
+        "XXL": 8
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [72, 118, 56, 23],
+        "XL": [74, 122, 57, 24],
+        "XXL": [76, 126, 58, 25]
       }
     }
   },
@@ -269,9 +306,10 @@
     "id": "ss10003",
     "name": "短袖上衣3",
     "description": "這是短袖上衣產品編號003",
-    "price": 250,
+    "price": 480,
     "images": [
-      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10003.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10003-灰.jpg", "color": "灰色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10003-黑.jpg", "color": "黑色" }
     ],
     "category": "短袖上衣",
     "breadcrumb": [
@@ -281,14 +319,14 @@
     ],
     "date_added": "2024-01-15",
     "sales": 14,
-    "colors": ["黑色", "棕色"],
+    "colors": ["灰色", "黑色"],
     "stock": {
-      "黑色": {
+      "灰色": {
         "L": 5,
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 2,
         "XXL": 0
@@ -297,9 +335,9 @@
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [73, 118, 55, 22],
+        "XL": [75, 122, 57, 22.5],
+        "XXL": [77, 126, 59, 23]
       }
     }
   },
@@ -307,9 +345,13 @@
     "id": "ss10004",
     "name": "短袖上衣4",
     "description": "這是短袖上衣產品編號004",
-    "price": 250,
+    "price": 350,
     "images": [
-      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004-米白.jpg", "color": "米白色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004-黑.jpg", "color": "黑色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004-綠.jpg", "color": "綠色" }
+
     ],
     "category": "短袖上衣",
     "breadcrumb": [
@@ -319,25 +361,35 @@
     ],
     "date_added": "2024-01-15",
     "sales": 18,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "米白色", "黑色", "綠色"],
     "stock": {
+      "白色": {
+        "L": 9,
+        "XL": 4,
+        "XXL": 9
+      },
+      "米白色": {
+        "L": 4,
+        "XL": 8,
+        "XXL": 7
+      },
       "黑色": {
-        "L": 5,
-        "XL": 3,
+        "L": 6,
+        "XL": 2,
         "XXL": 1
       },
-      "棕色": {
+      "綠色": {
         "L": 4,
-        "XL": 2,
-        "XXL": 0
+        "XL": 3,
+        "XXL": 7
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [77, 112, 54, 21],
+        "XL": [79, 116, 56, 22],
+        "XXL": [80, 122, 57, 24]
       }
     }
   },
@@ -345,9 +397,11 @@
     "id": "ss10005",
     "name": "短袖上衣5",
     "description": "這是短袖上衣產品編號005",
-    "price": 250,
+    "price": 650,
     "images": [
-      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005.jpg", "color": "黑色" }
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005-白.jpg", "color": "白色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005-灰.jpg", "color": "灰色" },
+      { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005-黑.jpg", "color": "黑色" }
     ],
     "category": "短袖上衣",
     "breadcrumb": [
@@ -357,25 +411,30 @@
     ],
     "date_added": "2024-01-15",
     "sales": 44,
-    "colors": ["黑色", "棕色"],
+    "colors": ["白色", "灰色", "黑色"],
     "stock": {
-      "黑色": {
-        "L": 5,
-        "XL": 3,
-        "XXL": 1
+      "白色": {
+        "L": 6,
+        "XL": 6,
+        "XXL": 6
       },
-      "棕色": {
-        "L": 4,
+      "灰色": {
+        "L": 7,
         "XL": 2,
-        "XXL": 0
+        "XXL": 7
+      },
+      "黑色": {
+        "L": 8,
+        "XL": 4,
+        "XXL": 2
       }
     },
     "sizes": {
       "dimensions": ["衣長", "胸圍", "肩寬", "袖口"],
       "values": {
-        "L": [72, 138, "-", 27],
-        "XL": [74, 142, "-", 28],
-        "XXL": [76, 146, "-", 29]
+        "L": [72, 130, 22, 22],
+        "XL": [74, 134, 23, 22.5],
+        "XXL": [76, 138, 24, 23]
       }
     }
   }

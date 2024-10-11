@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-export const Title = styled.h2`
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 20px;
-`;
-
 export const ConfirmationContainer = styled.div`
   width: 1200px;
   margin: auto;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
 `;
 
 export const InfoBlock = styled.section`
@@ -22,8 +23,8 @@ export const InfoBlock = styled.section`
   margin-bottom: 20px;
 `;
 
-export const InfoTitle = styled.h2`
-  font-size: 24px;
+export const InfoTitle = styled.h3`
+  font-size: 20px;
   font-weight: bold;
   background-color: #f0f0f0;
   padding: 20px;
@@ -31,15 +32,9 @@ export const InfoTitle = styled.h2`
   margin-bottom: 15px;
 `;
 
-export const InfoContent = styled.div`
-  font-weight: bold;
-  font-size: 18px;
-  margin-right: 10px;
-`;
-
 export const DataRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 5px 50px;
   margin-bottom: 15px;
@@ -49,6 +44,7 @@ export const DataLabel = styled.label`
   font-weight: bold;
   font-size: 18px;
   margin-right: 10px;
+  white-space: nowrap;
 `;
 
 export const DataValue = styled.span`
@@ -62,6 +58,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  margin-right: 10px;
   &:hover {
     background-color: #333;
   }
@@ -70,8 +67,13 @@ export const Button = styled.button`
 export const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 20px; // 可根據需要調整上邊距
+  margin-top: 30px;
+`;
+
+export const SectionTitle = styled.h3`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
 `;
 
 export const ProductTable = styled.table`
@@ -105,10 +107,4 @@ export const ProductImage = styled.img`
   width: 100px;
   height: 100px;
   object-fit: cover;
-`;
-
-export const SectionTitle = styled.h3`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
 `;
