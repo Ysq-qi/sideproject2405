@@ -10,7 +10,8 @@
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-綠.jpg", "color": "綠色" },
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10001-藍.jpg", "color": "藍色" }
     ],
-    "category": "帽子",
+    "mainCategory": "accessories",
+    "subCategory": "hats",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -49,7 +50,8 @@
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10002-米白.jpg", "color": "米白色" },
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "帽子",
+    "mainCategory": "accessories",
+    "subCategory": "hats",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -83,7 +85,8 @@
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003-淺藍.jpg", "color": "淺藍色" },
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10003-黑.jpg", "color": "黑色" }
     ],
-    "category": "帽子",
+    "mainCategory": "accessories",
+    "subCategory": "hats",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -120,7 +123,8 @@
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004-深藍淺藍.jpg", "color": "深藍淺藍色" },
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10004-棕綠.jpg", "color": "棕綠色" }
     ],
-    "category": "帽子",
+    "mainCategory": "accessories",
+    "subCategory": "hats",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -155,7 +159,8 @@
     "images": [
       { "url": "assets/images/products/accessories/hats/配件-帽子 HT10005-黑.jpg", "color": "黑色" }
     ],
-    "category": "帽子",
+    "mainCategory": "accessories",
+    "subCategory": "hats",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -185,7 +190,8 @@
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10001-白.jpg", "color": "白色" },
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10001-黑.jpg", "color": "黑色" }
     ],
-    "category": "眼鏡",
+    "mainCategory": "accessories",
+    "subCategory": "glasses",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -217,7 +223,8 @@
     "images": [
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10002-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10002-銀.jpg", "color": "銀色" }    ],
-    "category": "眼鏡",
+    "mainCategory": "accessories",
+    "subCategory": "glasses",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },
@@ -250,7 +257,8 @@
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10003-白.jpg", "color": "白色" },
       { "url": "assets/images/products/accessories/glasses/配件-眼鏡 GL10003-黑.jpg", "color": "黑色" }
     ],
-    "category": "眼鏡",
+    "mainCategory": "accessories",
+    "subCategory": "glasses",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "配件", "path": "/accessories" },

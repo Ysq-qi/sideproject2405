@@ -1,31 +1,28 @@
-import React from 'react';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeProductsSection from '../products-section';
+import { fetchNewProducts, fetchProductsByIds } from '../../homeSlice';
 import labelImage from '../../../../assets/images/home/new-products/new.png';
 import { useNavigate } from 'react-router-dom';
 
-const fetchNewProductData = async () => {
-  const { data: newProductData } = await axios.get('http://localhost:3001/api/home/newproduct');
-  
-  if (!newProductData.length) {
-    throw new Error('No new product data found');
-  }
-  
-  const productIds = newProductData[0].productIds;
-  const { data: allProductsData } = await axios.get('http://localhost:3001/api/products/all');
-  const newProducts = allProductsData.filter(product => productIds.includes(product.id));
-  return newProducts;
-};
-
 const NewProduct = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: newProducts, error, isLoading } = useQuery({
-    queryKey: ['newProductData'],
-    queryFn: fetchNewProductData,
-  });
+  const { newProducts, newProductDetails, loading, error } = useSelector((state) => state.home);
 
-  if (isLoading) {
+  useEffect(() => {
+    dispatch(fetchNewProducts());
+  }, [dispatch]);
+
+  // 根據 newProducts.productIds 獲取產品詳細資料
+  useEffect(() => {
+    if (newProducts?.productIds?.length > 0) {
+      dispatch(fetchProductsByIds({ productIds: newProducts.productIds, type: 'new' }));
+    }
+  }, [dispatch, newProducts]);
+  
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -34,20 +31,16 @@ const NewProduct = () => {
   }
 
   const handleProductClick = (productId) => {
-    if (productId) {
-      navigate(`/product/${productId}`);
-    } else {
-      console.error('商品ID獲取失敗了');
-    }
+    navigate(`/product/${productId}`);
   };
 
   return (
     <HomeProductsSection
       labelImage={labelImage}
-      products={newProducts}
+      products={newProductDetails}
       handleProductClick={handleProductClick}
     />
-  );
+  );  
 };
 
 export default NewProduct;

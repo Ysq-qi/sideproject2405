@@ -8,7 +8,8 @@
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10001-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10001-藍.jpg", "color": "藍色" }
     ],
-    "category": "長褲",
+    "mainCategory": "pants",
+    "subCategory": "long-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -47,7 +48,8 @@
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10002-白.jpg", "color": "白色" },
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "長褲",
+    "mainCategory": "pants",
+    "subCategory": "long-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -85,7 +87,8 @@
     "images": [
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10003-棕.jpg", "color": "棕色" }
     ],
-    "category": "長褲",
+    "mainCategory": "pants",
+    "subCategory": "long-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -119,7 +122,8 @@
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10004-灰.jpg", "color": "灰色" }
 
     ],
-    "category": "長褲",
+    "mainCategory": "pants",
+    "subCategory": "long-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -154,7 +158,8 @@
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10005-淺灰.jpg", "color": "淺灰色" },
       { "url": "assets/images/products/pants/long-pants/褲款-長褲 LP10005-黑.jpg", "color": "黑色" }
     ],
-    "category": "長褲",
+    "mainCategory": "pants",
+    "subCategory": "long-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -198,7 +203,8 @@
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10001-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10001-綠.jpg", "color": "綠色" }
     ],
-    "category": "短褲",
+    "mainCategory": "pants",
+    "subCategory": "short-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -237,7 +243,8 @@
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10002-淺藍.jpg", "color": "淺藍色" },
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "短褲",
+    "mainCategory": "pants",
+    "subCategory": "short-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -276,7 +283,8 @@
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10003-深灰.jpg", "color": "深灰色" },
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10003-淺灰.jpg", "color": "淺灰色" }
     ],
-    "category": "短褲",
+    "mainCategory": "pants",
+    "subCategory": "short-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -315,7 +323,8 @@
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10004-白.jpg", "color": "白色" },
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10004-黑.jpg", "color": "黑色" }
     ],
-    "category": "短褲",
+    "mainCategory": "pants",
+    "subCategory": "short-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },
@@ -353,7 +362,8 @@
     "images": [
       { "url": "assets/images/products/pants/short-pants/褲款-短褲 SP10005-淺藍.jpg", "color": "淺藍" }
     ],
-    "category": "短褲",
+    "mainCategory": "pants",
+    "subCategory": "short-pants",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "褲類", "path": "/pants" },

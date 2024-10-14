@@ -5,6 +5,7 @@ import {
   syncCartToFirestoreApi,
   removeItemFromCartApi,
   updateItemQuantityApi,
+  addItemToCartApi 
 } from '../../../api/cartApi';
 import { ERROR_MESSAGES } from '../../../config/constants';
 
@@ -63,6 +64,40 @@ export const updateItemQuantity = createAsyncThunk('cart/updateItemQuantity',asy
     }
   }
 );
+
+// 異步請求：添加商品到購物車，根據是否登入，選擇存儲位置 (for ProductDetailInfo)
+export const addItemToCart = createAsyncThunk('cart/addItemToCart', async (item, { getState, rejectWithValue }) => {
+  const { isAuthenticated } = getState().login;
+
+  try {
+    if (isAuthenticated) {
+      // 登入狀態，將商品添加到 Firestore
+      await addItemToCartApi(item); // 這裡會發送 API 請求到你的後端 '/cart/add'
+    } else {
+      // 未登入，將商品存儲到本地存儲
+      saveCartToLocalStorage(item);
+    }
+  } catch (error) {
+    return rejectWithValue('添加商品到購物車失敗');
+  }
+});
+
+// 本地存儲邏輯 (for ProductDetailInfo)
+const saveCartToLocalStorage = (item) => {
+  const localCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const localExistingItemIndex = localCartItems.findIndex(
+    (i) => i.id === item.id && i.color === item.color && i.size === item.size
+  );
+
+  if (localExistingItemIndex !== -1) {
+    localCartItems[localExistingItemIndex].quantity += item.quantity;
+  } else {
+    localCartItems.push(item);
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(localCartItems));
+};
+
 
 const cartSlice = createSlice({
   name: 'cart',

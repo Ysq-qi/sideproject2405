@@ -19,4 +19,15 @@ export const ERROR_MESSAGES = {
   // 訂單相關
   SUBMIT_ORDER_ERROR: '提交訂單時發生錯誤',
   FETCH_ORDERS_ERROR: '獲取訂單資料時發生錯誤',
+
+  // 產品相關
+  FETCH_PRODUCTS_ERROR: '獲取產品數據時發生錯誤',
+  FETCH_CATEGORY_ERROR: '獲取產品類別時發生錯誤',
+
+  //首頁相關
+  FETCH_HOME_ERROR: '獲取首頁數據時發生錯誤',
+  FETCH_BANNER_ERROR: '獲取橫幅數據時發生錯誤',
+  FETCH_FEATURED_ERROR: '獲取特色商品數據時發生錯誤',
+  FETCH_NEW_PRODUCT_ERROR: '獲取新品數據時發生錯誤',
+  FETCH_FOCUS_PRODUCT_ERROR: '獲取專注商品數據時發生錯誤',
 };

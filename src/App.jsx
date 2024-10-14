@@ -11,11 +11,11 @@ import Register from './pages/user/register';
 import Profile from './pages/user/profile';
 import ProductDetail from './pages/product/product-detail';
 import ProductDisplay from './pages/product/product-display';
-import Type1 from './pages/categories/type1';
-import Type2 from './pages/categories/type2';
-import Type3 from './pages/categories/type3';
-import Type4 from './pages/categories/type4';
-import Type5 from './pages/categories/type5';
+import Jackets from './pages/categories/jackets';
+import Shirts from './pages/categories/shirts';
+import Pants from './pages/categories/pants';
+import Tops from './pages/categories/tops';
+import Accessories from './pages/categories/accessories';
 import CartDropdown from './pages/shop/cart-drop-down';
 import Cart from './pages/shop/cart';
 import Checkout from './pages/shop/checkout';
@@ -41,11 +41,32 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/product/:productId" element={<ProductDetail />} />
               <Route path="/products" element={<ProductDisplay />} />
-              <Route path="/type1" element={<Type1 />} />
-              <Route path="/type2" element={<Type2 />} />
-              <Route path="/type3" element={<Type3 />} />
-              <Route path="/type4" element={<Type4 />} />
-              <Route path="/type5" element={<Type5 />} />
+
+              <Route path="/jackets" element={<Jackets />} />
+              <Route path="/jackets/page/:page" element={<Jackets />} />
+              <Route path="/jackets/:subCategory" element={<Jackets />} />
+              <Route path="/jackets/:subCategory/page/:page" element={<Jackets />} />
+
+              <Route path="/shirts" element={<Shirts />} />
+              <Route path="/shirts/page/:page" element={<Shirts />} />
+              <Route path="/shirts/:subCategory" element={<Shirts />} />
+              <Route path="/shirts/:subCategory/page/:page" element={<Shirts />} />
+
+              <Route path="/pants" element={<Pants />} />
+              <Route path="/pants/page/:page" element={<Jackets />} />
+              <Route path="/pants/:subCategory" element={<Jackets />} />
+              <Route path="/pants/:subCategory/page/:page" element={<Jackets />} />
+
+              <Route path="/tops" element={<Tops />} />
+              <Route path="/tops/page/:page" element={<Tops />} />
+              <Route path="/tops/:subCategory" element={<Tops />} />
+              <Route path="/tops/:subCategory/page/:page" element={<Tops />} />
+
+              <Route path="/accessories" element={<Accessories />} /> 
+              <Route path="/accessories/page/:page" element={<Accessories />} />
+              <Route path="/accessories/:subCategory" element={<Accessories />} />
+              <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />
+              
               <Route path="/cart-drop-down" element={<CartDropdown />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />

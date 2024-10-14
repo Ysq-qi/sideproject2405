@@ -1,39 +1,34 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setPage } from '../../productSlice';
-import { 
+import {
   ProductListContainer,
   ProductGrid,
   ProductItem,
   ProductImage,
-  ProductInfo, 
+  ProductInfo,
   ProductPrice,
-  Pagination, 
-  PageButton 
+  Pagination,
+  PageButton
 } from './style';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const ProductList = ({ handleProductClick }) => {
-  const dispatch = useDispatch();
-  const filteredProducts = useSelector((state) => state.product.filteredProducts);
-  const currentPage = useSelector((state) => state.product.currentPage);
+const ProductList = ({ productData, handlePageChange, currentPage }) => {
   const itemsPerPage = useSelector((state) => state.product.itemsPerPage);
+  const navigate = useNavigate(); // 在這裡使用 navigate
 
-  if (!Array.isArray(filteredProducts) || filteredProducts.length === 0) {
-    return <div> 加載失敗 </div>;
+  if (!Array.isArray(productData) || productData.length === 0) {
+    return <div> 加載中 </div>;
   }
 
-  // 計算總頁數
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-  // 獲取當前頁面的產品
+  const totalPages = Math.ceil(productData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  const currentProducts = productData.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <ProductListContainer>
       <ProductGrid>
         {currentProducts.map((product, index) => (
-          <ProductItem key={index} onClick={() => handleProductClick(product.id)}>
+          <ProductItem key={index} onClick={() => navigate(`/product/${product.id}`)}>
             <ProductImage src={product.images[0].url} alt={product.name} />
             <ProductInfo>{product.name}</ProductInfo>
             <ProductPrice>{product.price}</ProductPrice>
@@ -42,9 +37,9 @@ const ProductList = ({ handleProductClick }) => {
       </ProductGrid>
       <Pagination>
         {Array.from({ length: totalPages }, (_, index) => (
-          <PageButton 
-            key={index} 
-            onClick={() => dispatch(setPage(index + 1))}
+          <PageButton
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
             active={index + 1 === currentPage}
           >
             {index + 1}

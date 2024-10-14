@@ -9,7 +9,8 @@
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001-淺灰.jpg", "color": "淺灰色" },
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10001-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -54,7 +55,8 @@
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002-紫.jpg", "color": "紫色" },
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -98,7 +100,8 @@
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003-白.jpg", "color": "白色" },
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10003-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -137,7 +140,8 @@
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004-淺灰.jpg", "color": "淺灰色" },
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10004-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -175,7 +179,8 @@
     "images": [
       { "url": "assets/images/products/shirts/long-sleeve/襯衫-長袖 SH10005-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -210,7 +215,8 @@
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20001-藍.jpg", "color": "藍色" }
     ],
-    "category": "短袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -255,7 +261,8 @@
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002-淺紫.jpg", "color": "淺紫色" },
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20002-淺綠.jpg", "color": "淺綠色" }
     ],
-    "category": "短袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -299,7 +306,8 @@
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003-白.jpg", "color": "白色" },
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20003-黑.jpg", "color": "黑色" }
     ],
-    "category": "短袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -337,7 +345,8 @@
     "images": [
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20004-棕.jpg", "color": "棕色" }
     ],
-    "category": "短袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },
@@ -370,7 +379,8 @@
     "images": [
       { "url": "assets/images/products/shirts/short-sleeve/襯衫-短袖 SH20005-白.jpg", "color": "白色" }
     ],
-    "category": "短袖襯衫",
+    "mainCategory": "shirts",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "襯衫", "path": "/shirts" },

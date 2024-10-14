@@ -8,7 +8,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10001-白.jpg", "color": "白色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10001-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -47,7 +48,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10002-紅.jpg", "color": "紅色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -62,7 +64,7 @@
         "XL": 3,
         "XXL": 1
       },
-      "棕色": {
+      "黑色": {
         "L": 4,
         "XL": 4,
         "XXL": 8
@@ -86,7 +88,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10003-棕.jpg", "color": "棕色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10003-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -125,7 +128,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10004-卡其.jpg", "color": "卡其色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10004-棕.jpg", "color": "棕色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -164,7 +168,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10002-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -202,7 +207,8 @@
     "images": [
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10006-白.jpg", "color": "白色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -236,7 +242,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10007-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10007-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -275,7 +282,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10008-白.jpg", "color": "白色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10008-藍.jpg", "color": "藍色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -314,7 +322,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10009-卡其.jpg", "color": "卡其色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10009-灰.jpg", "color": "灰色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -354,7 +363,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10010-咖啡.jpg", "color": "咖啡色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10010-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -398,7 +408,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10011-黃.jpg", "color": "黃色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10011-藍.jpg", "color": "藍色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -437,7 +448,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10012-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10012-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -476,7 +488,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10013-咖啡.jpg", "color": "咖啡色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10013-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -515,7 +528,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10014-粉.jpg", "color": "粉色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10014-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -554,7 +568,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10015-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10015-藍.jpg", "color": "藍色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -592,7 +607,8 @@
     "images": [
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10016-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -626,7 +642,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10017-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10017-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -666,7 +683,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10018-棕.jpg", "color": "棕色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10018-黑.jpg", "color": "黑色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -710,7 +728,8 @@
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10019-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10019-棕.jpg", "color": "棕色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -748,7 +767,8 @@
     "images": [
       { "url": "assets/images/products/jackets/four-season/夾克-四季 JK10020-白.jpg", "color": "白色" }
     ],
-    "category": "四季外套",
+    "mainCategory": "jackets",
+    "subCategory": "four-season",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
@@ -782,11 +802,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20001-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20001-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-01-10",
     "sales": 60,
@@ -821,11 +842,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20002-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20002-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-02-18",
     "sales": 50,
@@ -859,11 +881,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20003-黑.jpg", "color": "黑色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-03-12",
     "sales": 100,
@@ -893,11 +916,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20004-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20004-藍.jpg", "color": "藍色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-04-20",
     "sales": 30,
@@ -932,11 +956,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20005-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20005-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-08",
     "sales": 20,
@@ -971,11 +996,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20006-深藍.jpg", "color": "深藍色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20006-淺藍.jpg", "color": "淺藍色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-15",
     "sales": 15,
@@ -1009,11 +1035,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20007-黑.jpg", "color": "黑色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-16",
     "sales": 18,
@@ -1042,11 +1069,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20008-黑.jpg", "color": "黑色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-17",
     "sales": 20,
@@ -1076,11 +1104,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20009-白.jpg", "color": "白色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20009-棕.jpg", "color": "棕色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-18",
     "sales": 22,
@@ -1115,11 +1144,13 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20010-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20010-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
+
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-19",
     "sales": 24,
@@ -1153,11 +1184,13 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20011-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
+
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-20",
     "sales": 26,
@@ -1187,11 +1220,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20012-卡其.jpg", "color": "卡其色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20012-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-21",
     "sales": 28,
@@ -1226,11 +1260,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20013-卡其.jpg", "color": "卡其色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20013-灰.jpg", "color": "灰色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-22",
     "sales": 30,
@@ -1264,11 +1299,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20014-米白.jpg", "color": "米白色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-23",
     "sales": 32,
@@ -1298,11 +1334,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20015-白.jpg", "color": "白色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20015-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-24",
     "sales": 34,
@@ -1337,11 +1374,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20016-棕.jpg", "color": "棕色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20016-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-25",
     "sales": 36,
@@ -1376,11 +1414,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20017-棕.jpg", "color": "棕色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20017-藍.jpg", "color": "藍色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-26",
     "sales": 38,
@@ -1415,11 +1454,12 @@
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20018-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20018-綠.jpg", "color": "綠色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-27",
     "sales": 40,
@@ -1453,11 +1493,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20019-灰.jpg", "color": "灰色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-28",
     "sales": 42,
@@ -1486,11 +1527,12 @@
     "images": [
       { "url": "assets/images/products/jackets/work-jackets/夾克-工裝 JK20020-藍.jpg", "color": "藍色" }
     ],
-    "category": "工裝外套",
+    "mainCategory": "jackets",
+    "subCategory": "work-jackets",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "夾克", "path": "/jackets" },
-      { "label": "工裝夾克", "path": "/jackets/work-season" }
+      { "label": "工裝夾克", "path": "/jackets/work-jackets" }
     ],
     "date_added": "2024-05-29",
     "sales": 44,

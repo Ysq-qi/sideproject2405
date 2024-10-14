@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearUser } from '../../pages/user/login/loginSlice';
-import { auth } from '../../config/firebaseConfig'; // 從 firebaseConfig 導入 auth
+import { auth } from '../../config/firebaseConfig'; 
 import useHeaderNavigation from './hooks';
 import {
   HeaderContainer,

@@ -16,68 +16,12 @@ const uploadData = async (collectionName, filePath) => {
     // 批次操作初始化
     const batch = db.batch();
 
-    // 處理每個 JSON 條目
     for (const item of data) {
       const docId = item.id;
       const docRef = collectionRef.doc(docId);
       const existingDoc = await docRef.get();
 
-      // 圖片處理
-      if (collectionName === 'home') {
-        // 處理 home 集合的圖片字段
-        let imageUrls = [];
-
-        if (item.imageUrl) {
-          imageUrls.push({ key: 'imageUrl', url: item.imageUrl });
-        }
-        if (item.image) {
-          imageUrls.push({ key: 'image', url: item.image });
-        }
-
-        for (let imageData of imageUrls) {
-          const imageUrl = imageData.url;
-
-          if (!imageUrl) {
-            console.error(`Image URL is undefined for item ${item.id}, skipping this image.`);
-            continue;
-          }
-
-          const localImagePath = path.join(__dirname, '..', imageUrl);
-          const storagePath = `public/assets/images/${collectionName}/${path.basename(imageUrl)}`;
-
-          try {
-            // 計算本地圖片哈希值
-            const localFileHash = await getFileHash(localImagePath);
-
-            // 檢查圖片是否已經存在於 Storage 中
-            const file = bucket.file(storagePath);
-            const [exists] = await file.exists();
-
-            if (exists) {
-              // 獲取 Storage 中圖片的哈希值
-              const [metadata] = await file.getMetadata();
-              const remoteFileHash = metadata.metadata ? metadata.metadata.fileHash : null;
-
-              if (remoteFileHash === localFileHash) {
-                console.log(`Image at path: ${storagePath} is up-to-date, skipping upload.`);
-                item[imageData.key] = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storagePath)}?alt=media`;
-              } else {
-                console.log(`Image at path: ${storagePath} has changed, uploading new version.`);
-                const storageUrl = await uploadImageToStorage(localImagePath, storagePath, localFileHash);
-                item[imageData.key] = storageUrl;
-              }
-            } else {
-              console.log(`Image does not exist at path: ${storagePath}, uploading.`);
-              const storageUrl = await uploadImageToStorage(localImagePath, storagePath, localFileHash);
-              item[imageData.key] = storageUrl;
-            }
-          } catch (err) {
-            console.error(`Failed to process image at ${localImagePath}:`, err);
-            continue; // 跳過此圖片，繼續處理下一個
-          }
-        }
-      } else if (item.images) {
-        // 處理其他集合的 images 字段
+      if (item.images) {
         for (let image of item.images) {
           if (!image.url) {
             console.error(`Image URL is undefined for item ${item.id}, skipping this image.`);
@@ -85,7 +29,7 @@ const uploadData = async (collectionName, filePath) => {
           }
 
           const localImagePath = path.join(__dirname, '..', 'public', image.url);
-          const storagePath = `public/assets/images/${collectionName}/${docId}/${path.basename(image.url)}`;
+          const storagePath = `public/${image.url}`;
 
           try {
             // 計算本地圖片哈希值
@@ -102,17 +46,18 @@ const uploadData = async (collectionName, filePath) => {
 
               if (remoteFileHash === localFileHash) {
                 console.log(`Image at path: ${storagePath} is up-to-date, skipping upload.`);
-                image.url = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storagePath)}?alt=media`;
               } else {
                 console.log(`Image at path: ${storagePath} has changed, uploading new version.`);
-                const storageUrl = await uploadImageToStorage(localImagePath, storagePath, localFileHash);
-                image.url = storageUrl;
+                await uploadImageToStorage(localImagePath, storagePath, localFileHash);
               }
             } else {
               console.log(`Image does not exist at path: ${storagePath}, uploading.`);
-              const storageUrl = await uploadImageToStorage(localImagePath, storagePath, localFileHash);
-              image.url = storageUrl;
+              await uploadImageToStorage(localImagePath, storagePath, localFileHash);
             }
+
+            // 無論圖片是否已經存在，都要更新 Firebase 中的圖片路徑為 Storage URL
+            image.url = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(storagePath)}?alt=media`;
+
           } catch (err) {
             console.error(`Failed to process image at ${localImagePath}:`, err);
             continue; // 跳過此圖片，繼續處理下一個
@@ -121,16 +66,13 @@ const uploadData = async (collectionName, filePath) => {
       }
 
       if (existingDoc.exists) {
-        // 文檔已存在，執行部分更新
         console.log(`Document with ID ${docId} already exists, updating...`);
         batch.set(docRef, item, { merge: true }); // 使用 merge: true 進行部分更新
       } else {
-        // 文檔不存在，創建新文檔
         batch.set(docRef, item);
       }
     }
 
-    // 提交批次
     await batch.commit();
     console.log(`${filePath} data uploaded to ${collectionName} collection successfully`);
   } catch (error) {

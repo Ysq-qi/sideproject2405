@@ -1,27 +1,28 @@
-import React from 'react';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeProductsSection from '../products-section';
+import { fetchFocusProducts, fetchProductsByIds } from '../../homeSlice';
 import labelImage from '../../../../assets/images/home/focus-products/focus.png';
 import { useNavigate } from 'react-router-dom';
 
-const fetchFocusProductData = async () => {
-  const { data: focusProductData } = await axios.get('http://localhost:3001/api/home/focusproduct');
-  const productIds = focusProductData[0].productIds;
-
-  const { data: allProductsData } = await axios.get('http://localhost:3001/api/products/all');
-  const focusProducts = allProductsData.filter(product => productIds.includes(product.id));
-  return focusProducts;
-};
-
 const FocusProduct = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { data: focusProducts, error, isLoading } = useQuery({
-    queryKey: ['focusProductData'],
-    queryFn: fetchFocusProductData,
-  });
+  const { focusProducts, focusProductDetails, loading, error } = useSelector((state) => state.home);
 
-  if (isLoading) {
+  useEffect(() => {
+    dispatch(fetchFocusProducts());
+  }, [dispatch]);
+
+  // 根據 focusProducts.productIds 獲取產品詳細資料
+  useEffect(() => {
+    if (focusProducts?.productIds?.length > 0) {
+      dispatch(fetchProductsByIds({ productIds: focusProducts.productIds, type: 'focus' }));
+    }
+  }, [dispatch, focusProducts]);
+  
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -30,17 +31,13 @@ const FocusProduct = () => {
   }
 
   const handleProductClick = (productId) => {
-    if (productId && productId.length > 0) {
-      navigate(`/product/${productId}`);
-    } else {
-      console.error('商品ID獲取失敗了');
-    }
+    navigate(`/product/${productId}`);
   };
 
   return (
     <HomeProductsSection
       labelImage={labelImage}
-      products={focusProducts}
+      products={focusProductDetails}
       handleProductClick={handleProductClick}
     />
   );

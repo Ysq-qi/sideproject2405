@@ -1,27 +1,37 @@
 [
   {
     "id": "banner001",
-    "images": ["/assets/images/home/banner/001.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/banner/001.jpg" }
+    ],
+    "productIds": ["jk10001", "jk10010", "jk10015", "jk20001", "jk20009"]
   },
   {
     "id": "banner002",
-    "images": ["/assets/images/home/banner/002.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/banner/002.jpg" }
+    ],
+    "productIds": ["jk1002", "jk10011", "jk10016", "jk20002", "jk20010"]
   },
   {
     "id": "banner003",
-    "images": ["/assets/images/home/banner/003.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/banner/003.jpg" }
+    ],
+    "productIds": ["jk10003", "jk10012", "jk10017", "jk20003", "jk20011"]
   },
   {
     "id": "banner004",
-    "images": ["/assets/images/home/banner/004.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/banner/004.jpg" }
+    ],
+    "productIds": ["jk10004", "jk10013", "jk10018", "jk20004", "jk20012"]
   },
   {
     "id": "banner005",
-    "images": ["/assets/images/home/banner/005.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/banner/005.jpg" }
+    ],
+    "productIds": ["jk10005", "jk10014", "jk10019", "jk20005", "jk20013"]
   }
 ]

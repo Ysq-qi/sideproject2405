@@ -1,25 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setProducts } from './productSlice';
+import React from 'react';
 import { ProductPageContainer } from './style';
 import CategoryList from './components/category-list';
 import FilterSort from './components/filter-sort';
 import ProductList from './components/product-list';
 
-const ProductPage = ({ productData, handleProductClick }) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (productData) {
-      dispatch(setProducts(productData));
-    }
-  }, [productData, dispatch]);
-
+const ProductPage = ({ categories, productData, handleCategoryChange, handleProductClick, handlePageChange, currentPage }) => {
   return (
     <ProductPageContainer>
-      <CategoryList />
+      <CategoryList categories={categories} handleCategoryChange={handleCategoryChange} />
       <FilterSort />
-      <ProductList handleProductClick={handleProductClick} />
+      <ProductList productData={productData} handleProductClick={handleProductClick} handlePageChange={handlePageChange} currentPage={currentPage} />
     </ProductPageContainer>
   );
 };

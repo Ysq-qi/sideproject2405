@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSortOrder } from '../../productSlice';
 import {
@@ -8,15 +8,15 @@ import {
   SortSelect
 } from './style';
 
-const FilterSort = () => {
+const FilterSort = React.memo(() => {
   const dispatch = useDispatch();
   const [sortOrder, setSortOrder] = useState('default');
 
-  const handleSortChange = (e) => {
+  const handleSortChange = useCallback((e) => {
     const order = e.target.value;
     setSortOrder(order);
     dispatch(updateSortOrder(order));
-  };
+  }, [dispatch]);
 
   return (
     <FilterSortContainer>
@@ -31,6 +31,6 @@ const FilterSort = () => {
       </SortSelect>
     </FilterSortContainer>
   );
-};
+});
 
 export default FilterSort;

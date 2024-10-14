@@ -4,6 +4,8 @@ const express = require("express");
 const userRoutes = require("./routes/userRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const productRoutes = require('./routes/productRoutes');
+const homeRoutes = require('./routes/homeRoutes');
 
 // 建立 Express 應用
 const app = express();
@@ -23,6 +25,8 @@ app.use(express.json()); // 支援 JSON 請求
 app.use("/users", userRoutes);
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
+app.use('/products', productRoutes);
+app.use('/home', homeRoutes);
 
 // 將 Express 應用綁定到 Firebase Function
 exports.api = functions.https.onRequest(app);

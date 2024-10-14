@@ -1,47 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchProductsCategoryApi } from '../../../api/productApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
 
-const initialState = {
-  products: [],
-  filteredProducts: [],
-  selectedCategory: '全部商品',
-  sortOrder: 'default',
-  categories: ['全部商品'],
-  currentPage: 1,
-  itemsPerPage: 15, // 每頁顯示的商品數量（5*3）
-};
-
-const productSlice = createSlice({
-  name: 'product',
-  initialState,
-  reducers: {
-    setProducts(state, action) {
-      state.products = action.payload.products;
-      state.filteredProducts = action.payload.products;
-      state.categories = action.payload.categories;
-      state.currentPage = 1; // 當設置新的產品時重置頁碼
-    },
-    updateCategory(state, action) {
-      state.selectedCategory = action.payload;
-      state.sortOrder = 'default';
-      state.currentPage = 1; // 當更新類別時重置頁碼
-      filterAndSort(state);
-    },
-    updateSortOrder(state, action) {
-      state.sortOrder = action.payload;
-      state.currentPage = 1; // 當更新排序時重置頁碼
-      filterAndSort(state);
-    },
-    setPage(state, action) {
-      state.currentPage = action.payload;
+export const fetchProductsByCategory = createAsyncThunk(
+  'product/fetchProductsByCategory',
+  async ({ mainCategory, subCategory }) => {
+    try {
+      const params = { mainCategory };
+      if (subCategory && subCategory !== '全部商品') {
+        params.subCategory = subCategory;
+      }
+      const products = await fetchProductsCategoryApi(params);
+      return { products };
+    } catch (error) {
+      throw Error(ERROR_MESSAGES.FETCH_PRODUCTS_ERROR + ': ' + error.message);
     }
-  },
-});
+  }
+);
 
 const filterAndSort = (state) => {
   let data = [...state.products];
 
   if (state.selectedCategory !== '全部商品') {
-    data = data.filter(product => product.category === state.selectedCategory);
+    data = data.filter(product => product.subCategory === state.selectedCategory);
   }
 
   switch (state.sortOrder) {
@@ -58,12 +39,44 @@ const filterAndSort = (state) => {
       data.sort((a, b) => new Date(b.date_added) - new Date(a.date_added));
       break;
     default:
-      data.sort((a, b) => a.id - b.id);
+      data.sort((a, b) => a.id.localeCompare(b.id));
   }
 
   state.filteredProducts = data;
 };
 
-export const { setProducts, updateCategory, updateSortOrder, setPage } = productSlice.actions;
+const productSlice = createSlice({
+  name: 'product',
+  initialState: {
+    products: [],
+    filteredProducts: [],
+    selectedCategory: '全部商品',
+    sortOrder: 'default',
+    categories: ['全部商品'],
+    currentPage: 1,
+    itemsPerPage: 15,
+  },
+  reducers: {
+    updateCategory(state, action) {
+      state.selectedCategory = action.payload;
+      state.sortOrder = 'default';
+      filterAndSort(state);
+    },
+    updateSortOrder(state, action) {
+      state.sortOrder = action.payload;
+      filterAndSort(state);
+    },
+    setPage(state, action) {
+      state.currentPage = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+      state.products = action.payload.products;
+      filterAndSort(state); 
+    });
+  },
+});
 
+export const { updateCategory, updateSortOrder, setPage } = productSlice.actions;
 export default productSlice.reducer;

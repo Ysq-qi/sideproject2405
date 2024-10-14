@@ -1,17 +1,23 @@
 [
   {
     "id": "featured001",
-    "images": ["/assets/images/home/featured/001.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/featured/001.jpg" }
+    ],
+    "productIds": ["jk10001", "lp10001", "sh10001", "ls10001", "ht10001"]
   },
   {
     "id": "featured002",
-    "images": ["/assets/images/home/featured/002.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/featured/002.jpg" }
+    ],
+    "productIds": ["jk10002", "lp10002", "sh10002", "ls10002", "ht10002"]
   },
   {
     "id": "featured003",
-    "images": ["/assets/images/home/featured/003.jpg"],
-    "productIds": ["jk10001", "jk10010", "jk10015", "jk10018", "jk10020"]
+    "images": [
+      { "url": "assets/images/home/featured/003.jpg" }
+    ],
+    "productIds": ["jk10004", "lp10004", "sh10004", "ls10004", "ht10004"]
   }
 ]

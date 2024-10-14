@@ -29,15 +29,3 @@ export const updateItemQuantityApi = async ({ id, color, size, quantity }) => {
   const response = await axiosInstance.post('/cart/updatequantity', { id, color, size, quantity });
   return response.data.items;
 };
-
-// 提交訂單 API
-export const submitOrderApi = async (orderData) => {
-  const response = await axiosInstance.post('/cart/submitorder', orderData);
-  return response.data;
-};
-
-// 獲取訂單 API
-export const getOrdersApi = async () => {
-  const response = await axiosInstance.get('/cart/orders');
-  return response.data;
-};

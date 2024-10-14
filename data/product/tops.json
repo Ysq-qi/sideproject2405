@@ -12,7 +12,8 @@
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-黑.jpg", "color": "黑色" },
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10001-藍.jpg", "color": "藍色" }
     ],
-    "category": "長袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -73,7 +74,8 @@
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-深灰.jpg", "color": "深灰色" },
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10002-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -121,7 +123,8 @@
     "images": [
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10003-白.jpg", "color": "白色" }
     ],
-    "category": "長袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -154,7 +157,8 @@
     "images": [
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10004-深灰.jpg", "color": "深灰" }
     ],
-    "category": "長袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -189,7 +193,8 @@
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005-米白.jpg", "color": "米白色" },
       { "url": "assets/images/products/tops/long-sleeve/衣款-長袖 LS10005-黑.jpg", "color": "黑色" }
     ],
-    "category": "長袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "long-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -233,7 +238,8 @@
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10001-白.jpg", "color": "白色" },
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10001-黑.jpg", "color": "黑色" }
     ],
-    "category": "短袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -272,7 +278,8 @@
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10002-白.jpg", "color": "白色" },
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10002-藍.jpg", "color": "藍色" }
     ],
-    "category": "短袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -311,7 +318,8 @@
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10003-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10003-黑.jpg", "color": "黑色" }
     ],
-    "category": "短袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -353,7 +361,8 @@
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10004-綠.jpg", "color": "綠色" }
 
     ],
-    "category": "短袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
@@ -403,7 +412,8 @@
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005-灰.jpg", "color": "灰色" },
       { "url": "assets/images/products/tops/short-sleeve/衣款-短袖 SS10005-黑.jpg", "color": "黑色" }
     ],
-    "category": "短袖上衣",
+    "mainCategory": "tops",
+    "subCategory": "short-sleeve",
     "breadcrumb": [
       { "label": "HOME", "path": "/" },
       { "label": "上衣", "path": "/tops" },
