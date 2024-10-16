@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProductsCategoryApi } from '../../../api/productApi';
 import { ERROR_MESSAGES } from '../../../config/constants';
 
+// 獲取商品的Category於product-page顯示
 export const fetchProductsByCategory = createAsyncThunk(
   'product/fetchProductsByCategory',
   async ({ mainCategory, subCategory }) => {

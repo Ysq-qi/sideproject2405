@@ -1,33 +1,47 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getProductsForDisplayApi } from '../../../api/productApi';
+import { ERROR_MESSAGES } from '../../../config/constants';
 
-const initialState = {
-  products: [],
-  filteredProducts: [],
-};
 
-export const fetchProductsByIds = createAsyncThunk(
-  'productDisplay/fetchProductsByIds',
-  async (ids) => {
-    const response = await fetch(`http://localhost:3001/api/products?ids=${ids.join(',')}`);
-    const data = await response.json();
-    return data;
+// 根據 bannerId 或 featuredId 查找商品
+export const fetchProductsForDisplay = createAsyncThunk(
+  'productDisplay/fetchProductsForDisplay',
+  async (id, { rejectWithValue }) => {
+    try {
+      const data = await getProductsForDisplayApi(id);
+      if (data.length === 0) {
+        throw new Error('No products found for the given ID');
+      }
+      return data;
+    } catch (error) {
+      throw Error(ERROR_MESSAGES.FETCH_PRODUCTS_ERROR + ': ' + error.message);
+    }
   }
 );
 
 const productDisplaySlice = createSlice({
   name: 'productDisplay',
-  initialState,
-  reducers: {
-    setProducts(state, action) {
-      state.products = action.payload;
-    },
+  initialState: {
+    products: [],
+    loading: false,
+    error: null,
   },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchProductsByIds.fulfilled, (state, action) => {
-      state.filteredProducts = action.payload;
-    });
+    builder
+      .addCase(fetchProductsForDisplay.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProductsForDisplay.fulfilled, (state, action) => {
+        state.products = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchProductsForDisplay.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { setProducts } = productDisplaySlice.actions;
 export default productDisplaySlice.reducer;

@@ -1,42 +1,53 @@
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProductsByIds } from './productDisplaySlice';
-import { 
+import { fetchProductsForDisplay } from './productDisplaySlice';
+import {
   ProductDisplayContainer,
   ProductGrid,
   ProductItem,
   ProductImage,
-  ProductInfo, 
+  ProductInfo,
   ProductPrice,
 } from './style';
 
 const ProductDisplay = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productDisplay.filteredProducts);
+  const navigate = useNavigate();
+
+  const { products, loading, error } = useSelector((state) => state.productDisplay);
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const ids = query.get('ids');
-    if (ids) {
-      dispatch(fetchProductsByIds(ids.split(',')));
+    if (id) {
+      dispatch(fetchProductsForDisplay(id));
     }
-  }, [location.search, dispatch]);
+  }, [id, dispatch]);
+
+  if (loading) {
+    return <div>Loading products...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!products || products.length === 0) {
+    return <div>No products found...</div>;
+  }
 
   return (
     <ProductDisplayContainer>
       <ProductGrid>
         {products.map((product) => (
           <ProductItem key={product.id}>
-            <ProductImage 
-              src={product.images[0].url} 
-              alt={product.name} 
+            <ProductImage
+              src={product.images[0]?.url || ''}
+              alt={product.name || 'No name available'}
               onClick={() => navigate(`/product/${product.id}`)}
             />
             <ProductInfo>{product.name}</ProductInfo>
-            <ProductPrice>{product.price}</ProductPrice>
+            <ProductPrice>{product.price ? `$${product.price}` : 'Price unavailable'}</ProductPrice>
           </ProductItem>
         ))}
       </ProductGrid>

@@ -58,3 +58,57 @@ exports.getProductsByIds = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+// 獲取 banner 或 featured 對應的商品資料給ProductDisplay使用
+exports.getProductsForDisplay = async (req, res) => {
+  const { id } = req.query;
+
+  try {
+    // 根據 id 從 home 集合中找到對應文檔
+    const homeDoc = await db.collection('home').doc(id).get();
+    if (!homeDoc.exists) {
+      return res.status(404).json({ error: 'Document not found.' });
+    }
+
+    const productIds = homeDoc.data().productIds;
+
+    // 根據 productIds 查找 product 集合中的商品
+    const productSnapshots = await db.collection('product')
+      .where('id', 'in', productIds)
+      .get();
+
+    const products = [];
+    productSnapshots.forEach(doc => products.push(doc.data()));
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+exports.getProductsForDisplay = async (req, res) => {
+  const { id } = req.query;
+
+  try {
+    // 根據 id 從 home 集合中找到對應文檔
+    const homeDoc = await db.collection('home').doc(id).get();
+    if (!homeDoc.exists) {
+      return res.status(404).json({ error: 'Document not found.' });
+    }
+
+    const productIds = homeDoc.data().productIds;
+
+    // 根據 productIds 查找 product 集合中的商品
+    const productSnapshots = await db.collection('product')
+      .where('id', 'in', productIds)
+      .get();
+
+    const products = [];
+    productSnapshots.forEach(doc => products.push(doc.data()));
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductList = ({ productData, handlePageChange, currentPage }) => {
   const itemsPerPage = useSelector((state) => state.product.itemsPerPage);
-  const navigate = useNavigate(); // 在這裡使用 navigate
+  const navigate = useNavigate();
 
   if (!Array.isArray(productData) || productData.length === 0) {
     return <div> 加載中 </div>;

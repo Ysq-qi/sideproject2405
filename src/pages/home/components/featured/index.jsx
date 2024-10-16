@@ -1,32 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchFeatured } from '../../homeSlice';
+// home/components/featured/index.jsx
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FeaturedContainer, FeaturedItem, FeaturedImage } from './style';
 
-const Featured = () => {
-  const dispatch = useDispatch();
+const Featured = ({ featured }) => {
   const navigate = useNavigate();
-  const { featured, loading, error } = useSelector((state) => state.home);
 
-  useEffect(() => {
-    dispatch(fetchFeatured());
-  }, [dispatch]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading featured data</div>;
-  }
-
-  const handleFeaturedClick = (productIds) => {
-    if (productIds) {
-      navigate(`/products?ids=${productIds.join(',')}`);
-    } else {
-      console.error('No product IDs available');
-    }
+  const handleFeaturedClick = (featuredId) => {
+    navigate(`/products/${featuredId}`);
   };
 
   return (
@@ -34,7 +15,12 @@ const Featured = () => {
       {featured.map((item) => (
         <FeaturedItem key={item.id}>
           {item.images.map((image, idx) => (
-            <FeaturedImage key={idx} src={image.url} onClick={() => handleFeaturedClick(item.productIds)} />
+            <FeaturedImage 
+              key={idx} 
+              src={image.url} 
+              alt={`Featured ${item.id} - ${idx + 1}`} 
+              onClick={() => handleFeaturedClick(item.id)}
+            />
           ))}
         </FeaturedItem>
       ))}

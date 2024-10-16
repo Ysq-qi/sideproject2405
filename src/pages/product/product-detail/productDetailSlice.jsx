@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProductDetailApi } from '../../../api/productApi';
 import { ERROR_MESSAGES } from '../../../config/constants';
 
-// 異步請求獲取產品詳情
+// 獲取商品的ID於product-detail顯示
 export const fetchProductDetail = createAsyncThunk(
   'productDetail/fetchProductDetail',
   async (productId) => {
@@ -14,7 +14,6 @@ export const fetchProductDetail = createAsyncThunk(
     }
   }
 );
-
 
 const productDetailSlice = createSlice({
   name: 'productDetail',

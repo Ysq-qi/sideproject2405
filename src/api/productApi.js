@@ -26,3 +26,12 @@ export const fetchProductsByIdsApi = async (productIds) => {
   });
   return response.data;
 };
+
+// 獲取展示頁面的產品（根據 banner 或 featured ID）
+export const getProductsForDisplayApi = async (id) => {
+  const response = await axiosInstance.get('/products/display', {
+    params: { id },
+    requiresAuth: false,
+  });
+  return response.data;
+};
