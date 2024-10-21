@@ -1,17 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-//示範代碼
 export const headerSlice = createSlice({
   name: 'header',
   initialState: {
-    title: 'Default Title',
+    searchTerm: '',
   },
   reducers: {
-    setTitle: (state, action) => {
-      state.title = action.payload;
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
     },
   },
 });
 
-export const { setTitle } = headerSlice.actions;
+export const { setSearchTerm } = headerSlice.actions;
 export default headerSlice.reducer;

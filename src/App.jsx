@@ -11,6 +11,7 @@ import Register from './pages/user/register';
 import Profile from './pages/user/profile';
 import ProductDetail from './pages/product/product-detail';
 import ProductDisplay from './pages/product/product-display';
+import ProductSearch from './pages/product/product-search';
 import Jackets from './pages/categories/jackets';
 import Shirts from './pages/categories/shirts';
 import Pants from './pages/categories/pants';
@@ -39,9 +40,13 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/profile" element={<Profile />} />
+              
               <Route path="/product/:productId" element={<ProductDetail />} />
 
               <Route path="/products/:id" element={<ProductDisplay />} />
+              <Route path="/products/:id/page/:page" element={<ProductDisplay />} />
+
+              <Route path="/search" element={<ProductSearch />} />
 
               <Route path="/jackets" element={<Jackets />} />
               <Route path="/jackets/page/:page" element={<Jackets />} />

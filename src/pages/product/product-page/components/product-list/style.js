@@ -13,10 +13,9 @@ export const ProductListContainer = styled.div`
 
 export const ProductGrid = styled.div`
   width: 100%;
-  display: flex;
-  flex-wrap: wrap; /* 讓商品可以換行 */
-  justify-content: space-around;
-  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 欄 */
+  margin-top: 20px;
 `;
 
 export const ProductItem = styled.div`

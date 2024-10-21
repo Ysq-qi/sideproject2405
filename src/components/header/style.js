@@ -5,9 +5,9 @@ export const HeaderContainer = styled.div`
   position: relative;
   width: 100%;
   height: 180px;
-  padding: 0px;
+  padding: 0;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const Topbar = styled.div`
@@ -58,9 +58,33 @@ export const ButtonGroup = styled.div`
   transform: translateY(-50%);
   display: flex;
   justify-content: flex-end;
-  width: 600px;
-  &:hover {
-    background-color: #f0f0f0;
+  align-items: center;
+`;
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: auto;
+  margin-right: 10px;
+`;
+
+export const SearchInput = styled.input`
+  width: ${(props) => (props.isOpen ? '300px' : '0')};
+  height: 45px;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: ${(props) => (props.isOpen ? '10px 15px' : '0')};
+  margin-right: ${(props) => (props.isOpen ? '10px' : '0')};
+  background-color: white;
+  color: black;
+  outline: none;
+  transition: width 0.5s ease, opacity 0.4s ease;
+  opacity: ${(props) => (props.isOpen ? '1' : '0')};
+  pointer-events: ${(props) => (props.isOpen ? 'auto' : 'none')};
+
+  &::placeholder {
+    color: gray;
   }
 `;
 
@@ -69,9 +93,11 @@ export const ActionButton = styled.div`
   justify-content: center;
   align-items: center;
   width: 80px;
-  height: 50px;
+  height: 80px;
   font-size: 35px;
   cursor: pointer;
+  transition: background-color 0.2s;
+
   &:hover {
     background-color: #f0f0f0;
   }
@@ -91,6 +117,7 @@ export const Nav = styled.div`
 export const NavItem = styled.div`
   padding: 15px 100px;
   cursor: pointer;
+
   &:hover {
     background-color: #f0f0f0;
   }

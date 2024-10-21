@@ -112,3 +112,26 @@ exports.getProductsForDisplay = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+exports.searchProducts = async (req, res) => {
+  const query = req.query.q;
+  if (!query) {
+    return res.status(400).json({ error: '缺少搜尋關鍵字' });
+  }
+
+  try {
+    const productsRef = db.collection('product');
+    const snapshot = await productsRef
+      .where('name', '>=', query)
+      .where('name', '<=', query + '\uf8ff')
+      .get();
+
+    const products = [];
+    snapshot.forEach(doc => products.push(doc.data()));
+
+    res.status(200).json(products);
+  } catch (error) {
+    console.error('搜尋產品錯誤:', error);
+    res.status(500).json({ error: '搜尋失敗' });
+  }
+};

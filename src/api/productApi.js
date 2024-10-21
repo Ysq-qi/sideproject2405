@@ -35,3 +35,11 @@ export const getProductsForDisplayApi = async (id) => {
   });
   return response.data;
 };
+
+export const searchProductsApi = async (query) => {
+  const response = await axiosInstance.get('/products/search', {
+    params: { q: query },
+    requiresAuth: false,
+  });
+  return response.data;
+};

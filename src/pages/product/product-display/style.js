@@ -1,27 +1,21 @@
 import styled from 'styled-components';
 
 export const ProductDisplayContainer = styled.div`
-  width: 1400px; 
+  width: 1400px;
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  min-height: 100vh; 
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
   position: relative;
-  margin: 0 auto ;
+  margin: 0 auto;
 `;
 
 export const ProductGrid = styled.div`
   width: 1100px;
-  position: absolute;
-  top: 110px;
-  right: 50px;
-  height: 1000px;
-  display: flex;
-  flex-wrap: wrap; 
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 欄 */  flex-wrap: wrap; 
   justify-content: space-around;
   padding-top: 50px;
-  margin-left: 250px;
-  z-index: 1;
 `;
 
 export const ProductItem = styled.div`
@@ -46,4 +40,24 @@ export const ProductInfo = styled.div`
 export const ProductPrice = styled.div`
   margin-top: 5px;
   color: red;
+`;
+
+export const Pagination = styled.div`
+  margin-top: 30px; /* 與商品區域保持間距 */
+  display: flex;
+  justify-content: center;
+  width: 100%; /* 讓分頁按鈕占滿寬度 */
+  position: relative; /* 保持正常流佈局 */
+`;
+
+export const PageButton = styled.button`
+  margin: 0 5px;
+  padding: 10px 20px;
+  background-color: ${(props) => (props.active ? '#ddd' : '#f0f0f0')};
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ddd;
+  }
 `;

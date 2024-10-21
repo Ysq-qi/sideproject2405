@@ -5,6 +5,7 @@ import homeReducer from '../pages/home/homeSlice.jsx';
 import productReducer from '../pages/product/product-page/productSlice';
 import productDetailReducer from '../pages/product/product-detail/productDetailSlice';
 import productDisplayReducer from '../pages/product/product-display/productDisplaySlice';
+import productSearchReducer from '../pages/product/product-search/productSearchSlice';
 import cartReducer from '../pages/shop/cart/cartSlice'
 import checkoutReducer from '../pages/shop/checkout/checkoutSlice.jsx';
 import orderconfirmationReducer from '../pages/shop/order-confirmation/orderconfirmationSlice';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   productDetail: productDetailReducer,
   productDisplay: productDisplayReducer,
+  productSearch: productSearchReducer,
   cart: cartReducer,
   checkout: checkoutReducer,
   orderconfirmation: orderconfirmationReducer,
