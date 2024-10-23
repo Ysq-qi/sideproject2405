@@ -7,17 +7,17 @@ import {
   ProductInfo,
   ProductPrice,
   Pagination,
-  PageButton
+  PageButton,
 } from './style';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ProductList = ({ productData, handlePageChange, currentPage }) => {
-  const itemsPerPage = useSelector((state) => state.product.itemsPerPage);
   const navigate = useNavigate();
+  const itemsPerPage = useSelector((state) => state.product.itemsPerPage);
 
   if (!Array.isArray(productData) || productData.length === 0) {
-    return <div> 加載中 </div>;
+    return <div>加載中...</div>;
   }
 
   const totalPages = Math.ceil(productData.length / itemsPerPage);
@@ -40,8 +40,8 @@ const ProductList = ({ productData, handlePageChange, currentPage }) => {
           <PageButton
             key={index}
             onClick={() => handlePageChange(index + 1)}
-            active={index + 1 === currentPage}
-          >
+            $active={index + 1 === currentPage}
+            >
             {index + 1}
           </PageButton>
         ))}

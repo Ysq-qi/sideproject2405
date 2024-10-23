@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchSearchResults } from './productSearchSlice';
+import React from 'react';
+import useProductSearch from './hooks/useProductSearch';
 import {
   ProductSearchContainer,
   ProductGrid,
@@ -14,28 +12,15 @@ import {
 } from './style';
 
 const ProductSearch = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const queryParams = new URLSearchParams(location.search);
-
-  const searchQuery = queryParams.get('query'); // 取得 query 參數
-  const pageParam = queryParams.get('page') || 1; // 取得 page 參數，預設為 1
-  const [currentPage, setCurrentPage] = useState(parseInt(pageParam, 10));
-
-  const { products, loading, error } = useSelector((state) => state.productSearch);
-  const itemsPerPage = 15;
-
-  useEffect(() => {
-    if (searchQuery) {
-      dispatch(fetchSearchResults(searchQuery));
-    }
-  }, [searchQuery, dispatch]);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-    navigate(`/search?query=${encodeURIComponent(searchQuery)}&page=${newPage}`);
-  };
+  const {
+    products,
+    loading,
+    error,
+    currentPage,
+    itemsPerPage,
+    handlePageChange,
+    navigate,
+  } = useProductSearch();
 
   if (loading) return <div>正在搜尋商品...</div>;
   if (error) return <div>發生錯誤：{error}</div>;
@@ -66,7 +51,7 @@ const ProductSearch = () => {
             <PageButton
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              active={index + 1 === currentPage}
+              $active={index + 1 === currentPage}
             >
               {index + 1}
             </PageButton>

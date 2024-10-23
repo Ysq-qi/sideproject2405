@@ -14,7 +14,7 @@ export const ProductListContainer = styled.div`
 export const ProductGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 欄 */
+  grid-template-columns: repeat(5, 1fr);
   margin-top: 20px;
 `;
 
@@ -51,7 +51,7 @@ export const Pagination = styled.div`
 export const PageButton = styled.button`
   margin: 0 5px;
   padding: 5px 10px;
-  background-color: ${props => props.active ? '#ddd' : '#f0f0f0'};
+  background-color: ${(props) => (props.$active ? '#ddd' : '#f0f0f0')};
   border: none;
   cursor: pointer;
 

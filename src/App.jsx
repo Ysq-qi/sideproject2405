@@ -59,9 +59,9 @@ const App = () => {
               <Route path="/shirts/:subCategory/page/:page" element={<Shirts />} />
 
               <Route path="/pants" element={<Pants />} />
-              <Route path="/pants/page/:page" element={<Jackets />} />
-              <Route path="/pants/:subCategory" element={<Jackets />} />
-              <Route path="/pants/:subCategory/page/:page" element={<Jackets />} />
+              <Route path="/pants/page/:page" element={<Pants />} />
+              <Route path="/pants/:subCategory" element={<Pants />} />
+              <Route path="/pants/:subCategory/page/:page" element={<Pants />} />
 
               <Route path="/tops" element={<Tops />} />
               <Route path="/tops/page/:page" element={<Tops />} />

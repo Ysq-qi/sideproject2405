@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setColor, setSize, setQuantity, resetSelections } from '../../productDetailSlice';
 import { addItemToCart } from '../../../../shop/cart/cartSlice';
+import { handleError } from '../../../../../utils/error/errorHandler';
 import {
   InfoContainer,
   Title,
@@ -22,40 +23,40 @@ import {
 const ProductDetailInfo = ({ product }) => {
   const dispatch = useDispatch();
   const { selectedColor, selectedSize, quantity, error } = useSelector((state) => state.productDetail);
-  
+
   useEffect(() => {
     dispatch(resetSelections());
   }, [dispatch]);
 
-  // 將商品加進購物車
-  const handleAddToCart = () => {
+  const validateStock = useCallback(() => {
     const stockForSelectedColor = product.stock[selectedColor];
     const stockForSelectedSize = stockForSelectedColor[selectedSize];
 
-    // 庫存檢查
     if (quantity > stockForSelectedSize) {
-      alert('數量不足');
+      handleError('stock', new Error('數量不足'));
       dispatch(resetSelections());
-      return;
+      return false;
     }
+    return true;
+  }, [product, selectedColor, selectedSize, quantity, dispatch]);
 
-    // 構造購物車項目
+  const handleAddToCart = useCallback(() => {
+    if (!validateStock()) return;
+
     const item = {
-      imageUrl: product.images.find(image => image.color === selectedColor)?.url || product.images[0].url,
+      imageUrl: product.images.find((image) => image.color === selectedColor)?.url || product.images[0].url,
       id: product.id,
       name: product.name,
       color: selectedColor,
       size: selectedSize,
-      quantity: quantity,
+      quantity,
       price: product.price,
     };
 
-    // 添加商品到購物車
     dispatch(addItemToCart(item));
-
     alert('商品添加成功');
     dispatch(resetSelections());
-  };
+  }, [validateStock, product, selectedColor, selectedSize, quantity, dispatch]);
 
   return (
     <InfoContainer>
@@ -64,7 +65,7 @@ const ProductDetailInfo = ({ product }) => {
       <Section>
         <label>商品顏色：</label>
         <Select value={selectedColor} onChange={(e) => dispatch(setColor(e.target.value))}>
-          {product.colors.map(color => (
+          {product.colors.map((color) => (
             <Option key={color} value={color}>{color}</Option>
           ))}
         </Select>
@@ -72,7 +73,7 @@ const ProductDetailInfo = ({ product }) => {
       <Section>
         <label>尺寸：</label>
         <Select value={selectedSize} onChange={(e) => dispatch(setSize(e.target.value))}>
-          {Object.keys(product.sizes.values).map(size => (
+          {Object.keys(product.sizes.values).map((size) => (
             <Option key={size} value={size}>{size}</Option>
           ))}
         </Select>
@@ -93,7 +94,7 @@ const ProductDetailInfo = ({ product }) => {
         <SizeTable>
           <SizeHeader>
             <SizeCell>尺碼(cm)</SizeCell>
-            {product.sizes.dimensions.map(dimension => (
+            {product.sizes.dimensions.map((dimension) => (
               <SizeCell key={dimension}>{dimension}</SizeCell>
             ))}
           </SizeHeader>

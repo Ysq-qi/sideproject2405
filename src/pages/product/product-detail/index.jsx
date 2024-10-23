@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ProductDetailContainer } from './style';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchProductDetail } from './productDetailSlice';
 import Breadcrumb from './components/breadcrumb';
 import ProductDetailImage from './components/product-image';
 import ProductDetailInfo from './components/product-info';
+import useProductDetail from './hooks/useProductDetail';
 
 const ProductDetail = () => {
-  const dispatch = useDispatch();
-  const { productId } = useParams();
-  const { product, isLoading, isError, error } = useSelector((state) => state.productDetail);
-
-  useEffect(() => {
-    if (productId) {
-      dispatch(fetchProductDetail(productId));
-    }
-  }, [dispatch, productId]);
+  const { product, isLoading, isError, error } = useProductDetail();
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error}</div>;

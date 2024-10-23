@@ -70,18 +70,18 @@ export const SearchWrapper = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width: ${(props) => (props.isOpen ? '300px' : '0')};
+  width: ${(props) => (props.$isOpen ? '300px' : '0')};
   height: 45px;
   border: 1px solid black;
   border-radius: 30px;
-  padding: ${(props) => (props.isOpen ? '10px 15px' : '0')};
-  margin-right: ${(props) => (props.isOpen ? '10px' : '0')};
+  padding: ${(props) => (props.$isOpen ? '10px 15px' : '0')};
+  margin-right: ${(props) => (props.$isOpen ? '10px' : '0')};
   background-color: white;
   color: black;
   outline: none;
   transition: width 0.5s ease, opacity 0.4s ease;
-  opacity: ${(props) => (props.isOpen ? '1' : '0')};
-  pointer-events: ${(props) => (props.isOpen ? 'auto' : 'none')};
+  opacity: ${(props) => (props.$isOpen ? '1' : '0')};
+  pointer-events: ${(props) => (props.$isOpen ? 'auto' : 'none')};
 
   &::placeholder {
     color: gray;

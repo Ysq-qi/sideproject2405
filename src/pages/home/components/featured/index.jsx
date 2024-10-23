@@ -1,4 +1,3 @@
-// home/components/featured/index.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FeaturedContainer, FeaturedItem, FeaturedImage } from './style';

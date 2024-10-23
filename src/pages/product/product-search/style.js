@@ -54,7 +54,7 @@ export const Pagination = styled.div`
 export const PageButton = styled.button`
   margin: 0 5px;
   padding: 10px 20px;
-  background-color: ${(props) => (props.active ? '#ddd' : '#f0f0f0')};
+  background-color: ${(props) => (props.$active ? '#ddd' : '#f0f0f0')};
   border: none;
   cursor: pointer;
 
