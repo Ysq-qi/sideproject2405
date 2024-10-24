@@ -5,7 +5,7 @@ import {
   Input, 
   Button, 
   ProductImage 
-} from './style';
+} from '../style';
 
 const CartItem = React.memo(({ item, onQuantityChange, onRemove }) => (
   <TableRow>

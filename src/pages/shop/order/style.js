@@ -12,6 +12,7 @@ export const Container = styled.div`
 export const Title = styled.h2`
   text-align: center;
   font-size: 36px;
+  font-weight: bold;
   margin-bottom: 20px;
 `;
 

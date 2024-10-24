@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../config/firebaseConfig';
-import CartItem from './CartItem';
+import CartItem from './components/CartItem';
 
 import {
   CartContainer,

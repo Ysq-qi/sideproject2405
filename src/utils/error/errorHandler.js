@@ -9,7 +9,7 @@ export const handleError = (type, error) => {
   switch (type) {
     case 'auth':
       // 用於處理身份驗證相關錯誤，例如登入或登出失敗
-      notifyUser('登出失敗，請稍後再試');
+      notifyUser('登入失敗，請稍後再試');
       break;
 
     case 'api':
