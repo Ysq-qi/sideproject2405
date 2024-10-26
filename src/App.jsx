@@ -35,7 +35,7 @@ const App = () => {
           <AuthListener />
           <Header />
           <Content>
-            <Routes>
+            <Routes basename="/sideproject2405">
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
