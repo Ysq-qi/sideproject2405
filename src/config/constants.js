@@ -1,5 +1,5 @@
 // API請求網址
-export const API_BASE_URL = 'http://localhost:5001/sideproject2405-b8a66/us-central1/api';
+export const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api`;
 
 // 錯誤訊息常量
 export const ERROR_MESSAGES = {

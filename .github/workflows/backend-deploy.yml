@@ -1,42 +1,46 @@
-# 定義工作流程的名稱，方便在 GitHub Actions 中辨識
+# GitHub Actions workflow for deploying Firebase Functions backend.
 name: Backend Deploy to Firebase Functions
 
-# 定義觸發條件：每當推送到 main 分支時觸發這個工作流程
 on:
   push:
     branches:
-      - main  # 僅在推送至 main 分支時觸發
+      - main  # 當推送到 main 分支時觸發此工作流程。
 
 jobs:
-  deploy:  # 定義一個名為 "deploy" 的工作任務
-    runs-on: ubuntu-latest  # 使用最新版本的 Ubuntu 作為執行環境
+  deploy:
+    runs-on: ubuntu-latest  # 使用最新版本的 Ubuntu 作為執行環境。
 
-    steps:  # 定義這個工作任務中的每一步
-
-      # 第一步：檢出代碼（Checkout）
+    steps:
+      # 1. 檢出代碼（Checkout code）
       - name: Checkout code
-        uses: actions/checkout@v3  # 使用官方的 checkout action，將代碼檢出到工作目錄中
+        uses: actions/checkout@v3  # 將當前分支的代碼檢出到工作環境。
 
-      # 第二步：設置 Node.js 環境
-      - name: Set up Node.js  # 命名此步驟
-        uses: actions/setup-node@v3  # 使用 GitHub 的官方 Node.js 設置工具
+      # 2. 設置 Node.js 環境（Set up Node.js）
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # 使用官方的 Node.js 環境設置工具。
         with:
-          node-version: 20  # 指定使用的 Node.js 版本
+          node-version: 20  # 指定使用的 Node.js 版本。
 
-      # 第三步：安裝 Firebase CLI（命令列工具）
+      # 3. 安裝 Firebase CLI（Install Firebase CLI）
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools  # 全域安裝 Firebase CLI，以便在後續步驟中使用
+        run: npm install -g firebase-tools  # 全域安裝 Firebase CLI，以便後續使用。
 
-      # 第四步：安裝後端依賴項
+      # 4. 設置 Firebase 認證（Set up Firebase authentication）
+      - name: Set up Firebase authentication
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo $FIREBASE_SERVICE_ACCOUNT_KEY > firebase-key.json  # 將金鑰寫入 firebase-key.json。
+          export GOOGLE_APPLICATION_CREDENTIALS=firebase-key.json  # 設置環境變數以讓 Firebase CLI 認識金鑰。
+
+      # 5. 安裝後端依賴項（Install dependencies）
       - name: Install dependencies
         run: |
-          cd functions  # 進入 functions 資料夾
-          npm install   # 安裝 functions 資料夾中的所有 npm 依賴項
+          cd functions  # 進入 functions 資料夾。
+          npm install  # 安裝 functions 目錄中的所有依賴項。
 
-      # 第五步：使用 Firebase Token 進行部署
+      # 6. 部署到 Firebase（Deploy to Firebase）
       - name: Deploy to Firebase
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}  # 使用 GitHub Secret 中的 Firebase Token
         run: |
-          cd functions  # 確保在 functions 目錄中
-          firebase deploy --only functions --project your-project-id  # 使用專案 ID 部署
+          cd functions  # 確保位於 functions 目錄。
+          firebase deploy --only functions --project your-project-id  # 部署 Firebase Functions。

@@ -2,7 +2,6 @@
   "name": "sideproject2405",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ysq-qi.github.io/sideproject2405/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^2.2.5",

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found</title>
+</head>
+<body>
+  <script>
+    // 將所有找不到的路徑重導向至 React 的首頁
+    const redirectTo = "/sideproject2405" + window.location.pathname + window.location.search;
+    window.location.replace(redirectTo);
+  </script>
+</body>
+</html>

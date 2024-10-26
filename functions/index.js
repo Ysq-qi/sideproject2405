@@ -11,11 +11,19 @@ const homeRoutes = require('./routes/homeRoutes');
 const app = express();
 
 // 配置 CORS
+const allowedOrigins = ['http://localhost:3000', 'https://ysq-qi.github.io'];
+
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // 發送 Cookie 或驗證資訊
+  credentials: true,
 };
 
 app.use(cors(corsOptions)); // 啟用並配置 CORS

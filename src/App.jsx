@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { LayoutContainer, Content } from './styles/layoutstyle';
 import { GlobalStyles } from './styles/style'
 import AuthListener from './components/auth-listener';
@@ -29,13 +29,12 @@ import DeleteAccount from './pages/user/auth/deleteAccount'
 
 const App = () => {
     return (
-      <Router>
         <LayoutContainer>
           <GlobalStyles />
           <AuthListener />
           <Header />
           <Content>
-            <Routes basename="/sideproject2405">
+            <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -85,7 +84,6 @@ const App = () => {
           </Content>
           <Footer />
         </LayoutContainer>
-      </Router>
     );
   };
 
