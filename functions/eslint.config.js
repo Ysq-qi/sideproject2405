@@ -13,8 +13,8 @@ module.exports = [
     rules: {
       "no-restricted-globals": ["error", "name", "length"],
       "prefer-arrow-callback": "error",
-      "quotes": ["error", "double", { "allowTemplateLiterals": true }],
-    },
+      "quotes": ["off", "double", { "allowTemplateLiterals": true }], //關閉引號檢查
+    },    
   },
   {
     files: ["**/*.spec.*"],

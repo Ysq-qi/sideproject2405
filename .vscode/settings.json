@@ -1,3 +1,10 @@
 {
-    "editor.tabSize": 2
-}
+    "editor.tabSize": 2,
+    "files.exclude": {
+      "build": true
+    },
+    "search.exclude": {
+      "build": true
+    },
+    "typescript.validate.enable": false
+  }  
