@@ -31,6 +31,12 @@ const Cart = () => {
   const { items: cartItems } = useSelector((state) => state.cart);
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
+
   // 使用 useMemo 計算總金額
   const total = React.useMemo(() => {
     return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);

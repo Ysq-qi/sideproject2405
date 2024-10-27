@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   Container, 
@@ -15,8 +16,16 @@ import { fetchOrders } from './orderSlice';
 
 const Order = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+  const isAuthenticated = useSelector((state) => state.login.isAuthenticated); 
   const { orders, loading, error } = useSelector((state) => state.order);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     dispatch(fetchOrders());

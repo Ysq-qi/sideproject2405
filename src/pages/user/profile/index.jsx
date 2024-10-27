@@ -170,7 +170,7 @@ const Profile = () => {
   return (
     <ProfileContainer>
       <div>
-        <Button onClick={() => navigate('/orders')}>訂單查詢</Button>
+        <Button onClick={() => navigate('/order')}>訂單查詢</Button>
         <Button
           onClick={() => {
             auth.signOut();

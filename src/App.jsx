@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { LayoutContainer, Content } from './styles/layoutstyle';
 import { GlobalStyles } from './styles/style'
 import AuthListener from './components/auth-listener';
@@ -26,6 +27,11 @@ import EmailInput from './pages/user/auth/forgotpassword/components/email-input'
 import ResetPassword from './pages/user/auth/forgotpassword/components/reset-password'
 import DeleteAccount from './pages/user/auth/deleteAccount'
 
+// ProtectedRoute 組件：檢查是否已登入，若未登入則重定向至 /login
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useSelector((state) => state.login);
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
 
 const App = () => {
     return (
@@ -38,8 +44,16 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/profile" element={<Profile />} />
-              
+
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="/product/:productId" element={<ProductDetail />} />
 
               <Route path="/products/:id" element={<ProductDisplay />} />
@@ -73,10 +87,28 @@ const App = () => {
               <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />
               
               <Route path="/cart-drop-down" element={<CartDropdown />} />
-              <Route path="/cart" element={<Cart />} />
+
+              <Route
+                path="/cart"
+                element={
+                  <ProtectedRoute>
+                    <Cart />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
-              <Route path="/order" element={<Order />} />
+
+              <Route
+                path="/order"
+                element={
+                  <ProtectedRoute>
+                    <Order />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="/forgotpassword/email" element={<EmailInput />} />
               <Route path="/forgotpassword/reset" element={<ResetPassword />} />
               <Route path="/deleteaccount" element={<DeleteAccount />} />
