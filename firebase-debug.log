@@ -12,3 +12,33 @@
 [info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=719985042&redirect_uri=http%3A%2F%2Flocalhost%3A9005
 [info] 
 [info] Waiting for authentication...
+[debug] [2024-10-27T08:58:28.640Z] ----------------------------------------------------------------------
+[debug] [2024-10-27T08:58:28.644Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2024-10-27T08:58:28.644Z] CLI Version:   13.23.0
+[debug] [2024-10-27T08:58:28.644Z] Platform:      win32
+[debug] [2024-10-27T08:58:28.645Z] Node Version:  v20.2.0
+[debug] [2024-10-27T08:58:28.645Z] Time:          Sun Oct 27 2024 16:58:28 GMT+0800 (台北標準時間)
+[debug] [2024-10-27T08:58:28.645Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-27T08:58:28.742Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-27T08:58:28.742Z] > authorizing via signed-in user (jacky55321261@gmail.com)
+[debug] [2024-10-27T08:58:28.742Z] [iam] checking project sideproject2405-b8a66 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-10-27T08:58:28.744Z] Checked if tokens are valid: true, expires at: 1730021671287
+[debug] [2024-10-27T08:58:28.744Z] Checked if tokens are valid: true, expires at: 1730021671287
+[debug] [2024-10-27T08:58:28.746Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/sideproject2405-b8a66:testIamPermissions [none]
+[debug] [2024-10-27T08:58:28.746Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/sideproject2405-b8a66:testIamPermissions x-goog-quota-user=projects/sideproject2405-b8a66
+[debug] [2024-10-27T08:58:28.746Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sideproject2405-b8a66:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-27T08:58:29.766Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/sideproject2405-b8a66:testIamPermissions 200
+[debug] [2024-10-27T08:58:29.766Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/sideproject2405-b8a66:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-27T08:58:29.766Z] Checked if tokens are valid: true, expires at: 1730021671287
+[debug] [2024-10-27T08:58:29.766Z] Checked if tokens are valid: true, expires at: 1730021671287
+[debug] [2024-10-27T08:58:29.767Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-10-27T08:58:29.767Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-10-27T08:58:31.061Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2024-10-27T08:58:31.061Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Service account projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com does not exist.","status":"NOT_FOUND"}}
+[debug] [2024-10-27T08:58:31.061Z] [functions] service account IAM check errored, deploy may fail: Request to https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Service account projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com does not exist. {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Service account projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com does not exist.","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://iam.googleapis.com/v1/projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Service account projects/sideproject2405-b8a66/serviceAccounts/sideproject2405-b8a66@appspot.gserviceaccount.com does not exist.","status":404}
+[info] 
+[info] === Deploying to 'sideproject2405-b8a66'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
