@@ -29,7 +29,7 @@ jobs:
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
-          echo $GCP_SA_KEY > ${HOME}/gcp-key.json
+          echo $GCP_SA_KEY | base64 --decode > ${HOME}/gcp-key.json
           gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
         shell: bash
 
@@ -41,4 +41,4 @@ jobs:
 
       # 6. 部署至 Firebase Functions
       - name: Deploy to Firebase
-        run: firebase deploy --only functions
+        run: firebase deploy --only functions --project sideproject2405-b8a66
