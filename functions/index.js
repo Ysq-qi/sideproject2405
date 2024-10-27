@@ -11,7 +11,11 @@ const homeRoutes = require('./routes/homeRoutes');
 const app = express();
 
 // 配置 CORS
-const allowedOrigins = ['http://localhost:3000', 'https://ysq-qi.github.io'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://ysq-qi.github.io',
+  'https://ysq-qi.github.io/sideproject2405'
+];
 
 const corsOptions = {
   origin: function (origin, callback) {

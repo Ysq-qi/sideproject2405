@@ -29,13 +29,13 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
         run: |
-          echo "$FIREBASE_SERVICE_ACCOUNT_KEY" > firebase-key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=$PWD/firebase-key.json
+          echo "$FIREBASE_SERVICE_ACCOUNT_KEY" > firebase-key.json  # 寫入憑證文件
+          export GOOGLE_APPLICATION_CREDENTIALS=$PWD/firebase-key.json  # 設置環境變數
         shell: bash
 
       # 5. 測試 Firebase 認證（Test Firebase Authentication）
       - name: Test Firebase Authentication
-        run: firebase projects:list --json
+        run: firebase projects:list --json  # 列出 Firebase 項目，確認憑證是否有效
         shell: bash
         continue-on-error: true  # 即使失敗也繼續，方便檢查輸出。
 
@@ -48,5 +48,4 @@ jobs:
       # 7. 部署到 Firebase（Deploy to Firebase）
       - name: Deploy to Firebase
         run: |
-          cd functions  # 確保位於 functions 目錄。
           firebase deploy --only functions --project sideproject2405-b8a66  # 部署 Firebase Functions。
