@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # 根據您的專案設定 Node.js 版本
+          node-version: '20'  # 根據您的專案設定 Node.js 版本
 
       # 3. 安裝 Firebase CLI
       - name: Install Firebase CLI
@@ -29,7 +29,7 @@ jobs:
       - name: Authenticate to Firebase
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: '${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}'
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY}}'
 
       # 5. 設置 Firebase 專案 ID
       - name: Set Firebase Project ID
@@ -41,7 +41,6 @@ jobs:
           cd functions
           npm install
           cd ..
-
       # 7. 部署到 Firebase
       - name: Deploy to Firebase
         run: firebase deploy --only functions
