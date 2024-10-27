@@ -41,4 +41,4 @@ jobs:
 
       # 6. 部署至 Firebase Functions
       - name: Deploy to Firebase
-        run: firebase deploy --only functions --project sideproject2405-b8a66
+        run: firebase deploy --only functions
