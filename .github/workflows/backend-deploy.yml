@@ -49,4 +49,4 @@ jobs:
       - name: Deploy to Firebase
         run: |
           cd functions  # 確保位於 functions 目錄。
-          firebase deploy --only functions --project your-project-id  # 部署 Firebase Functions。
+          firebase deploy --only functions --project sideproject2405-b8a66  # 部署 Firebase Functions。
