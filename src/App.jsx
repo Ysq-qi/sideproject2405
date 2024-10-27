@@ -44,15 +44,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/profile"element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
 
               <Route path="/product/:productId" element={<ProductDetail />} />
 
@@ -84,31 +76,12 @@ const App = () => {
               <Route path="/accessories" element={<Accessories />} /> 
               <Route path="/accessories/page/:page" element={<Accessories />} />
               <Route path="/accessories/:subCategory" element={<Accessories />} />
-              <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />
-              
+              <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />              
               <Route path="/cart-drop-down" element={<CartDropdown />} />
-
-              <Route
-                path="/cart"
-                element={
-                  <ProtectedRoute>
-                    <Cart />
-                  </ProtectedRoute>
-                }
-              />
-
+              <Route path="/cart"element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
-
-              <Route
-                path="/order"
-                element={
-                  <ProtectedRoute>
-                    <Order />
-                  </ProtectedRoute>
-                }
-              />
-
+              <Route path="/order"element={<ProtectedRoute><Order /></ProtectedRoute>}/>
               <Route path="/forgotpassword/email" element={<EmailInput />} />
               <Route path="/forgotpassword/reset" element={<ResetPassword />} />
               <Route path="/deleteaccount" element={<DeleteAccount />} />
