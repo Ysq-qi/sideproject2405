@@ -1,36 +1,41 @@
-# 這是 GitHub Actions 的 YAML 文件，用於自動化前端專案的打包與部署至 GitHub Pages。
+name: Deploy to GitHub Pages
 
-name: Deploy to GitHub Pages  # 定義此工作流的名稱，方便識別。
-
-on:  # 定義觸發條件。
-  push:  # 當偵測到 push（提交代碼）事件時啟動工作流。
+on:
+  push:
     branches:
-      - main  # 僅在提交到 main 分支時觸發這個工作流。
+      - main  # 當推送到 main 分支時觸發工作流。
 
-jobs:  # 定義所有的工作任務（jobs）。
-  build:  # 工作名稱為 "build"。
-    runs-on: ubuntu-latest  # 指定運行工作流的作業系統環境，這裡使用最新的 Ubuntu。
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 指定運行環境。
 
-    steps:  # 定義工作流中所包含的每一步（steps）。
+    steps:
+      # 1. 檢出最新代碼
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Checkout code  # 第一步：檢出（checkout）代碼。
-        uses: actions/checkout@v3  # 使用官方的 checkout action，從倉庫下載最新的代碼。
-
-      - name: Set up Node.js  # 第二步：設置 Node.js 環境。
-        uses: actions/setup-node@v3  # 使用 Node.js 環境的設置 action。
+      # 2. 設置 Node.js 環境
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20  # 使用 Node.js 版本 20（需根據專案的需要調整版本）。
+          node-version: 20  # 使用 Node.js 版本 20。
 
-      - name: Install dependencies  # 第三步：安裝 npm 依賴。
-        run: npm install  # 執行 'npm install' 以安裝 package.json 中所定義的依賴。
+      # 3. 安裝依賴項
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build project  # 第四步：打包專案。
+      # 4. 動態添加 homepage 欄位至 package.json
+      - name: Add homepage field dynamically
         run: |
-          echo "REACT_APP_BASENAME=/sideproject2405" >> .env.production
-          npm run build
-    
-      - name: Deploy to GitHub Pages  # 第五步：部署至 GitHub Pages。
-        uses: peaceiris/actions-gh-pages@v3  # 使用 peaceiris 提供的 GitHub Pages 部署工具。
+          node -e "let pkg=require('./package.json'); pkg.homepage='https://ysq-qi.github.io/sideproject2405/'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+
+      # 5. 建置專案
+      - name: Build project
+        run: npm run build
+
+      # 6. 部署至 GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 的內部秘鑰來驗證操作。
-          publish_dir: ./build  # 指定要部署的目錄為 build/。
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # 部署的目錄為 build/
