@@ -13,7 +13,7 @@ jobs:
       # 1. 檢出代碼
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       # 2. 設置 Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -24,12 +24,20 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 4. 安裝依賴
+      # 4. 將 Service Account Key 作為環境變數
+      - name: Set Service Account Key
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: echo "Service Account Key set"
+
+      # 5. 安裝依賴
       - name: Install dependencies
         run: |
           cd functions
           npm install
 
-      # 5. 部署至 Firebase Functions 使用 Token
+      # 6. 部署至 Firebase Functions
       - name: Deploy to Firebase
-        run: firebase deploy --only functions --project sideproject2405-b8a66 --token ${{secrets.FIREBASE_DEPLOY_TOKEN}}
+        env:
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: firebase deploy --only functions --project sideproject2405-b8a66 --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
