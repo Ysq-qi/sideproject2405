@@ -4,6 +4,8 @@ const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const { getStorage } = require("firebase-admin/storage");
 
 // 根據環境條件動態加載憑證
+let serviceAccountKey;
+
 if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
   // 在生產環境中，從環境變數加載 Service Account 憑證
   serviceAccountKey = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -18,10 +20,9 @@ initializeApp({
   storageBucket: 'sideproject2405-b8a66.appspot.com'
 });
 
-// 獲取 Firestore,Storage 實例
+// 獲取 Firestore 和 Storage 實例
 const db = getFirestore();
 const bucket = getStorage().bucket();
 
-
-// 將 admin 和 db 以及 FieldValue 同時導出，供其他文件使用
+// 將 admin、db、bucket 和 FieldValue 導出，供其他文件使用
 module.exports = { admin, db, bucket, FieldValue };
