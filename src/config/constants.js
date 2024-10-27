@@ -1,5 +1,5 @@
 // API請求網址
-export const API_BASE_URL = `${process.env.REACT_APP_API_URL}/api`;
+export const API_BASE_URL = `${process.env.REACT_APP_API_URL}`;
 
 // 錯誤訊息常量
 export const ERROR_MESSAGES = {
