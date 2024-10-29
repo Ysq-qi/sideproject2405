@@ -65,7 +65,7 @@ const initialState = {
   focusProducts: null,
   newProductDetails: null,
   focusProductDetails: null,
-  error: null,
+  homeError : null,
 };
 
 const homeSlice = createSlice({
@@ -97,7 +97,7 @@ const homeSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith('/rejected'),
         (state, action) => {
-          state.error = action.payload;
+          state.homeError = action.payload;
         }
       );
   },

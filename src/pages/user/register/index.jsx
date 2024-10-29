@@ -12,8 +12,8 @@ import {
   setEmailError,
   setPasswordError,
   setConfirmPasswordError,
-  setError,
-  setSuccess,
+  setRegisterError,
+  setRegisterSuccess,
   resetForm
 } from './registerSlice';
 import {
@@ -42,8 +42,8 @@ const Register = () => {
     emailError,
     passwordError,
     confirmPasswordError,
-    error,
-    success
+    registerError,
+    registerSuccess
   } = useSelector((state) => state.register);
 
   // 驗證信箱格式
@@ -85,30 +85,29 @@ const Register = () => {
   
     // 驗證輸入格式是否有效
     if (!emailValid) {
-      dispatch(setError('信箱格式錯誤'));
+      dispatch(setRegisterError('信箱格式錯誤'));
     } else if (!passwordValid) {
-      dispatch(setError('密碼格式錯誤'));
+      dispatch(setRegisterError('密碼格式錯誤'));
     } else if (!confirmPasswordValid) {
-      dispatch(setError('確認密碼格式錯誤'));
+      dispatch(setRegisterError('確認密碼格式錯誤'));
     } else {
       // 使用 Redux Thunk 調用註冊邏輯
       dispatch(register({ email, password }))
         .unwrap()
         .then(() => {
-          dispatch(setSuccess('註冊成功'));
+          dispatch(setRegisterSuccess('註冊成功'));
           // 註冊成功後導航到主頁面
           setTimeout(() => {
             navigate('/'); // 先進行導航
-            dispatch(setSuccess(''));
+            dispatch(setRegisterSuccess(''));
             dispatch(resetForm());
           }, 500); // 添加適當延遲
         })
         .catch((error) => {
-          console.error('註冊過程出錯: ', error);
-          dispatch(setError('註冊失敗，請稍後再試'));
+          dispatch(setRegisterError('註冊失敗，請稍後再試'));
           // 如果發生錯誤，3秒後重置錯誤信息
           setTimeout(() => {
-            dispatch(setError(''));
+            dispatch(setRegisterError(''));
             dispatch(resetForm());
           }, 3000);
         });
@@ -161,8 +160,8 @@ const Register = () => {
           />
           {confirmPassword && (confirmPasswordValid ? <SuccessText>○</SuccessText> : <ErrorText>✗ {confirmPasswordError}</ErrorText>)}
           <Button type="submit">註冊</Button>
-          {error && <ErrorText>{error}</ErrorText>}
-          {success && <SuccessText>{success}</SuccessText>}
+          {registerError && <ErrorText>{registerError}</ErrorText>}
+          {registerSuccess && <SuccessText>{registerSuccess}</SuccessText>}
           <HelperText>
             <Link onClick={() => navigate('/Login')}>已經有帳號？登入</Link>
           </HelperText>

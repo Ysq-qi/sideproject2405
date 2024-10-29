@@ -13,11 +13,11 @@ const Home = () => {
     newProductDetails,
     focusProductDetails,
     isLoading,
-    error,
+    homeError ,
   } = useHome();
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>加載數據時出錯：{error}</div>;
+  if (homeError) return <div>加載數據時出錯</div>;
 
   return (
     <HomeContainer>

@@ -95,9 +95,18 @@ const Cart = () => {
   
   // 處理刪除商品
   const handleRemove = (id, color, size) => {
-    dispatch(removeItem({ id, color, size }));
     dispatch(removeItemFromCart({ id, color, size }))
       .unwrap()
+      .then(() => {
+        dispatch(removeItem({ id, color, size }));
+
+        // 更新本地存儲
+        const updatedLocalItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const newLocalItems = updatedLocalItems.filter(
+          item => !(item.id === id && item.color === color && item.size === size)
+        );
+        localStorage.setItem('cartItems', JSON.stringify(newLocalItems));
+      })
       .catch((error) => {
         console.error('刪除商品時出錯：', error);
         alert('刪除商品時發生錯誤，請稍後再試');
@@ -110,9 +119,11 @@ const Cart = () => {
       alert('數量必須在 1 到 20 之間');
       return;
     }
-    dispatch(updateQuantity({ id, color, size, quantity }));
     dispatch(updateItemQuantity({ id, color, size, quantity }))
       .unwrap()
+      .then(() => {
+        dispatch(updateQuantity({ id, color, size, quantity }));
+      })
       .catch((error) => {
         console.error('更新商品數量時出錯：', error);
         alert('更新商品數量時發生錯誤，請稍後再試');

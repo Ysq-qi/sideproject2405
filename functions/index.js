@@ -30,6 +30,12 @@ const corsOptions = {
   credentials: true,
 };
 
+// Cache-Control Header 設置
+const cacheControl = (req, res, next) => {
+  res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
+  next();
+};
+
 app.use(cors(corsOptions)); // 啟用並配置 CORS
 app.use(express.json()); // 支援 JSON 請求
 
@@ -37,8 +43,8 @@ app.use(express.json()); // 支援 JSON 請求
 app.use("/users", userRoutes);
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
-app.use('/products', productRoutes);
-app.use('/home', homeRoutes);
+app.use('/products', cacheControl, productRoutes);
+app.use('/home', cacheControl, homeRoutes);
 
 // 將 Express 應用綁定到 Firebase Function
 exports.api = functions.https.onRequest(app);

@@ -15,24 +15,22 @@ export const register = createAsyncThunk(
   }
 );
 
-const initialState = {
-  uid: null,
-  email: '',
-  password: '',
-  confirmPassword: '',
-  emailValid: false,
-  passwordValid: false,
-  confirmPasswordValid: false,
-  emailError: '',
-  passwordError: '',
-  confirmPasswordError: '',
-  error: '',
-  success: ''
-};
-
 const registerSlice = createSlice({
   name: 'register',
-  initialState,
+  initialState: {
+    uid: null,
+    email: '',
+    password: '',
+    confirmPassword: '',
+    emailValid: false,
+    passwordValid: false,
+    confirmPasswordValid: false,
+    emailError: '',
+    passwordError: '',
+    confirmPasswordError: '',
+    registerError: '',
+    registerSuccess: ''
+  },
   reducers: {
     setEmail: (state, action) => {
       state.email = action.payload;
@@ -61,11 +59,11 @@ const registerSlice = createSlice({
     setConfirmPasswordError: (state, action) => {
       state.confirmPasswordError = action.payload;
     },
-    setError: (state, action) => {
-      state.error = action.payload;
+    setRegisterError: (state, action) => {
+      state.registerError = action.payload;
     },
-    setSuccess: (state, action) => {
-      state.success = action.payload;
+    setRegisterSuccess: (state, action) => {
+      state.registerSuccess = action.payload;
     },
     clearUser: (state) => {
       state.uid = null;
@@ -78,8 +76,8 @@ const registerSlice = createSlice({
       state.emailError = ''; 
       state.passwordError = '';
       state.confirmPasswordError = ''; 
-      state.error = '';
-      state.success = '';
+      state.registerError = '';
+      state.registerSuccess = '';
     },
     resetForm: (state) => {
       state.email = '';
@@ -91,8 +89,8 @@ const registerSlice = createSlice({
       state.emailError = '';
       state.passwordError = '';
       state.confirmPasswordError = '';
-      state.error = '';
-      state.success = '';
+      state.registerError = '';
+      state.registerSuccess = '';
     }
   },
 });
@@ -107,8 +105,8 @@ export const {
   setEmailError,
   setPasswordError,
   setConfirmPasswordError,
-  setError, 
-  setSuccess, 
+  setRegisterError, 
+  setRegisterSuccess, 
   clearUser, 
   resetForm 
 } = registerSlice.actions;

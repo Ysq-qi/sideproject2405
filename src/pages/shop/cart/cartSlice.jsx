@@ -98,7 +98,6 @@ const saveCartToLocalStorage = (item) => {
   localStorage.setItem('cartItems', JSON.stringify(localCartItems));
 };
 
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -153,11 +152,9 @@ const cartSlice = createSlice({
       // 刪除商品的處理
       .addCase(removeItemFromCart.fulfilled, (state, action) => {
         state.loading = false;
-      
-        // 用 API 返回的商品列表覆蓋前端的狀態，這是刪除操作後的最新購物車
         const updatedItems = action.payload;
         state.items = updatedItems;
-      })      
+      })
 
       // 更新商品數量的處理
       .addCase(updateItemQuantity.pending, (state) => {
@@ -166,11 +163,7 @@ const cartSlice = createSlice({
       })
       .addCase(updateItemQuantity.fulfilled, (state, action) => {
         state.loading = false;
-
-        // 從後端返回的購物車數據
         const updatedItems = action.payload;
-
-        // 僅更新對應的商品數量，保證本地狀態不會被覆蓋
         updatedItems.forEach((updatedItem) => {
           const existingItem = state.items.find(
             item => item.id === updatedItem.id &&
