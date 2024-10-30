@@ -1,4 +1,4 @@
-# 前端 Dockerfile
+# 前端 Dockerfile (使用Alpine可以減少Docker image的大小)
 FROM node:20
 
 # 設置工作目錄

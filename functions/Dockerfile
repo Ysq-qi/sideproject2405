@@ -1,5 +1,5 @@
 # 後端 Dockerfile
-# 用於構建 Firebase Functions 和啟動 Firebase 模擬器
+# 用於構建 Firebase Functions 和啟動 Firebase 模擬器 (使用Alpine可以減少Docker image的大小)
 FROM node:20
 
 # 設置工作目錄
