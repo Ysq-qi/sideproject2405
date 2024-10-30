@@ -72,6 +72,7 @@ const Header = () => {
             onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
             $isOpen={isSearchOpen}
             autoComplete="off"
+            maxLength={15}
           />
           <ActionButton className="bi bi-search" onClick={handleSearchClick} />
         </SearchWrapper>

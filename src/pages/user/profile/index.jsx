@@ -192,6 +192,7 @@ const Profile = () => {
             type="text"
             name="name"
             placeholder="請輸入姓名"
+            maxLength={50}
             value={formData.name}
             onChange={handleChange}
           />
@@ -210,6 +211,7 @@ const Profile = () => {
           <Input
             type="text"
             name="phone"
+            maxLength={10}
             value={formData.phone}
             onChange={handleChange}
           />
@@ -220,6 +222,7 @@ const Profile = () => {
             type="text"
             name="address"
             placeholder="請輸入地址"
+            maxLength={50}
             value={formData.address}
             onChange={handleChange}
           />
@@ -233,6 +236,7 @@ const Profile = () => {
           <Input
             type="password"
             name="oldPassword"
+            maxLength={20}
             onChange={handleChange}
           />
         </ProfileItem>
@@ -241,6 +245,7 @@ const Profile = () => {
           <Input
             type="password"
             name="password"
+            maxLength={20}
             onChange={(e) => {
               handleChange(e);
               validatePassword(e.target.value);
@@ -259,6 +264,7 @@ const Profile = () => {
           <Input
             type="password"
             name="confirmPassword"
+            maxLength={20}
             onChange={(e) => {
               handleChange(e);
               validateConfirmPassword(formData.password, e.target.value);

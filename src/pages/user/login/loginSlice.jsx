@@ -71,7 +71,7 @@ const loginSlice = createSlice({
     setPasswordError: (state, action) => {
       state.passwordError = action.payload;
     },
-    setError: (state, action) => {
+    setLoginError: (state, action) => {
       state.error = action.payload;
     },
     setSuccess: (state, action) => {
@@ -114,7 +114,7 @@ export const {
   setPasswordValid, 
   setEmailError, 
   setPasswordError, 
-  setError, 
+  setLoginError, 
   setSuccess, 
   resetForm,
   loginSuccess,

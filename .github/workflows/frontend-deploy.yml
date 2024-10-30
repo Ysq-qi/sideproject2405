@@ -20,11 +20,9 @@ jobs:
         with:
           node-version: 20  # 使用 Node.js 版本 20。
 
-      # 3. 安裝依賴項並自動修復漏洞
-      - name: Install dependencies and audit fix
-        run: |
-          npm install
-          npm audit fix --force  # 自動修復依賴性漏洞
+      # 3. 安裝依賴項
+      - name: Install dependencies
+        run: npm install
 
       # 4. 動態添加 homepage 欄位至 package.json
       - name: Add homepage field dynamically
@@ -35,14 +33,9 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # 6. 添加 .nojekyll 防止忽略點檔案
-      - name: Add .nojekyll to public directory
-        run: touch public/.nojekyll
-
-      # 7. 部署至 GitHub Pages，保持不變的檔案
+      # 6. 部署至 GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build  # 部署的目錄為 build/
-          keep_files: true  # 保留不變的檔案，避免無謂重新上傳
