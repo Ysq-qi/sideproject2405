@@ -1,47 +1,22 @@
-# 使用 Node.js 基礎映像檔
+# 前端 Dockerfile
 FROM node:20
 
-# 設置工作目錄為 /app
+# 設置工作目錄
 WORKDIR /app
 
-# 複製專案的 package.json 與 package-lock.json
-COPY package*.json ./
+# 複製 package.json 和 package-lock.json 來安裝依賴
+COPY package.json package-lock.json ./
 
-# 安裝根目錄（如果有）的依賴
+# 安裝依賴
 RUN npm install
 
-# 複製整個專案檔案到容器內
-COPY . .
+# 複製整個項目到工作目錄
+COPY ./public ./public
+COPY ./src ./src
+COPY .env ./
 
-# 分別安裝前端和後端的依賴
+# 開放端口 3000，這是 React 開發伺服器的默認端口
+EXPOSE 3000
 
-# 1. 安裝前端依賴
-WORKDIR /app/src
-RUN npm install
-
-# 2. 安裝後端依賴
-WORKDIR /app/functions
-RUN npm install
-
-# 回到根目錄
-WORKDIR /app
-
-# 容器啟動時運行的指令（可以根據需要調整）
+# 啟動開發伺服器
 CMD ["npm", "start"]
-
-# 前端打包階段
-FROM node:20 AS build-frontend
-WORKDIR /app/src
-COPY src/package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-# 最終映像檔
-FROM node:16
-WORKDIR /app
-COPY --from=build-frontend /app/src/build ./build
-COPY . .
-RUN npm install
-CMD ["npm", "start"]
-

@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    mem_limit: 1g
+    env_file:
+      - ./.env
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - ./.env:/app/.env
+    command: npm start
+
+  backend:
+    build:
+      context: .
+      dockerfile: functions/Dockerfile
+    ports:
+      - "5001:5001"  # Firebase Functions 的默認端口
+      - "4000:4000"  # Emulator Suite 控制台
+      - "8080:8080"  # Firestore 模擬器端口
+      - "9199:9199"  # Storage 模擬器端口
+    mem_limit: 3g  # 限制最大 RAM 為 3 GB
+    env_file:
+      - ./.env.backend
+    volumes:
+      - ./functions:/app/functions
+      - ./firebase.json:/app/firebase.json
+      - ./firestore.indexes.json:/app/firestore.indexes.json
+      - ./firestore.rules:/app/firestore.rules
+      - ./functions/config/serviceAccountKey.json:/app/functions/config/serviceAccountKey.json
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/functions/config/serviceAccountKey.json
+    command: firebase emulators:start --only functions,firestore,storage

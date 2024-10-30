@@ -1,4 +1,3 @@
-//處理專案的初始化與設定
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -14,7 +13,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 const root = document.getElementById('root');
 const rootContainer = createRoot(root);
 
-//QueryClient實例的建立
+//React query實例的建立
 const queryClient = new QueryClient();
 
 //生產環境的網址與開發環境的網址切換

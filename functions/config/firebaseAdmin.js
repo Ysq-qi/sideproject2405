@@ -7,11 +7,13 @@ const { getStorage } = require("firebase-admin/storage");
 let serviceAccountKey;
 
 if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
-  // 在生產環境中，從環境變數加載 Service Account 憑證
-  serviceAccountKey = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+  serviceAccountKey = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY); // 在生產環境中，從環境變數加載 Service Account 憑證
+} else if (process.env.GOOGLE_APPLICATION_CREDENTIALS_DATA) {
+  serviceAccountKey = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_DATA); // 在 Docker 環境中，從環境變數中加載 Service Account 憑證
+} else if (process.env.GOOGLE_APPLICATION_CREDENTIALS_PATH) {
+  serviceAccountKey = require(process.env.GOOGLE_APPLICATION_CREDENTIALS_PATH); // 在 Docker 環境中，從 JSON 文件中加載憑證，通過設定環境變數提供路徑(也就是serviceAccountKey_docker.json)
 } else {
-  // 在本地開發環境中，從 JSON 文件中加載憑證
-  serviceAccountKey = require("./serviceAccountKey.json");
+  serviceAccountKey = require("./serviceAccountKey.json"); // 在本地開發環境中，從 JSON 文件中加載憑證
 }
 
 // 初始化 Firebase Admin SDK
