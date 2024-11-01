@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import { auth } from '../../../config/firebaseConfig';
 import {
+  validatePassword,
+  validateConfirmPassword
+} from '../../../utils/validation';
+import {
   getProfile,
   updateProfile,
   changePassword,
@@ -104,26 +108,15 @@ const Profile = () => {
   };
 
   // 驗證新密碼格式
-  const validatePassword = (password) => {
-    let errorMessage = '';
-    const re = /^[A-Z].{7,}$/; // 要求第一個字母必須是大寫且總長度至少8個字符
-    const hasUpperCaseFirst = /^[A-Z]/.test(password);
-    const isValidLength = password.length >= 8;
-
-    if (!hasUpperCaseFirst) {
-      errorMessage = '首位必須大寫';
-    } else if (!isValidLength) {
-      errorMessage = '至少8個字符';
-    }
-
-    const isValid = re.test(password);
+  const handlePasswordValidation = (password) => {
+    const isValid = validatePassword(password);
     dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(isValid ? '' : errorMessage));
+    dispatch(setPasswordError(isValid ? '' : '密碼格式錯誤'));
   };
 
   // 驗證確認密碼
-  const validateConfirmPassword = (password, confirmPassword) => {
-    const isValid = confirmPassword === password && passwordValid;
+  const handleConfirmPasswordValidation = (password, confirmPassword) => {
+    const isValid = validateConfirmPassword(password, confirmPassword);
     dispatch(setConfirmPasswordValid(isValid));
     dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
   };
@@ -248,7 +241,7 @@ const Profile = () => {
             maxLength={20}
             onChange={(e) => {
               handleChange(e);
-              validatePassword(e.target.value);
+              handlePasswordValidation(e.target.value);
             }}
           />
           {formData.password &&
@@ -267,7 +260,7 @@ const Profile = () => {
             maxLength={20}
             onChange={(e) => {
               handleChange(e);
-              validateConfirmPassword(formData.password, e.target.value);
+              handleConfirmPasswordValidation(formData.password, e.target.value);
             }}
           />
           {formData.confirmPassword &&

@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSortOrder } from '../../productSlice';
+import { updateSortOrder, resetSortOrder } from '../../productSlice';
 import {
   FilterSortContainer,
   FilterButtons,
@@ -19,6 +19,13 @@ const FilterSort = () => {
     },
     [dispatch]
   );
+
+  useEffect(() => {
+    // 當元件卸載時重置排序狀態
+    return () => {
+      dispatch(resetSortOrder());
+    };
+  }, [dispatch]);
 
   return (
     <FilterSortContainer>

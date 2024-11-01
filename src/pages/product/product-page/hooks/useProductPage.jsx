@@ -31,6 +31,7 @@ const useCategoryPage = (mainCategory, categories = {}) => {
 
   const handleCategoryChange = (category) => {
     setCurrentCategory(category);
+    dispatch(resetSortOrder()); // 當分類更改時重置排序狀態
     try {
       if (category === '全部商品') {
         navigate(`/${mainCategory}`);
@@ -42,6 +43,7 @@ const useCategoryPage = (mainCategory, categories = {}) => {
       handleError('navigation', err); // 處理導航錯誤
     }
   };
+  
 
   const handlePageChange = (newPage) => {
     try {

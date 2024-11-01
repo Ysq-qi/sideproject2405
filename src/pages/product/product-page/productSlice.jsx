@@ -70,7 +70,11 @@ const productSlice = createSlice({
     setPage(state, action) {
       state.currentPage = action.payload;
     },
-  },
+    resetSortOrder(state) {
+      state.sortOrder = 'default';
+      filterAndSort(state); // 更新產品列表為預設排序
+    },
+},
   extraReducers: (builder) => {
     builder.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
       state.products = action.payload.products;
@@ -79,5 +83,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { updateCategory, updateSortOrder, setPage } = productSlice.actions;
+export const { updateCategory, updateSortOrder, setPage, resetSortOrder  } = productSlice.actions;
 export default productSlice.reducer;
