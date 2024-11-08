@@ -41,62 +41,60 @@ const PublicOnlyRoute = ({ children }) => {
 
 const App = () => {
     return (
-      <HashRouter>
-        <LayoutContainer>
-          <GlobalStyles />
-          <AuthListener />
-          <Header />
-          <Content>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
-              <Route path="/profile"element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+      <LayoutContainer>
+        <GlobalStyles />
+        <AuthListener />
+        <Header />
+        <Content>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
+            <Route path="/profile"element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
 
-              <Route path="/product/:productId" element={<ProductDetail />} />
+            <Route path="/product/:productId" element={<ProductDetail />} />
 
-              <Route path="/products/:id" element={<ProductDisplay />} />
-              <Route path="/products/:id/page/:page" element={<ProductDisplay />} />
+            <Route path="/products/:id" element={<ProductDisplay />} />
+            <Route path="/products/:id/page/:page" element={<ProductDisplay />} />
 
-              <Route path="/search" element={<ProductSearch />} />
+            <Route path="/search" element={<ProductSearch />} />
 
-              <Route path="/jackets" element={<Jackets />} />
-              <Route path="/jackets/page/:page" element={<Jackets />} />
-              <Route path="/jackets/:subCategory" element={<Jackets />} />
-              <Route path="/jackets/:subCategory/page/:page" element={<Jackets />} />
+            <Route path="/jackets" element={<Jackets />} />
+            <Route path="/jackets/page/:page" element={<Jackets />} />
+            <Route path="/jackets/:subCategory" element={<Jackets />} />
+            <Route path="/jackets/:subCategory/page/:page" element={<Jackets />} />
 
-              <Route path="/shirts" element={<Shirts />} />
-              <Route path="/shirts/page/:page" element={<Shirts />} />
-              <Route path="/shirts/:subCategory" element={<Shirts />} />
-              <Route path="/shirts/:subCategory/page/:page" element={<Shirts />} />
+            <Route path="/shirts" element={<Shirts />} />
+            <Route path="/shirts/page/:page" element={<Shirts />} />
+            <Route path="/shirts/:subCategory" element={<Shirts />} />
+            <Route path="/shirts/:subCategory/page/:page" element={<Shirts />} />
 
-              <Route path="/pants" element={<Pants />} />
-              <Route path="/pants/page/:page" element={<Pants />} />
-              <Route path="/pants/:subCategory" element={<Pants />} />
-              <Route path="/pants/:subCategory/page/:page" element={<Pants />} />
+            <Route path="/pants" element={<Pants />} />
+            <Route path="/pants/page/:page" element={<Pants />} />
+            <Route path="/pants/:subCategory" element={<Pants />} />
+            <Route path="/pants/:subCategory/page/:page" element={<Pants />} />
 
-              <Route path="/tops" element={<Tops />} />
-              <Route path="/tops/page/:page" element={<Tops />} />
-              <Route path="/tops/:subCategory" element={<Tops />} />
-              <Route path="/tops/:subCategory/page/:page" element={<Tops />} />
+            <Route path="/tops" element={<Tops />} />
+            <Route path="/tops/page/:page" element={<Tops />} />
+            <Route path="/tops/:subCategory" element={<Tops />} />
+            <Route path="/tops/:subCategory/page/:page" element={<Tops />} />
 
-              <Route path="/accessories" element={<Accessories />} /> 
-              <Route path="/accessories/page/:page" element={<Accessories />} />
-              <Route path="/accessories/:subCategory" element={<Accessories />} />
-              <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />              
-              <Route path="/cart-drop-down" element={<CartDropdown />} />
-              <Route path="/cart"element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/order-confirmation" element={<OrderConfirmation />} />
-              <Route path="/order"element={<ProtectedRoute><Order /></ProtectedRoute>}/>
-              <Route path="/forgotpassword/email" element={<PublicOnlyRoute><EmailInput /></PublicOnlyRoute>} />
-              <Route path="/forgotpassword/reset" element={<PublicOnlyRoute><ResetPassword /></PublicOnlyRoute>} />
-              <Route path="/deleteaccount" element={<DeleteAccount />} />
-            </Routes>
-          </Content>
-          <Footer />
-        </LayoutContainer>
-      </HashRouter>
+            <Route path="/accessories" element={<Accessories />} /> 
+            <Route path="/accessories/page/:page" element={<Accessories />} />
+            <Route path="/accessories/:subCategory" element={<Accessories />} />
+            <Route path="/accessories/:subCategory/page/:page" element={<Accessories />} />              
+            <Route path="/cart-drop-down" element={<CartDropdown />} />
+            <Route path="/cart"element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/order-confirmation" element={<OrderConfirmation />} />
+            <Route path="/order"element={<ProtectedRoute><Order /></ProtectedRoute>}/>
+            <Route path="/forgotpassword/email" element={<PublicOnlyRoute><EmailInput /></PublicOnlyRoute>} />
+            <Route path="/forgotpassword/reset" element={<PublicOnlyRoute><ResetPassword /></PublicOnlyRoute>} />
+            <Route path="/deleteaccount" element={<DeleteAccount />} />
+          </Routes>
+        </Content>
+        <Footer />
+      </LayoutContainer>
     );
   };
 
