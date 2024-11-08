@@ -17,13 +17,13 @@ const rootContainer = createRoot(root);
 const queryClient = new QueryClient();
 
 //生產環境的網址與開發環境的網址切換
-const basename = process.env.REACT_APP_BASENAME || '/';
+// const basename = process.env.REACT_APP_BASENAME || '/';
 
 rootContainer.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
-      <HashRouter  basename={basename}>
+      <HashRouter>
       <App />
       </HashRouter >
       <ReactQueryDevtools initialIsOpen={false} /> 
