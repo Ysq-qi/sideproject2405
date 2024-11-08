@@ -41,6 +41,7 @@ const PublicOnlyRoute = ({ children }) => {
 
 const App = () => {
     return (
+      <HashRouter>
         <LayoutContainer>
           <GlobalStyles />
           <AuthListener />
@@ -95,6 +96,7 @@ const App = () => {
           </Content>
           <Footer />
         </LayoutContainer>
+      </HashRouter>
     );
   };
 
