@@ -32,9 +32,9 @@ const ResetPassword = () => {
 
   // 組件掛載時 判斷是否有oobCode 或 apiKey
   useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const oobCode = queryParams.get('oobCode');
-    const apiKey = queryParams.get('apiKey');
+    const hashParams = new URLSearchParams(window.location.hash.split('?')[1]);
+    const oobCode = hashParams.get('oobCode');
+    const apiKey = hashParams.get('apiKey');
 
     // 如果 oobCode 或 apiKey 缺失，重定向到首頁
     if (!oobCode || !apiKey) {
