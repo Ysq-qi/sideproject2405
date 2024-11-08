@@ -79,11 +79,9 @@ const ResetPassword = () => {
       return;
     }
 
-    const oobCode = new URLSearchParams(window.location.search).get('oobCode'); // 從 URL 中獲取 OOB Code
-    if (!oobCode) {
-      window.alert('驗證碼無效');
-      return;
-    }
+    // 從 URL 中的 hash 部分提取 oobCode
+    const hashParams = new URLSearchParams(window.location.hash.split('?')[1]);
+    const oobCode = hashParams.get('oobCode');
 
     try {
       // 調用重設密碼的異步操作
