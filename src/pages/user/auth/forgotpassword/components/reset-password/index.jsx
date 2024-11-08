@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword, setPasswordValid, setPasswordError, setConfirmPasswordValid, setConfirmPasswordError } from '../../forgotPasswordSlice';
+import {
+  validatePassword,
+  validateConfirmPassword
+} from '../../../../../../utils/validation';
 import {
   ForgotPasswordContainer,
   ForgotPasswordTitle,
@@ -9,101 +13,133 @@ import {
   Label,
   Input,
   Button,
-  ErrorText
+  ErrorText,
+  SuccessText,
+  HelperText
 } from '../../style';
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { passwordValid, confirmPasswordValid, passwordError, confirmPasswordError, loading } = useSelector((state) => state.forgotPassword);
 
-  // 針對 "輸入新密碼" 進行格式驗證
-  const validatePassword = (password) => {
-    let errorMessage = '';
-    const re = /^[A-Z].{7,}$/; // 要求第一個字母必須是大寫且總長度至少8個字符
-    const hasUpperCaseFirst = /^[A-Z]/.test(password); // 檢查第一個字母是否是大寫
-    const isValidLength = password.length >= 8;
+  // 本地狀態
+  const [formData, setFormData] = useState({
+    password: '',
+    confirmPassword: ''
+  });
+  const [error, setError] = useState('');
 
-    if (!hasUpperCaseFirst) {
-      errorMessage = '首位必須大寫';
-    } else if (!isValidLength) {
-      errorMessage = '至少8個字符';
+  // 組件掛載時 判斷是否有oobCode 或 apiKey
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const oobCode = queryParams.get('oobCode');
+    const apiKey = queryParams.get('apiKey');
+
+    // 如果 oobCode 或 apiKey 缺失，重定向到首頁
+    if (!oobCode || !apiKey) {
+      navigate('/');
     }
+  }, [navigate]);
 
-    const isValid = re.test(password);
-    dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(isValid ? '' : errorMessage));
+  // 處理輸入變化
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  // 針對 "確認新密碼" 進行格式驗證
-  const validateConfirmPassword = (password, confirmPassword) => {
-    const isValid = confirmPassword === password && passwordValid;
+  // 驗證新密碼格式
+  const handlePasswordValidation = (password) => {
+    const isValid = validatePassword(password);
+    dispatch(setPasswordValid(isValid));
+    dispatch(setPasswordError(isValid ? '' : '密碼格式錯誤'));
+  };
+
+  // 驗證確認密碼
+  const handleConfirmPasswordValidation = (password, confirmPassword) => {
+    const isValid = validateConfirmPassword(password, confirmPassword);
     dispatch(setConfirmPasswordValid(isValid));
     dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
   };
 
-  const handleSubmit = (e) => {
+  // 密碼更改
+  const handlePasswordChange = async (e) => {
     e.preventDefault();
+    const { password } = formData;
+
     // 驗證新密碼格式
     if (!passwordValid) {
-      setError('新密碼格式不正確');
+      window.alert('新密碼格式不正確');
       return;
     }
 
     // 驗證確認密碼是否一致
     if (!confirmPasswordValid) {
-      setError('確認密碼與新密碼不一致');
+      window.alert('確認密碼與新密碼不一致');
       return;
     }
 
     const oobCode = new URLSearchParams(window.location.search).get('oobCode'); // 從 URL 中獲取 OOB Code
     if (!oobCode) {
-      setError('驗證碼無效');
+      window.alert('驗證碼無效');
       return;
     }
 
-    // 調用重設密碼的異步操作
-    dispatch(resetPassword({ oobCode, password }))
-      .unwrap()
-      .then(() => {
-        window.alert('密碼已重設，請重新登入');
-        navigate('/login');
-      })
-      .catch((err) => setError(err));
+    try {
+      // 調用重設密碼的異步操作
+      await dispatch(resetPassword({ oobCode, password })).unwrap();
+      window.alert('密碼已重設，請重新登入');
+      navigate('/login');
+    } catch (err) {
+      console.error('重設密碼失敗:', err);
+      setError(err.message || '重設密碼失敗');
+    }
   };
 
   return (
     <ForgotPasswordContainer>
       <ForgotPasswordTitle>重設密碼</ForgotPasswordTitle>
       <ForgotPasswordBox>
-        <form onSubmit={handleSubmit}>
-          <Label>請輸入您的新密碼</Label>
+        <form onSubmit={handlePasswordChange}>
+          <Label>輸入新密碼:</Label>
           <Input
             type="password" 
-            placeholder="New Password" 
-            value={password} 
+            name="password"
+            placeholder="輸入新密碼" 
+            maxLength={20}
+            value={formData.password} 
             onChange={(e) => {
-              setPassword(e.target.value);
-              validatePassword(e.target.value);
+              handleChange(e);
+              handlePasswordValidation(e.target.value);
             }}
             required 
           />
-          {passwordError && <ErrorText>{passwordError}</ErrorText>}
-          <Label>請確認您的新密碼</Label>
+          {formData.password &&
+            (passwordValid ? (
+              <SuccessText>○</SuccessText>
+            ) : (
+              <ErrorText>✗ {passwordError}</ErrorText>
+            ))}
+          <HelperText>密碼必須以大寫字母開頭，且至少有8個字符</HelperText>
+          <Label>確認新密碼:</Label>
           <Input 
             type="password" 
-            placeholder="Confirm New Password" 
-            value={confirmPassword} 
+            name="confirmPassword"
+            placeholder="確認新密碼"
+            maxLength={20} 
+            value={formData.confirmPassword} 
             onChange={(e) => {
-              setConfirmPassword(e.target.value);
-              validateConfirmPassword(password, e.target.value);
+              handleChange(e);
+              handleConfirmPasswordValidation(formData.password, e.target.value);
             }}
             required 
           />
-          {confirmPasswordError && <ErrorText>{confirmPasswordError}</ErrorText>}
+          {formData.confirmPassword &&
+            (confirmPasswordValid ? (
+              <SuccessText>○</SuccessText>
+            ) : (
+              <ErrorText>✗ {confirmPasswordError}</ErrorText>
+            ))}
           {error && <ErrorText>{error}</ErrorText>}
           <Button type="submit" disabled={loading}>重設密碼</Button>
         </form>

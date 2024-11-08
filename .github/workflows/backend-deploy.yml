@@ -1,9 +1,7 @@
 name: Firebase Functions Deployment
 
 on:
-  push:
-    branches:
-      - main  # 當推送到 main 分支時觸發此工作流程
+  workflow_dispatch:  # 設置為手動觸發
 
 jobs:
   deploy-functions:

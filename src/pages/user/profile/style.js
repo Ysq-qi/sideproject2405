@@ -55,8 +55,29 @@ export const ProfileItem = styled.div`
   }
 `;
 
+export const AddressRow = styled.div`
+  width: 250px; 
+  align-items: center;
+  justify-content: center;
+
+    select {
+    width: 90px;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+`;
+
+export const AddressInput = styled.input`
+  width: 70px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+`;
+
 export const Input = styled.input`
-  width: 50%; 
+  width: 230px; 
   padding: 10px;
   margin-left: 10px;
   border: 1px solid #ccc;

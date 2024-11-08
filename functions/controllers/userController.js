@@ -1,4 +1,6 @@
 const { db, admin } = require('../config/firebaseAdmin');
+const { isProtectedAccount } = require('../utils/authHelpers');
+
 
 // 前端建立用戶 後端新增firestore資料庫文檔
 exports.createUser = async (req, res) => {
@@ -15,6 +17,8 @@ exports.createUser = async (req, res) => {
         address: "",
         birthday: "",
       },
+      roles: ["user"], // 默認為一般用戶
+      isProtected: false
     });
 
     // 創建 carts 集合中的購物車文檔
@@ -96,6 +100,12 @@ exports.changePassword = async (req, res) => {
   const { uid } = req.user;
   const { newPassword } = req.body;
 
+  // 檢查是否為受保護帳號
+  if (await isProtectedAccount(uid)) {
+    return res.status(403).json({ error: "此帳號不可執行變更密碼的行為" });
+  }
+
+  // 檢查新密碼是否有變動
   if (!newPassword) {
     return res.status(400).json({ error: "請提供新密碼" });
   }
@@ -112,6 +122,11 @@ exports.changePassword = async (req, res) => {
 // 後端刪除用戶及其相關文檔 (deleteAccount組件)
 exports.deleteUserAccount = async (req, res) => {
   const { uid } = req.user;
+
+  // 檢查是否為受保護帳號
+  if (await isProtectedAccount(uid)) {
+    return res.status(403).send({ error: "此帳號不可執行刪除帳號的行為" });
+  }
 
   try {
     // 刪除 Firestore 中的用戶資料

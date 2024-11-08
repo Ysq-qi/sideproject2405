@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteUserAccount } from './deleteAccountSlice';
 import {
   DeleteAccountContainer,
@@ -9,7 +9,6 @@ import {
   Label,
   Input,
   Button,
-  ErrorText
 } from './style';
 
 const DeleteAccount = () => {
@@ -17,7 +16,6 @@ const DeleteAccount = () => {
   const [confirmationText, setConfirmationText] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error } = useSelector((state) => state.deleteAccount);
 
   // 執行帳號刪除功能
   const handleAccountDelete = (e) => {
@@ -25,20 +23,39 @@ const DeleteAccount = () => {
 
     // 檢查確認文字是否正確
     if (confirmationText !== '刪除帳號') {
-      return dispatch({ type: 'deleteUser/setError', payload: '請正確輸入 "刪除帳號" 來確認刪除' });
+      dispatch({ type: 'deleteUser/setError', payload: '請正確輸入 "刪除帳號" 來確認刪除' });
+      return;
     }
 
-    // 調用刪除帳號的 Redux Action
+    // 調用刪除帳號的異步操作函式
     dispatch(deleteUserAccount({ password, confirmationText }))
-      .then(() => {
-        window.alert('帳號已成功刪除');
-        navigate('/');
+      .then((result) => {
+        if (result.meta && result.meta.requestStatus === 'fulfilled') {
+          window.alert('帳號已成功刪除');
+          navigate('/');
+        }
       })
       .catch((err) => {
-        console.error('Error while deleting account:', err);
-        window.alert('刪除帳號失敗');
-      });
+        const errorMessage = err.response?.status === 403 
+          ? err.response.data.error 
+          : '刪除帳號失敗';
+        window.alert(errorMessage);
+      })
+      .finally(() => {
+          setPassword('');
+          setConfirmationText('');
+          dispatch({ type: 'deleteUser/clearError' }); 
+        }, 3000);
   };
+
+  // 當組件卸載時，清空所有輸入欄位和錯誤訊息
+  useEffect(() => {
+    return () => {
+      setPassword('');
+      setConfirmationText('');
+      dispatch({ type: 'deleteUser/clearError' });
+    };
+  }, [dispatch]);
 
   return (
     <DeleteAccountContainer>
@@ -51,6 +68,7 @@ const DeleteAccount = () => {
             type="password"
             placeholder="Password"
             value={password}
+            maxLength={20}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
             required
@@ -62,11 +80,10 @@ const DeleteAccount = () => {
             type="text"
             placeholder="刪除帳號"
             value={confirmationText}
+            maxLength={20}
             onChange={(e) => setConfirmationText(e.target.value)}
             required
           />
-
-          {error && <ErrorText>{error}</ErrorText>}
           <Button type="submit" disabled={password === '' || confirmationText !== '刪除帳號'}>
             刪除帳號
           </Button>

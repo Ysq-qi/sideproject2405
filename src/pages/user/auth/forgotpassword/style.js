@@ -65,7 +65,6 @@ export const HelperText = styled.div`
   font-size: 12px;
   color: #777;
   margin-top: 10px;
-  text-align: center;
   height: 30px;
 `;
 

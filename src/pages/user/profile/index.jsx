@@ -29,6 +29,7 @@ import {
   SuccessText,
   HelperText,
 } from './style';
+import AddressSelector from './components/AddressSelector';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -146,16 +147,24 @@ const Profile = () => {
       }
 
       // 執行密碼變更操作
-      await dispatch(changePassword(password)).unwrap();
+      await dispatch(changePassword(password))
+        .unwrap()
+        .then(() => {
+          window.alert('密碼已成功更新，您將被登出並返回首頁');
 
-      // 密碼變更成功後提示並登出
-      window.alert('密碼已成功更新，您將被登出並返回首頁');
-
-      // 登出用戶並重定向到首頁
-      await auth.signOut();
-      navigate('/');
+          // 登出用戶並重定向到首頁
+          auth.signOut();
+          navigate('/');
+        })
+        .catch((error) => {
+          // 檢查是否為 403 錯誤
+          if (error.response?.status === 403) {
+            window.alert(error.response.data.error || '此帳號無法變更密碼');
+          } else {
+            window.alert('密碼更新失敗');
+          }
+        });
     } catch (error) {
-      console.error('更新密碼失敗:', error);
       window.alert('密碼更新失敗');
     }
   };
@@ -209,17 +218,7 @@ const Profile = () => {
             onChange={handleChange}
           />
         </ProfileItem>
-        <ProfileItem>
-          <label>地址:</label>
-          <Input
-            type="text"
-            name="address"
-            placeholder="請輸入地址"
-            maxLength={50}
-            value={formData.address}
-            onChange={handleChange}
-          />
-        </ProfileItem>
+        <AddressSelector formData={formData} setFormData={setFormData} />
         <FormButton onClick={handleSave}>確定修改</FormButton>
       </ProfileSection>
       <Line />

@@ -33,6 +33,12 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
+// PublicOnlyRoute 組件：檢查是否已登入，若已登入則重定向至 /
+const PublicOnlyRoute = ({ children }) => {
+  const { isAuthenticated } = useSelector((state) => state.login);
+  return !isAuthenticated ? children : <Navigate to="/" replace />;
+};
+
 const App = () => {
     return (
         <LayoutContainer>
@@ -43,7 +49,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/register" element={<PublicOnlyRoute><Register /></PublicOnlyRoute>} />
               <Route path="/profile"element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
 
               <Route path="/product/:productId" element={<ProductDetail />} />
@@ -82,8 +88,8 @@ const App = () => {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
               <Route path="/order"element={<ProtectedRoute><Order /></ProtectedRoute>}/>
-              <Route path="/forgotpassword/email" element={<EmailInput />} />
-              <Route path="/forgotpassword/reset" element={<ResetPassword />} />
+              <Route path="/forgotpassword/email" element={<PublicOnlyRoute><EmailInput /></PublicOnlyRoute>} />
+              <Route path="/forgotpassword/reset" element={<PublicOnlyRoute><ResetPassword /></PublicOnlyRoute>} />
               <Route path="/deleteaccount" element={<DeleteAccount />} />
             </Routes>
           </Content>

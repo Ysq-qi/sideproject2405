@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { deleteUserAccountApi } from '../../../../api/userApi';
 
+// 帳號用戶刪除
 export const deleteUserAccount = createAsyncThunk(
   'deleteAccount/deleteUserAccount',
   async (_, { rejectWithValue }) => {

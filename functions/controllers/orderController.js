@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 // 提交訂單
 exports.submitOrder = async (req, res) => {
-  const userId = req.user.uid; // 獲取用戶的 UID
+  const { uid } = req.user;
   const {
     cartItems,
     user,
@@ -41,13 +41,13 @@ exports.submitOrder = async (req, res) => {
     };
 
     // 將訂單生成在該用戶 UID 文檔的子文檔中，使用 orderId 作為子文檔 ID
-    const orderRef = db.collection('orders').doc(userId).collection('orders').doc(orderId);
+    const orderRef = db.collection('orders').doc(uid).collection('orders').doc(orderId);
     
     // 將訂單數www據寫入子文檔
     await orderRef.set(orderData);
 
     // 清空用戶的購物車
-    await db.collection('carts').doc(userId).set({ items: [] });
+    await db.collection('carts').doc(uid).set({ items: [] });
 
     // 獲取剛剛保存的訂單數據，並返回解析過的 createdAt
     const savedOrder = await orderRef.get();
@@ -62,10 +62,10 @@ exports.submitOrder = async (req, res) => {
 
 // 獲取訂單
 exports.getOrders = async (req, res) => {
-  const userId = req.user.uid;
+  const { uid } = req.user;
 
   try {
-    const ordersRef = db.collection('orders').doc(userId).collection('orders');
+    const ordersRef = db.collection('orders').doc(uid).collection('orders');
     const snapshot = await ordersRef.orderBy('createdAt', 'desc').get();
 
     const orders = snapshot.docs.map(doc => {

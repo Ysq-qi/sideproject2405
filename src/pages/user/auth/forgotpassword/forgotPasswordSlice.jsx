@@ -12,11 +12,11 @@ export const sendResetEmail = createAsyncThunk('forgotPassword/sendResetEmail', 
   }
 });
 
-// 重設密碼的異步操作
+// 重設用戶密碼的異步操作
 export const resetPassword = createAsyncThunk('forgotPassword/resetPassword', async ({ oobCode, password }, { rejectWithValue }) => {
   try {
-    await confirmPasswordReset(auth, oobCode, password); // 使用 OOB Code 重設密碼
-    return '密碼重設成功';
+    await confirmPasswordReset(auth, oobCode, password);
+    return '密碼已重設';
   } catch (error) {
     return rejectWithValue(error.message);
   }
@@ -78,6 +78,7 @@ const forgotPasswordSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // 發送重置郵件
       .addCase(sendResetEmail.pending, (state) => {
         state.loading = true;
         state.error = '';
@@ -88,8 +89,9 @@ const forgotPasswordSlice = createSlice({
       })
       .addCase(sendResetEmail.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || '發送郵件失敗';
       })
+      // 重設密碼
       .addCase(resetPassword.pending, (state) => {
         state.loading = true;
         state.error = '';
@@ -100,7 +102,7 @@ const forgotPasswordSlice = createSlice({
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || '重設密碼失敗';
       });
   }
 });
