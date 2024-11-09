@@ -40,7 +40,6 @@ const Profile = () => {
     confirmPasswordValid,
     passwordError,
     confirmPasswordError,
-    error,
   } = useSelector((state) => state.profile);
   const { isAuthenticated, loading } = useSelector((state) => state.login);
 
@@ -122,52 +121,60 @@ const Profile = () => {
     dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
   };
 
-  // 變更密碼
+  // 處理變更密碼
   const handlePasswordChange = async () => {
     const { oldPassword, password } = formData;
-
+    let shouldProceed = true;
+    let errorMessages = [];
+  
     try {
-      // 先驗證原密碼
+      // 驗證原密碼
       const isOldPasswordValid = await verifyOldPassword(oldPassword);
       if (!isOldPasswordValid) {
-        window.alert('原密碼不正確');
-        return;
+        errorMessages.push('原密碼不正確');
+        shouldProceed = false;
       }
-
+  
       // 驗證新密碼格式
       if (!passwordValid) {
-        window.alert('新密碼格式不正確');
-        return;
+        errorMessages.push('新密碼格式不正確');
+        shouldProceed = false;
       }
-
+  
       // 驗證確認密碼是否一致
       if (!confirmPasswordValid) {
-        window.alert('確認密碼與新密碼不一致');
+        errorMessages.push('確認密碼與新密碼不一致');
+        shouldProceed = false;
+      }
+  
+      // 如果有錯誤訊息，顯示並清除表單欄位
+      if (errorMessages.length > 0) {
+        window.alert(errorMessages.join('\n'));
+        setFormData({ oldPassword: '', password: '', confirmPassword: '' });
         return;
       }
-
-      // 執行密碼變更操作
-      await dispatch(changePassword(password))
-        .unwrap()
-        .then(() => {
-          window.alert('密碼已成功更新，您將被登出並返回首頁');
-
-          // 登出用戶並重定向到首頁
-          auth.signOut();
-          navigate('/');
-        })
-        .catch((error) => {
-          // 檢查是否為 403 錯誤
-          if (error.response?.status === 403) {
-            window.alert(error.response.data.error || '此帳號無法變更密碼');
-          } else {
-            window.alert('密碼更新失敗');
-          }
-        });
+  
+      // 如果所有驗證都通過，進行密碼變更
+      if (shouldProceed) {
+        await dispatch(changePassword(password)).unwrap();
+        window.alert('密碼已成功更新，您將被登出並返回首頁');
+  
+        // 登出用戶並重定向到首頁
+        await auth.signOut();
+        navigate('/');
+      }
     } catch (error) {
-      window.alert('密碼更新失敗');
+      // 檢查是否為 403 錯誤
+      if (error.response?.status === 403) {
+        window.alert(error.response.data.error || '此帳號無法變更密碼');
+      } else {
+        window.alert('密碼更新失敗');
+      }
+    } finally {
+    // 如果發生異常（但不包括驗證失敗），這裡仍會清除表單
+      setFormData({ oldPassword: '', password: '', confirmPassword: '' });
     }
-  };
+  };  
 
   return (
     <ProfileContainer>
@@ -229,6 +236,7 @@ const Profile = () => {
             type="password"
             name="oldPassword"
             maxLength={20}
+            value={formData.oldPassword}
             onChange={handleChange}
           />
         </ProfileItem>
@@ -238,6 +246,7 @@ const Profile = () => {
             type="password"
             name="password"
             maxLength={20}
+            value={formData.password}
             onChange={(e) => {
               handleChange(e);
               handlePasswordValidation(e.target.value);
@@ -257,6 +266,7 @@ const Profile = () => {
             type="password"
             name="confirmPassword"
             maxLength={20}
+            value={formData.confirmPassword}
             onChange={(e) => {
               handleChange(e);
               handleConfirmPasswordValidation(formData.password, e.target.value);
@@ -272,7 +282,6 @@ const Profile = () => {
         <FormButton onClick={handlePasswordChange}>變更密碼</FormButton>
         <FormButton onClick={() => navigate('/')}>取消</FormButton>
       </PasswordSection>
-      {error && <div>錯誤: {error}</div>}
     </ProfileContainer>
   );
 };

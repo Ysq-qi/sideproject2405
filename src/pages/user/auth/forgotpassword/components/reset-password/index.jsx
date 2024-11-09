@@ -62,7 +62,7 @@ const ResetPassword = () => {
     dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
   };
 
-  // 密碼更改
+  // 處理變更密碼
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     const { password } = formData;
