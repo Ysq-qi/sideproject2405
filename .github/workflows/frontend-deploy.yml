@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 當推送到 main 分支時觸發工作流。
+      - main
+  workflow_dispatch:  # 手動執行的配置
 
 jobs:
   build:
