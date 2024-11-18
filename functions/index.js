@@ -1,4 +1,3 @@
-const cors = require('cors');
 const functions = require("firebase-functions");
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
@@ -11,6 +10,7 @@ const homeRoutes = require('./routes/homeRoutes');
 const app = express();
 
 // 配置 CORS
+const cors = require('cors');
 const allowedOrigins = [
   'http://localhost:3000',
   'https://ysq-qi.github.io',
@@ -46,5 +46,7 @@ app.use('/orders', orderRoutes);
 app.use('/products', cacheControl, productRoutes);
 app.use('/home', cacheControl, homeRoutes);
 
-// 將 Express 應用綁定到 Firebase Function
-exports.api = functions.https.onRequest(app);
+// 將 Express 應用綁定到 Firebase Function，並設定地區
+exports.api = functions
+  .https
+  .onRequest({ region: 'asia-east1' }, app);
