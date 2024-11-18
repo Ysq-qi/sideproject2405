@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import { LayoutContainer, Content } from './styles/layoutstyle';
 import { GlobalStyles } from './styles/style'
 import AuthListener from './components/auth-listener';
@@ -10,6 +9,8 @@ import Home from './pages/home';
 import Login from './pages/user/login';
 import Register from './pages/user/register';
 import Profile from './pages/user/profile';
+import ProtectedRoute from './routes/protectedRoute';
+import PublicOnlyRoute from './routes/publiceonlyRoute';
 import ProductDetail from './pages/product/product-detail';
 import ProductDisplay from './pages/product/product-display';
 import ProductSearch from './pages/product/product-search';
@@ -27,17 +28,8 @@ import EmailInput from './pages/user/auth/forgotpassword/components/email-input'
 import ResetPassword from './pages/user/auth/forgotpassword/components/reset-password'
 import DeleteAccount from './pages/user/auth/deleteAccount'
 
-// ProtectedRoute 組件：檢查是否已登入，若未登入則重定向至 /login
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useSelector((state) => state.login);
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
-};
+import ProjectIntroduction from './components/product-introduction'
 
-// PublicOnlyRoute 組件：檢查是否已登入，若已登入則重定向至 /
-const PublicOnlyRoute = ({ children }) => {
-  const { isAuthenticated } = useSelector((state) => state.login);
-  return !isAuthenticated ? children : <Navigate to="/" replace />;
-};
 
 const App = () => {
     return (
@@ -58,6 +50,8 @@ const App = () => {
             <Route path="/products/:id/page/:page" element={<ProductDisplay />} />
 
             <Route path="/search" element={<ProductSearch />} />
+
+            <Route path="/filter" element={<ProjectIntroduction />} />
 
             <Route path="/jackets" element={<Jackets />} />
             <Route path="/jackets/page/:page" element={<Jackets />} />

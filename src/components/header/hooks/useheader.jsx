@@ -10,10 +10,10 @@ const useHeaderNavigation = () => {
   const dispatch = useDispatch();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const searchWrapperRef = useRef(null);
-
   const { user, isAuthenticated } = useSelector((state) => state.login);
+  const searchWrapperRef = useRef(null); // 防止重新渲染
 
+  // 執行登出
   const handleLogout = async () => {
     try {
       await auth.signOut();  // Firebase登出
@@ -24,6 +24,7 @@ const useHeaderNavigation = () => {
     }
   };
 
+  // 執行搜尋點擊
   const handleSearchClick = () => {
     if (searchTerm.trim()) {
       navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
@@ -31,13 +32,18 @@ const useHeaderNavigation = () => {
     }
   };
 
+  // 即時取得搜尋框框的輸入文字變化
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
+  // 當滑鼠進來時 搜尋框打開
   const handleWrapperMouseEnter = () => setIsSearchOpen(true);
+
+  // 當滑鼠離開時 搜尋框關閉
   const handleWrapperMouseLeave = () => {
     if (searchTerm.trim() === '') setIsSearchOpen(false);
   };
 
+  // 導航按鈕
   const navItems = [
     { link: '/jackets', label: '夾克' },
     { link: '/shirts', label: '襯衫' },

@@ -20,7 +20,7 @@ const queryClient = new QueryClient();
 // const basename = process.env.REACT_APP_BASENAME || '/';
 
 rootContainer.render(
-  <React.StrictMode>
+  <>
     <ReduxProvider store={store}>
       <QueryClientProvider client={queryClient}>
       <HashRouter>
@@ -29,5 +29,5 @@ rootContainer.render(
       <ReactQueryDevtools initialIsOpen={false} /> 
       </QueryClientProvider>
     </ReduxProvider>
-  </React.StrictMode>
+  </>
 );

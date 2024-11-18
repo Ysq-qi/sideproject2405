@@ -16,14 +16,14 @@ const useProductDisplay = () => {
   useEffect(() => {
     if (id) {
       dispatch(fetchProductsForDisplay(id)).catch((err) => {
-        handleError('api', err); // API 錯誤處理
+        handleError('api', err);
       });
     }
   }, [id, dispatch]);
 
   const handlePageChange = (page) => {
     if (page < 1 || page > Math.ceil(products.length / itemsPerPage)) {
-      handleError('navigation', new Error('Invalid page number')); // 分頁錯誤處理
+      handleError('navigation', new Error('Invalid page number'));
       return;
     }
     setCurrentPage(page);

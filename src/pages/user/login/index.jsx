@@ -48,27 +48,40 @@ const Login = () => {
     isAuthenticated
   } = useSelector((state) => state.login);
 
+  // 處理信箱輸入變化
   const handleEmailChange = (e) => {
     const inputEmail = e.target.value;
     dispatch(setEmail(inputEmail));
-    const isValid = validateEmail(inputEmail);
+    
+    const errorMessage = validateEmail(inputEmail);
+    const isValid = errorMessage === "";
+  
     dispatch(setEmailValid(isValid));
-    dispatch(setEmailError(isValid ? '' : '信箱格式錯誤'));
+    dispatch(setEmailError(errorMessage));
   };
-
+  
+  // 處理密碼驗證
   const handlePasswordChange = (e) => {
     const inputPassword = e.target.value;
     dispatch(setPassword(inputPassword));
-    const isValid = validatePassword(inputPassword);
+    
+    const errorMessage = validatePassword(inputPassword);
+    const isValid = errorMessage === "";
+  
     dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(isValid ? '' : '密碼格式錯誤'));
+    dispatch(setPasswordError(errorMessage));
   };
 
+  // 處理登入邏輯
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!emailValid || !passwordValid) {
       dispatch(setLoginError('請檢查所有欄位是否正確'));
+      setTimeout(() => {
+        dispatch(setLoginError(''));
+        dispatch(resetForm());
+      }, 3000);
       return;
     }
 

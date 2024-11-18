@@ -50,16 +50,21 @@ const ResetPassword = () => {
 
   // 驗證新密碼格式
   const handlePasswordValidation = (password) => {
-    const isValid = validatePassword(password);
+    const errorMessage = validatePassword(password);
+    const isValid = errorMessage === "";
+    
     dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(isValid ? '' : '密碼格式錯誤'));
+    dispatch(setPasswordError(errorMessage));
   };
-
+  
   // 驗證確認密碼
-  const handleConfirmPasswordValidation = (password, confirmPassword) => {
-    const isValid = validateConfirmPassword(password, confirmPassword);
+  const handleConfirmPasswordValidation = (e) => {
+    const confirmPassword = e.target.value;
+    const errorMessage = validateConfirmPassword(formData.password, confirmPassword);
+    const isValid = errorMessage === "";
+    
     dispatch(setConfirmPasswordValid(isValid));
-    dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
+    dispatch(setConfirmPasswordError(errorMessage));
   };
 
   // 處理變更密碼
@@ -84,7 +89,6 @@ const ResetPassword = () => {
     const oobCode = hashParams.get('oobCode');
 
     try {
-      // 調用重設密碼的異步操作
       await dispatch(resetPassword({ oobCode, password })).unwrap();
       window.alert('密碼已重設，請重新登入');
       navigate('/login');

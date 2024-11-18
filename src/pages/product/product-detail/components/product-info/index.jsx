@@ -28,6 +28,7 @@ const ProductDetailInfo = ({ product }) => {
     dispatch(resetSelections());
   }, [dispatch]);
 
+  // 驗證數量是否足夠
   const validateStock = useCallback(() => {
     const stockForSelectedColor = product.stock[selectedColor];
     const stockForSelectedSize = stockForSelectedColor[selectedSize];
@@ -40,6 +41,7 @@ const ProductDetailInfo = ({ product }) => {
     return true;
   }, [product, selectedColor, selectedSize, quantity, dispatch]);
 
+  // 添加至購物車  
   const handleAddToCart = useCallback(() => {
     if (!validateStock()) return;
 

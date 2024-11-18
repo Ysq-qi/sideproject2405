@@ -27,7 +27,6 @@ import {
   FormButton,
   ErrorText,
   SuccessText,
-  HelperText,
 } from './style';
 import AddressSelector from './components/AddressSelector';
 
@@ -55,6 +54,10 @@ const Profile = () => {
     confirmPassword: '',
   });
 
+  // 處理輸入變化
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
   // 掛載時取得用戶資料
   useEffect(() => {
     if (!loading && isAuthenticated) {
@@ -70,10 +73,6 @@ const Profile = () => {
       setFormData((prev) => ({ ...prev, ...profile }));
     }
   }, [profile]);
-
-  // 處理輸入變化
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   // 保存用戶資料
   const handleSave = async () => {
@@ -93,7 +92,7 @@ const Profile = () => {
     }
   };
 
-  // 驗證原密碼
+  // 驗證原密碼(放在組件內部 涉及firebase auth)
   const verifyOldPassword = async (oldPassword) => {
     const user = auth.currentUser;
     const credential = EmailAuthProvider.credential(user.email, oldPassword);
@@ -107,18 +106,26 @@ const Profile = () => {
     }
   };
 
-  // 驗證新密碼格式
-  const handlePasswordValidation = (password) => {
-    const isValid = validatePassword(password);
+  // 處理輸入信密碼驗證 (輸入新密碼)
+  const handlePasswordValidation = (e) => {
+    const password = e.target.value;
+    const errorMessage = validatePassword(password);
+    const isValid = errorMessage === "";
+
     dispatch(setPasswordValid(isValid));
-    dispatch(setPasswordError(isValid ? '' : '密碼格式錯誤'));
+    dispatch(setPasswordError(errorMessage));
+    handleChange(e);
   };
 
-  // 驗證確認密碼
-  const handleConfirmPasswordValidation = (password, confirmPassword) => {
-    const isValid = validateConfirmPassword(password, confirmPassword);
+  // 處理確認新密碼驗證 (確認新密碼)
+  const handleConfirmPasswordValidation = (e) => {
+    const confirmPassword = e.target.value;
+    const errorMessage = validateConfirmPassword(formData.password, confirmPassword);
+    const isValid = errorMessage === "";
+    
     dispatch(setConfirmPasswordValid(isValid));
-    dispatch(setConfirmPasswordError(isValid ? '' : '密碼不匹配'));
+    dispatch(setConfirmPasswordError(errorMessage));
+    handleChange(e);
   };
 
   // 處理變更密碼
@@ -247,10 +254,7 @@ const Profile = () => {
             name="password"
             maxLength={20}
             value={formData.password}
-            onChange={(e) => {
-              handleChange(e);
-              handlePasswordValidation(e.target.value);
-            }}
+            onChange={handlePasswordValidation}
           />
           {formData.password &&
             (passwordValid ? (
@@ -259,7 +263,6 @@ const Profile = () => {
               <ErrorText>✗ {passwordError}</ErrorText>
             ))}
         </ProfileItem>
-        <HelperText>密碼必須以大寫字母開頭，且至少有8個字符</HelperText>
         <ProfileItem>
           <label>確認新密碼:</label>
           <Input
@@ -267,10 +270,7 @@ const Profile = () => {
             name="confirmPassword"
             maxLength={20}
             value={formData.confirmPassword}
-            onChange={(e) => {
-              handleChange(e);
-              handleConfirmPasswordValidation(formData.password, e.target.value);
-            }}
+            onChange={handleConfirmPasswordValidation}
           />
           {formData.confirmPassword &&
             (confirmPasswordValid ? (

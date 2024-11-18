@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    /* Target and Module */
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+
+    /* Paths and Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/"]
+    },
+
+    /* Enable strict checks */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Additional Linting Options */
+    "noUncheckedIndexedAccess": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+
+    /* Type Checking */
+    "noEmit": true,
+
+    /* Import Helpers */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "dist-*"]
+}
