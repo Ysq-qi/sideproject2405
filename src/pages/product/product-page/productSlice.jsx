@@ -58,6 +58,14 @@ const productSlice = createSlice({
     itemsPerPage: 15,
   },
   reducers: {
+    resetCategoryProducts: (state) => {
+      // 清空分類數據
+      state.products = [];
+      state.filteredProducts = [];
+      state.currentPage = 1;
+      state.selectedCategory = '全部商品';
+      state.sortOrder = 'default';
+    },
     updateCategory(state, action) {
       state.selectedCategory = action.payload;
       state.sortOrder = 'default';
@@ -83,5 +91,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { updateCategory, updateSortOrder, setPage, resetSortOrder  } = productSlice.actions;
+export const { resetCategoryProducts, updateCategory, updateSortOrder, setPage, resetSortOrder  } = productSlice.actions;
 export default productSlice.reducer;

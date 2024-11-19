@@ -63,6 +63,13 @@ const productDetailSlice = createSlice({
       state.quantity = 1;
       state.error = null;
     },
+    resetProductDetail: (state) => {
+      state.product = null;
+      state.selectedColor = null;
+      state.selectedSize = null;
+      state.quantity = 1;
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProductDetail.fulfilled, (state, action) => {
@@ -75,5 +82,5 @@ const productDetailSlice = createSlice({
   },
 });
 
-export const { setProduct, setColor, setSize, setQuantity, resetSelections } = productDetailSlice.actions;
+export const { setProduct, setColor, setSize, setQuantity, resetSelections, resetProductDetail } = productDetailSlice.actions;
 export default productDetailSlice.reducer;
