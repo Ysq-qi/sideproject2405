@@ -32,3 +32,4 @@ functions/config/serviceAccountKey.json
 firebase-debug.log
 firebase-debug.*.log
 .firebase
+ui-debug.log
