@@ -21,26 +21,23 @@ jobs:
         with:
           node-version: 20  # 使用 Node.js 版本 20。
 
-      # 3. 設置環境變數並生成 .env.production
-      - name: Set environment variables
-        run: |
-          echo "REACT_APP_BASENAME=${{ secrets.REACT_APP_BASENAME }}" >> .env.production
-          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env.production      
-
-      # 4. 安裝依賴項
+      # 3. 安裝依賴項
       - name: Install dependencies
         run: npm install
 
-      # 5. 動態添加 homepage 欄位至 package.json
+      # 4. 動態添加 homepage 欄位至 package.json
       - name: Add homepage field dynamically
         run: |
           node -e "let pkg=require('./package.json'); pkg.homepage='https://ysq-qi.github.io/sideproject2405/'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
 
-      # 6. 建置專案
+      # 5. 建置專案
       - name: Build project
         run: npm run build
+        env:
+          REACT_APP_BASENAME: ${{ secrets.REACT_APP_BASENAME }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
-      # 7. 部署至 GitHub Pages
+      # 6. 部署至 GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
